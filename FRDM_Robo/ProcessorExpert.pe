@@ -12600,7 +12600,7 @@
     <Events />
   </Bean>
   <Bean>
-    <Repository>file:/${ProcessorExpertPath:user}</Repository>
+    <Repository>file://home/pascal/workspace/kinetis/components/installed</Repository>
     <BeanType>Wait</BeanType>
     <Name>WAIT1</Name>
     <CompNumb>3</CompNumb>
@@ -12793,7 +12793,7 @@
     <Events />
   </Bean>
   <Bean>
-    <Repository>file:/${ProcessorExpertPath:user}</Repository>
+    <Repository>file://home/pascal/workspace/kinetis/components/installed</Repository>
     <BeanType>LED</BeanType>
     <Name>LED1</Name>
     <CompNumb>4</CompNumb>
@@ -12803,7 +12803,7 @@
     <UserFolderName />
     <Comment lines_count="0" />
     <Template />
-    <BeanVersion>01.062</BeanVersion>
+    <BeanVersion>01.065</BeanVersion>
     <LightErrorsIgnored>false</LightErrorsIgnored>
     <Properties>
       <ItemState>
@@ -13581,7 +13581,7 @@
     <Events />
   </Bean>
   <Bean>
-    <Repository>file:/${ProcessorExpertPath:user}</Repository>
+    <Repository>file://home/pascal/workspace/kinetis/components/installed</Repository>
     <BeanType>LED</BeanType>
     <Name>LED2</Name>
     <CompNumb>7</CompNumb>
@@ -13591,7 +13591,7 @@
     <UserFolderName />
     <Comment lines_count="0" />
     <Template />
-    <BeanVersion>01.062</BeanVersion>
+    <BeanVersion>01.065</BeanVersion>
     <LightErrorsIgnored>false</LightErrorsIgnored>
     <Properties>
       <ItemState>
