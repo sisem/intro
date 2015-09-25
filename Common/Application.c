@@ -6,13 +6,18 @@
  */
 
 #include "Platform.h"
+#include "LED.h"
 
 void APP_Start(void) {
 
 	PL_Init();
 
+	for(;;) {
+		LED_Test();
+	}
+
 	PL_Deinit();
-	for (;;)
-		;
+	for (;;) {
+	}
 }
 

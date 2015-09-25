@@ -10,7 +10,6 @@
 
 #define  PL_BOARD_IS_FRDM
 
-
 #ifdef PL_BOARD_IS_FRDM
 	#define PL_NOF_LEDS 3
 #elif defined(PL_BOARD_IS_ROBO)
