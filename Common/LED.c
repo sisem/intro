@@ -5,16 +5,19 @@
  *      Author: SEM
  */
 
-#include "LEDR.h"
-#include "LEDG.h"
-#include "LEDB.h"
-#include "WAIT1.h"
+#include "LED.h"
 
 void LED_Test(void) {
-	LEDR_Neg();
+
+#if PL_NOF_LEDS >= 2
+	LED1_Neg();
 	WAIT1_Waitms(200);
-	LEDG_Neg();
+	LED2_Neg();
 	WAIT1_Waitms(200);
-	LEDB_Neg();
+#endif
+#if PL_NOF_LEDS == 3
+	LED3_Neg();
 	WAIT1_Waitms(200);
+#endif
+
 }
