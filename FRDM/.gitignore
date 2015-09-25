@@ -37,7 +37,6 @@
 *.CwGeneratedFileSetLog
 Generated_Code/
 Documentation/
-Static_Code/
 Debug/
 ProjectInfo.xml
 .settings/
