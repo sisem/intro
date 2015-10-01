@@ -9,12 +9,11 @@
 #define SOURCES_COMMON_LED_H_
 
 
-#if PL_TARGETR_BOARD == K22FXROBO
+#ifdef PL_BOARD_IS_ROBO
 #define PL_NOF_LEDS 2
-#elif PL_TARGETR_BOARD == KL25ZFRDM
+#endif
+#ifdef PL_BOARD_IS_FRDM
 #define PL_NOF_LEDS 3
-#else
-#error "Unknown board?"
 #endif
 
 #include "Platform.h"
