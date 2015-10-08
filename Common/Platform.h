@@ -8,12 +8,20 @@
 #ifndef SOURCES_COMMON_PLATFORM_H_
 #define SOURCES_COMMON_PLATFORM_H_
 
-#define K22FXROBO 1
-#define KL25ZFRDM 2
+#define PL_CONFIG_HAS_EVENTS 1
 
-#define PL_TARGETR_BOARD K22FXROBO
+#ifdef PL_BOARD_IS_ROBO
+#define PL_NOF_LEDS 2
+#define PL_CONFIG_HAS_KEYS 1
+#define PL_CONFIG_NOF_KEYS 2
+#endif
 
 
+#ifdef PL_BOARD_IS_FRDM
+#define PL_NOF_LEDS 3
+#define PL_CONFIG_HAS_KEYS 1
+#define PL_CONFIG_NOF_KEYS 7
+#endif
 
 
 void PL_Init(void);

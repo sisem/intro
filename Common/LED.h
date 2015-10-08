@@ -9,13 +9,6 @@
 #define SOURCES_COMMON_LED_H_
 
 
-#ifdef PL_BOARD_IS_ROBO
-#define PL_NOF_LEDS 2
-#endif
-#ifdef PL_BOARD_IS_FRDM
-#define PL_NOF_LEDS 3
-#endif
-
 #include "Platform.h"
 #include "WAIT1.h"
 #if PL_NOF_LEDS >= 2
