@@ -13,7 +13,7 @@
 
 #define PL_TARGETR_BOARD K22FXROBO
 
-#define PL_CONFIG_HAS_EVENTS 1
+
 
 
 void PL_Init(void);
