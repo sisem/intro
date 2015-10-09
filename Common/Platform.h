@@ -33,6 +33,7 @@
 #if PL_CONFIG_HAS_KEYS
 #include "Keys.h"
 #endif
+#include "Event.h"
 
 void PL_Init(void);
 void PL_Deinit(void);

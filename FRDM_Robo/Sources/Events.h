@@ -41,6 +41,7 @@
 #include "LED2.h"
 #include "LEDpin2.h"
 #include "BitIoLdd2.h"
+#include "CS1.h"
 #include "HF1.h"
 #include "TI1.h"
 #include "TimerIntLdd1.h"

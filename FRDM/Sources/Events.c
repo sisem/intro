@@ -71,3 +71,10 @@ void Cpu_OnNMIINT(void)
 **
 ** ###################################################################
 */
+
+/**
+ * Called if timer interrupt 1 elapsed.
+ */
+void TI1_OnInterrupt(void) {
+	TMR_OnInterrupt();
+}
