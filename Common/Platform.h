@@ -8,19 +8,30 @@
 #ifndef SOURCES_COMMON_PLATFORM_H_
 #define SOURCES_COMMON_PLATFORM_H_
 
-#define PL_CONFIG_HAS_EVENTS 1
+#include "PE_Types.h"
+#include "PE_Const.h"
+#include "PE_Error.h"
+
 
 #ifdef PL_BOARD_IS_ROBO
 #define PL_NOF_LEDS 2
-#define PL_CONFIG_HAS_KEYS 1
+#define PL_CONFIG_HAS_KEYS 0
 #define PL_CONFIG_NOF_KEYS 2
+
+#define PL_CONFIG_HAS_EVENTS 1
+
+#define PL CONFIG HAS TIMER 1
 #endif
 
 
 #ifdef PL_BOARD_IS_FRDM
 #define PL_NOF_LEDS 3
-#define PL_CONFIG_HAS_KEYS 1
+#define PL_CONFIG_HAS_KEYS 0
 #define PL_CONFIG_NOF_KEYS 7
+
+#define PL_CONFIG_HAS_EVENTS 1
+
+#define PL CONFIG HAS TIMER 1
 #endif
 
 

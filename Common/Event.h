@@ -13,6 +13,10 @@
 
 #include "Platform.h"
 
+#include "PE_Types.h"
+#include "PE_Error.h"
+#include "PE_Const.h"
+
 #if PL_CONFIG_HAS_EVENTS
 
 typedef enum EVNT_Handle {
