@@ -13,6 +13,8 @@
 #if PL_CONFIG_HAS_EVENTS
 #include "Event.h" /* our own interface */
 
+
+
 typedef uint8_t EVNT_MemUnit; /*!< memory unit used to store events flags */
 #define EVNT_MEM_UNIT_NOF_BITS  (sizeof(EVNT_MemUnit)*8)
   /*!< number of bits in memory unit */
@@ -27,7 +29,12 @@ static EVNT_MemUnit EVNT_Events[((EVNT_NOF_EVENTS-1)/EVNT_MEM_UNIT_NOF_BITS)+1];
   (bool)(EVNT_Events[(event)/EVNT_MEM_UNIT_NOF_BITS]&((1<<(EVNT_MEM_UNIT_NOF_BITS-1))>>((uint8_t)((event)%EVNT_MEM_UNIT_NOF_BITS)))) /*!< Return TRUE if event is set */
 
 void EVNT_SetEvent(EVNT_Handle event) {
+  CLR_EVENT(event);
+
+  //EnterCritical();
   SET_EVENT(event);
+  //ExitCritical();
+
 }
 
 void EVNT_ClearEvent(EVNT_Handle event) {
