@@ -6,7 +6,6 @@
  */
 
 #include "Platform.h"
-#include "LED.h"
 
 void APP_Start(void) {
 

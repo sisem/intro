@@ -42,6 +42,10 @@
 #include "LEDpin2.h"
 #include "BitIoLdd2.h"
 #include "HF1.h"
+#include "TI1.h"
+#include "TimerIntLdd1.h"
+#include "TU1.h"
+#include "Platform.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -82,3 +86,8 @@ void Cpu_OnNMI(void);
 **
 ** ###################################################################
 */
+
+/**
+ * Called if timer interrupt 1 elapsed.
+ */
+void TI1_OnInterrupt(void);

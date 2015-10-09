@@ -54,7 +54,6 @@ int main(void)
 {
 	/* Write your local variable definition here */
 
-
 	/*** Processor Expert internal initialization. DON'T REMOVE THIS CODE!!! ***/
 	PE_low_level_init();
 	/*** End of Processor Expert internal initialization.                    ***/

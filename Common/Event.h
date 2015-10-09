@@ -12,6 +12,7 @@
 #define EVENT_H_
 
 #include "Platform.h"
+#include "PE_Types.h"
 
 #if PL_CONFIG_HAS_EVENTS
 

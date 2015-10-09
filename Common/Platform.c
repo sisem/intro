@@ -10,6 +10,7 @@ void PL_Init(void) {
 	//LED_Init();
 	//SCI_Init();
 	//...
+
 }
 
 /* Platform.c */

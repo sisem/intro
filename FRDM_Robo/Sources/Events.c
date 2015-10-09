@@ -62,6 +62,8 @@ void Cpu_OnNMI(void)
 }  /* extern "C" */
 #endif 
 
+
+
 /*!
 ** @}
 */
@@ -73,3 +75,10 @@ void Cpu_OnNMI(void)
 **
 ** ###################################################################
 */
+
+/**
+ * Called if timer interrupt 1 elapsed.
+ */
+void TI1_OnInterrupt(void) {
+	TMR_OnInterrupt();
+}
