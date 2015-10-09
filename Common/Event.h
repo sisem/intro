@@ -21,8 +21,25 @@
 
 typedef enum EVNT_Handle {
   EVNT_STARTUP,            /*!< System startup Event */
-  EVENT_LED_HEARTBEAT,     /*!< LED heartbeat */
+  EVNT_LED_HEARTBEAT,     /*!< LED heartbeat */
   /*!< \todo Your events here */
+#if PL_CONFIG_NOF_KEYS >= 1
+  EVNT_SW1_PRESSED,
+  EVNT_SW1_LPRESSED,
+  EVNT_SW1_RELEASED,
+#endif
+#if PL_CONFIG_NOF_KEYS >= 2
+  EVNT_SW2_PRESSED,
+  EVNT_SW2_LPRESSED,
+  EVNT_SW2_RELEASED,
+#endif
+#if PL_CONFIG_NOF_KEYS >= 3
+  EVNT_SW3_PRESSED,
+  EVNT_SW3_LPRESSED,
+  EVNT_SW3_RELEASED,
+#endif
+// Pascal: goes up to #if PL_CONFIG_NOF_KEYS >= 7
+
   EVNT_NOF_EVENTS       /*!< Must be last one! */
 } EVNT_Handle;
 
