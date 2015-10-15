@@ -12606,7 +12606,7 @@
     <Events />
   </Bean>
   <Bean>
-    <Repository>file:/${home_ProcessorExpert_loc}/MyComponents</Repository>
+    <Repository>file://home/pascal/workspace/kinetis/components/installed</Repository>
     <BeanType>Wait</BeanType>
     <Name>WAIT1</Name>
     <CompNumb>3</CompNumb>
@@ -12799,7 +12799,7 @@
     <Events />
   </Bean>
   <Bean>
-    <Repository>file:/${home_ProcessorExpert_loc}/MyComponents</Repository>
+    <Repository>file://home/pascal/workspace/kinetis/components/installed</Repository>
     <BeanType>HardFault</BeanType>
     <Name>HF1</Name>
     <CompNumb>13</CompNumb>
@@ -14690,7 +14690,7 @@
     </Events>
   </Bean>
   <Bean>
-    <Repository>file:/${home_ProcessorExpert_loc}/MyComponents</Repository>
+    <Repository>file://home/pascal/workspace/kinetis/components/installed</Repository>
     <BeanType>LED</BeanType>
     <Name>LED1</Name>
     <CompNumb>18</CompNumb>
@@ -15478,7 +15478,7 @@
     <Events />
   </Bean>
   <Bean>
-    <Repository>file:/${home_ProcessorExpert_loc}/MyComponents</Repository>
+    <Repository>file://home/pascal/workspace/kinetis/components/installed</Repository>
     <BeanType>LED</BeanType>
     <Name>LED2</Name>
     <CompNumb>21</CompNumb>
@@ -16266,7 +16266,7 @@
     <Events />
   </Bean>
   <Bean>
-    <Repository>file:/${home_ProcessorExpert_loc}/MyComponents</Repository>
+    <Repository>file://home/pascal/workspace/kinetis/components/installed</Repository>
     <BeanType>CriticalSection</BeanType>
     <Name>CS1</Name>
     <CompNumb>24</CompNumb>
