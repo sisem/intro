@@ -8,15 +8,14 @@
 #ifndef SOURCES_COMMON_LED_H_
 #define SOURCES_COMMON_LED_H_
 
-
 #include "Platform.h"
 #include "WAIT1.h"
 
-#if PL_NOF_LEDS >= 2
+#if PL_CONFIG_NOF_LED >= 2
 #include "LED1.h"
 #include "LED2.h"
-#endifb
-#if PL_NOF_LEDS == 3
+#endif
+#if PL_CONFIG_NOF_LED >= 3
 #include "LED3.h"
 #endif
 

@@ -7,8 +7,8 @@
  * It is using macros for maximum flexibility with minimal code overhead.
  */
 
-#ifndef KEYS_H_
-#define KEYS_H_
+#ifndef SOURCES_COMMON_KEYS_H_
+#define SOURCES_COMMON_KEYS_H_
 
 #include "Platform.h"
 
@@ -132,4 +132,4 @@ void KEY_Deinit(void);
 
 #endif /* PL_HAS_KEYS */
 
-#endif /* KEYS_H_ */
+#endif /* SOURCES_COMMON_KEYS_H_ */

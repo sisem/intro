@@ -8,8 +8,8 @@
  * has the highest priority and will be handled first
  */
 
-#ifndef EVENT_H_
-#define EVENT_H_
+#ifndef SOURCES_COMMON_EVENT_H_
+#define SOURCES_COMMON_EVENT_H_
 
 #include "Platform.h"
 #include "PE_Types.h"
@@ -105,4 +105,4 @@ void EVNT_Deinit(void);
 #endif /* PL_HAS_EVENTS */
 
 
-#endif /* EVENT_H_ */
+#endif /* SOURCES_COMMON_EVENT_H_ */

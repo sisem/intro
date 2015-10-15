@@ -1,7 +1,7 @@
 /* ###################################################################
 **     Filename    : main.c
 **     Project     : FRDM_Robo
-**     Processor   : MK22FN512VLH12
+**     Processor   : MK22FX512VLK12
 **     Version     : Driver 01.01
 **     Compiler    : GNU C Compiler
 **     Date/Time   : 2015-09-25, 13:38, # CodeGen: 0
@@ -30,7 +30,6 @@
 /* Including needed modules to compile this module/procedure */
 #include "Cpu.h"
 #include "Events.h"
-#include "pin_mux.h"
 #include "WAIT1.h"
 #include "HF1.h"
 #include "TI1.h"
@@ -43,6 +42,15 @@
 #include "LEDpin2.h"
 #include "BitIoLdd2.h"
 #include "CS1.h"
+#include "CLS1.h"
+#include "UTIL1.h"
+#include "BT1.h"
+#include "Serial1.h"
+#include "ASerialLdd1.h"
+#include "SW1.h"
+#include "BitIoLdd3.h"
+#include "BUZ1.h"
+#include "BitIoLdd4.h"
 /* Including shared modules, which are used for whole project */
 #include "PE_Types.h"
 #include "PE_Error.h"

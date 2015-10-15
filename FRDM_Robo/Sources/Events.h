@@ -1,7 +1,7 @@
 /* ###################################################################
 **     Filename    : Events.h
 **     Project     : FRDM_Robo
-**     Processor   : MK22FN512VLH12
+**     Processor   : MK22FX512VLK12
 **     Component   : Events
 **     Version     : Driver 01.00
 **     Compiler    : GNU C Compiler
@@ -33,7 +33,6 @@
 #include "PE_Error.h"
 #include "PE_Const.h"
 #include "IO_Map.h"
-#include "pin_mux.h"
 #include "WAIT1.h"
 #include "HF1.h"
 #include "TI1.h"
@@ -46,6 +45,15 @@
 #include "LEDpin2.h"
 #include "BitIoLdd2.h"
 #include "CS1.h"
+#include "CLS1.h"
+#include "UTIL1.h"
+#include "BT1.h"
+#include "Serial1.h"
+#include "ASerialLdd1.h"
+#include "SW1.h"
+#include "BitIoLdd3.h"
+#include "BUZ1.h"
+#include "BitIoLdd4.h"
 #include "Platform.h"
 
 #ifdef __cplusplus
@@ -54,9 +62,9 @@ extern "C" {
 
 /*
 ** ===================================================================
-**     Event       :  Cpu_OnNMI (module Events)
+**     Event       :  Cpu_OnNMIINT (module Events)
 **
-**     Component   :  Cpu [MK22FN512LH12]
+**     Component   :  Cpu [MK22FN1M0LL12]
 */
 /*!
 **     @brief
@@ -65,8 +73,7 @@ extern "C" {
 **         interrupt] property is set to 'Enabled'.
 */
 /* ===================================================================*/
-void Cpu_OnNMI(void);
-
+void Cpu_OnNMIINT(void);
 
 /* END Events */
 

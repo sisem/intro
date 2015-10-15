@@ -1,7 +1,7 @@
 /* ###################################################################
 **     Filename    : Events.c
 **     Project     : FRDM_Robo
-**     Processor   : MK22FN512VLH12
+**     Processor   : MK22FX512VLK12
 **     Component   : Events
 **     Version     : Driver 01.00
 **     Compiler    : GNU C Compiler
@@ -40,9 +40,9 @@ extern "C" {
 
 /*
 ** ===================================================================
-**     Event       :  Cpu_OnNMI (module Events)
+**     Event       :  Cpu_OnNMIINT (module Events)
 **
-**     Component   :  Cpu [MK22FN512LH12]
+**     Component   :  Cpu [MK22FN1M0LL12]
 */
 /*!
 **     @brief
@@ -51,7 +51,7 @@ extern "C" {
 **         interrupt] property is set to 'Enabled'.
 */
 /* ===================================================================*/
-void Cpu_OnNMI(void)
+void Cpu_OnNMIINT(void)
 {
   /* Write your code here ... */
 }

@@ -6,11 +6,11 @@
 /*##                                   */
 /*##     Project   : FRDM_Robo         */
 /*##                                   */
-/*##     Processor : MK22FN512VLH12    */
+/*##     Processor : MK22FX512VLK12    */
 /*##                                   */
 /*##     Compiler  : GNU C Compiler    */
 /*##                                   */
-/*##     Date/Time : 2015-09-25, 13:38, # CodeGen: 0 */
+/*##     Date/Time : 2015-10-15, 16:46, # CodeGen: 16 */
 /*##                                   */
 /*##     Abstract  :                   */
 /*##                                   */
@@ -37,10 +37,10 @@ __heap_size = 0x00;                    /* required amount of heap  */
 __stack_size = 0x0400;                 /* required amount of stack */
 
 MEMORY {
-  m_interrupts (RX) : ORIGIN = 0x00000000, LENGTH = 0x00000198
+  m_interrupts (RX) : ORIGIN = 0x00000000, LENGTH = 0x00000188
   m_text      (RX) : ORIGIN = 0x00000410, LENGTH = 0x0007FBF0
-  m_data      (RW) : ORIGIN = 0x1FFF0000, LENGTH = 0x00010000
-  m_data_20000000 (RW) : ORIGIN = 0x20000000, LENGTH = 0x00010000
+  m_data      (RW) : ORIGIN = 0x1FFF8000, LENGTH = 0x00008000
+  m_data_20000000 (RW) : ORIGIN = 0x20000000, LENGTH = 0x00008000
   m_cfmprotrom  (RX) : ORIGIN = 0x00000400, LENGTH = 0x00000010
 }
 
