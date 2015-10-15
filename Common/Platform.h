@@ -13,15 +13,17 @@
 #define PL_CONFIG_HAS_LEDS 1
 
 #ifdef PL_BOARD_IS_ROBO
-#define PL_NOF_LEDS 2
-#define PL_CONFIG_HAS_KEYS 0 // 1
-#define PL_CONFIG_NOF_KEYS 0 // 2
+#define PL_CONFIG_HAS_LED 1
+#define PL_CONFIG_NOF_LED 2
+#define PL_CONFIG_HAS_KEYS 1 // 1
+#define PL_CONFIG_NOF_KEYS 2 // 2
 #endif
 
 #ifdef PL_BOARD_IS_FRDM
-#define PL_NOF_LEDS 3
-#define PL_CONFIG_HAS_KEYS 0 // 1
-#define PL_CONFIG_NOF_KEYS 0 // 7
+#define PL_CONFIG_HAS_LED 1
+#define PL_CONFIG_NOF_LED 3
+#define PL_CONFIG_HAS_KEYS 1 // 1
+#define PL_CONFIG_NOF_KEYS 7 // 7
 #endif
 
 #if PL_CONFIG_HAS_TIMER

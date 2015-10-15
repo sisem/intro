@@ -16,6 +16,41 @@
 
 void KEY_Scan(void) {
   /*! \todo check handling all keys */
+#if PL_CONFIG_NOF_KEYS >= 1
+  if (KEY1_Get()) { /* key pressed */
+    EVNT_SetEvent(EVNT_SW1_PRESSED);
+  }
+#endif
+#if PL_CONFIG_NOF_KEYS >= 2
+  if (KEY2_Get()) { /* key pressed */
+    EVNT_SetEvent(EVNT_SW2_PRESSED);
+  }
+#endif
+#if PL_CONFIG_NOF_KEYS >= 3
+  if (KEY3_Get()) { /* key pressed */
+    EVNT_SetEvent(EVNT_SW3_PRESSED);
+  }
+#endif
+#if PL_CONFIG_NOF_KEYS >= 4
+  if (KEY4_Get()) { /* key pressed */
+    EVNT_SetEvent(EVNT_SW4_PRESSED);
+  }
+#endif
+#if PL_CONFIG_NOF_KEYS >= 5
+  if (KEY5_Get()) { /* key pressed */
+    EVNT_SetEvent(EVNT_SW5_PRESSED);
+  }
+#endif
+#if PL_CONFIG_NOF_KEYS >= 6
+  if (KEY6_Get()) { /* key pressed */
+    EVNT_SetEvent(EVNT_SW6_PRESSED);
+  }
+#endif
+#if PL_CONFIG_NOF_KEYS >= 7
+  if (KEY7_Get()) { /* key pressed */
+    EVNT_SetEvent(EVNT_SW7_PRESSED);
+  }
+#endif
 }
 
 /*! \brief Key driver initialization */

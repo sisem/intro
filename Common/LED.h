@@ -11,10 +11,11 @@
 
 #include "Platform.h"
 #include "WAIT1.h"
+
 #if PL_NOF_LEDS >= 2
 #include "LED1.h"
 #include "LED2.h"
-#endif
+#endifb
 #if PL_NOF_LEDS == 3
 #include "LED3.h"
 #endif
