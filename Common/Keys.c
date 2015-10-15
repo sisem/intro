@@ -15,7 +15,7 @@
 #endif
 
 void KEY_Scan(void) {
-  /*! \todo check handling all keys */
+  /*! \todo check hterxwandling all keys */
 }
 
 /*! \brief Key driver initialization */

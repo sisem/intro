@@ -6,6 +6,7 @@
  */
 
 #include "Application.h"
+#include "CLS1.h"
 
 void APP_Start(void) {
 
@@ -26,6 +27,7 @@ void APP_HandleEvent(EVNT_Handle event) {
 	switch(event) {
 		case EVNT_LED_HEARTBEAT:
 			LED2_Neg();
+			CLS1_SendStr("Hallo du!\n", CLS1_GetStdio()->stdOut);
 			break;
 	}
 }
