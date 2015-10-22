@@ -111,11 +111,15 @@ void APP_KeyEvntHandler(EVNT_Handle event) {
   #if PL_CONFIG_NOF_KEYS >= 1
     case EVNT_SW1_PRESSED:
     case EVNT_SW1_LPRESSED:
+			#if PL_CONFIG_HAS_SHELL
     	CLS1_SendStr("SW1 pressed.\n", CLS1_GetStdio()->stdOut);
+			#endif
     	LED2_Neg();
       break;
     case EVNT_SW1_RELEASED:
+			#if PL_CONFIG_HAS_SHELL
     	CLS1_SendStr("SW1 released.\n", CLS1_GetStdio()->stdOut);
+			#endif
       break;
    #endif
   #if PL_CONFIG_NOF_KEYS >= 2
