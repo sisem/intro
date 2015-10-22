@@ -19,6 +19,6 @@
 #include "LED3.h"
 #endif
 
-void LED_Test(void);
+void LED_Init(void);
 
 #endif /* SOURCES_COMMON_LED_H_ */

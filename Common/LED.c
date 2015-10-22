@@ -21,3 +21,10 @@ static void LED_HeartBeat(void *p) {
 	TRG_SetTrigger(TRG_LED_BLINK, 1000/TRG_TICKS_MS, LED_HeartBeat, NULL);
 }
 #endif
+
+void LED_Init(void) {
+	#if PL_CONFIG_NOF_LED >= 1
+	void *p;
+	LED_HeartBeat(&p);
+	#endif
+}

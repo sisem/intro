@@ -6,6 +6,14 @@
  */
 
 #include "Application.h"
+
+#if PL_CONFIG_HAS_LEDS
+#include "LED.h"
+#if PL_CONFIG_NOF_LED >=1
+#include "LED1.h"
+#endif
+#endif
+
 #include "CLS1.h"
 
 static bool isRunning = FALSE;
@@ -61,20 +69,15 @@ void APP_HandleEvent(EVNT_Handle event) {
 	switch (event) {
 		case EVNT_STARTUP:
 			#if PL_CONFIG_HAS_LEDS
-			#if PL_CONFIG_NOF_LED >= 1
+			LED_Init();
+			#endif
+
+			// buzzer on startup
 			#if PL_CONFIG_HAS_BUZZER
-			BUZ_Beep(500, 2000);
+			BUZ_Beep(500, 200);
 			#endif
-			#endif
-			WAIT1_Waitms(50);
-			#if PL_CONFIG_NOF_LED>=2
-			LED2_Neg();
-			#endif
-			WAIT1_Waitms(50);
-			#if PL_CONFIG_NOF_LED>=3
-			LED3_Neg();
-			#endif
-			WAIT1_Waitms(50);
+
+			// clear leds
 			#endif
 			#if PL_CONFIG_NOF_LED >=1
 			LED1_Off();
@@ -214,4 +217,3 @@ void APP_KeyEvntHandler(EVNT_Handle event) {
 }
 #endif
 
-#endif
