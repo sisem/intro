@@ -13,7 +13,6 @@
 #include <stddef.h> /* for NULL */
 #include "Debounce.h"
 #include "Trigger.h"
-
 /*! \brief Key scan routine which implements the state machine.
 \dot
 digraph example_api_graph {
