@@ -15,7 +15,6 @@
 #endif
 
 void KEY_Scan(void) {
-  /*! \todo check handling all keys */
 #if PL_CONFIG_NOF_KEYS >= 1
   if (KEY1_Get()) { /* key pressed */
     EVNT_SetEvent(EVNT_SW1_PRESSED);

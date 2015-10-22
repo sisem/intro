@@ -8,7 +8,6 @@
 
 #ifndef KEYDEBOUNCE_H_
 #define KEYDEBOUNCE_H_
-
 /*!
  * \brief Kicks the debouncing state machine.
  */

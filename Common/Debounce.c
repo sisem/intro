@@ -13,7 +13,6 @@
 #include <stddef.h> /* for NULL */
 #include "Debounce.h"
 #include "Trigger.h"
-
 /*! \brief Key scan routine which implements the state machine.
 \dot
 digraph example_api_graph {
@@ -43,7 +42,6 @@ void DBNC_Process(DBNC_FSMData *data) {
       case DBNC_KEY_PRESSED:
         keys = data->getKeys();
         if (keys==data->scanValue) { /* still pressing the same keys */
-          /*! \todo See how it checks long or short press */
           if (data->longKeyCnt>=data->longKeyTicks) {
             /* yes, long key press detected */
             data->longKeyCnt=0; /* zero is a special value to prevent counting */

@@ -11,7 +11,6 @@
 
 #include "Platform.h"
 #include "Trigger.h"
-
 /*! \brief States of the key detection state machine. */
 typedef enum DBNC_KeyStateKinds {
   DBNC_KEY_IDLE = 0, /*<! Initial idle state */
