@@ -5,19 +5,19 @@
  *      Author: SEM
  */
 
+#if PL_CONFIG_HAS_LEDS
 #include "LED.h"
+#if PL_CONFIG_NOF_LED >= 2
+#include "LED1.h"
+#endif
+#endif
 
-void LED_Test(void) {
+#include "Trigger.h"
 
-#if PL_NOF_LEDS >= 2
+#if PL_CONFIG_NOF_LED >= 1
+static void LED_HeartBeat(void *p) {
+	(void)p;
 	LED1_Neg();
-	WAIT1_Waitms(200);
-	LED2_Neg();
-	WAIT1_Waitms(200);
-#endif
-#if PL_NOF_LEDS == 3
-	LED3_Neg();
-	WAIT1_Waitms(200);
-#endif
-
+	TRG_SetTrigger(TRG_LED_BLINK, 1000/TRG_TICKS_MS, LED_HeartBeat, NULL);
 }
+#endif

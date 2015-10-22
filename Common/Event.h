@@ -22,7 +22,6 @@
 
 typedef enum EVNT_Handle {
   EVNT_STARTUP,            /*!< System startup Event */
-  EVNT_LED_HEARTBEAT,     /*!< LED heartbeat */
   /*!< \todo Your events here */
 #if PL_CONFIG_NOF_KEYS >= 1
   EVNT_SW1_PRESSED,

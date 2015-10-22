@@ -26,36 +26,43 @@ static DBNC_KeySet KEYDBNC_GetKeys(void) {
     keys |= (1<<0);
   }
 #endif
+
 #if PL_CONFIG_NOF_KEYS >= 2
   if (KEY2_Get()) {
     keys |= (1<<1);
   }
 #endif
+
 #if PL_CONFIG_NOF_KEYS >= 3
   if (KEY3_Get()) {
     keys |= (1<<2);
   }
 #endif
+
 #if PL_CONFIG_NOF_KEYS >= 4
   if (KEY4_Get()) {
     keys |= (1<<3);
   }
 #endif
+
 #if PL_CONFIG_NOF_KEYS >= 5
   if (KEY5_Get()) {
     keys |= (1<<4);
   }
 #endif
+
 #if PL_CONFIG_NOF_KEYS >= 6
   if (KEY6_Get()) {
     keys |= (1<<5);
   }
 #endif
+
 #if PL_CONFIG_NOF_KEYS >= 7
   if (KEY7_Get()) {
     keys |= (1<<6);
   }
 #endif
+
   return keys;
 }
 

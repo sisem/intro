@@ -17,9 +17,12 @@ void TMR_OnInterrupt(void) {
   static int cntr = 0;
   #define BLINK_PERIOD_MS 500
   cntr++;
+
+  /*
   if((cntr%(BLINK_PERIOD_MS/TMR_TICK_MS)) == 0) {
     EVNT_SetEvent(EVNT_LED_HEARTBEAT);
   }
+  */
   TRG_IncTick();
 }
 
