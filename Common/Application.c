@@ -111,7 +111,9 @@ void APP_KeyEvntHandler(EVNT_Handle event) {
 			#if PL_CONFIG_HAS_SHELL
     	CLS1_SendStr("SW1 pressed.\n", CLS1_GetStdio()->stdOut);
 			#endif
+			#if PL_CONFIG_HAS_BUZZER
 			BUZ_Beep(500, 200);
+			#endif
     	LED2_On();
       break;
     case EVNT_SW1_RELEASED:
