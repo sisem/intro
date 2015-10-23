@@ -64,6 +64,7 @@
 #include "BitIoLdd10.h"
 #include "AD1.h"
 #include "AdcLdd1.h"
+#include "FRTOS1.h"
 #include "CS1.h"
 #include "WAIT1.h"
 #include "HF1.h"

@@ -27,16 +27,19 @@ void APP_Start(void) {
 	PL_Init();
 	EVNT_Init();
 
-	// start application loop
-	isRunning = TRUE;
-	EVNT_SetEvent(EVNT_STARTUP);
-	while(isRunning) {
-		APP_Update();
+	// Initialize all tasks
+	RTOS_Init();
+	// start scheduler
+	RTOS_Run();
+
+	// Wait forever, we don't want to Deinit!
+	for (;;) {
 	}
 
-	// deinitialize
+// deinitialize
 	PL_Deinit();
-	for (;;);
+	for (;;)
+		;
 }
 
 /**
@@ -67,35 +70,16 @@ void APP_Update(void) {
 #if PL_CONFIG_HAS_EVENTS
 void APP_HandleEvent(EVNT_Handle event) {
 	switch (event) {
-		case EVNT_STARTUP:
-			#if PL_CONFIG_HAS_LEDS
-			LED_Init();
-			#endif
-
-			// buzzer on startup
-			#if PL_CONFIG_HAS_BUZZER
-			BUZ_Beep(500, 200);
-			#endif
-
-			// clear leds
-			#endif
-			#if PL_CONFIG_NOF_LED >=1
-			LED1_Off();
-			#endif
-			#if PL_CONFIG_NOF_LED >=2
-			LED2_Off();
-			#endif
-			#if PL_CONFIG_NOF_LED >=3
-			LED3_Off();
-			#endif
-			break;
-		default:
-			#if PL_CONFIG_HAS_KEYS
-			APP_KeyEvntHandler(event);
-			#endif
-			break;
+	case EVNT_STARTUP:
+		break;
+	default:
+	#if PL_CONFIG_HAS_KEYS
+		APP_KeyEvntHandler(event);
+	#endif
+		break;
 	}
 }
+#endif
 
 /**
  * Handles every type of key input.
@@ -103,119 +87,118 @@ void APP_HandleEvent(EVNT_Handle event) {
  */
 #if PL_CONFIG_HAS_KEYS
 void APP_KeyEvntHandler(EVNT_Handle event) {
-  switch(event) {
+	switch (event) {
 
-  #if PL_CONFIG_NOF_KEYS >= 1
-    case EVNT_SW1_PRESSED:
-    case EVNT_SW1_LPRESSED:
-			#if PL_CONFIG_HAS_SHELL
-    	CLS1_SendStr("SW1 pressed.\n", CLS1_GetStdio()->stdOut);
-			#endif
-			#if PL_CONFIG_HAS_BUZZER
-			BUZ_Beep(500, 200);
-			#endif
-    	LED2_On();
-      break;
-    case EVNT_SW1_RELEASED:
-			#if PL_CONFIG_HAS_SHELL
-    	CLS1_SendStr("SW1 released.\n", CLS1_GetStdio()->stdOut);
-    	LED2_Off();
-			#endif
-      break;
-   #endif
-
-  #if PL_CONFIG_NOF_KEYS >= 2
-    case EVNT_SW2_PRESSED:
-    case EVNT_SW2_LPRESSED:
-			#if PL_CONFIG_HAS_SHELL
-    	CLS1_SendStr("SW2 pressed.\n", CLS1_GetStdio()->stdOut);
-			#endif
-    	LED2_Neg();
-    	break;
-    case EVNT_SW2_RELEASED:
-			#if PL_CONFIG_HAS_SHELL
-    	CLS1_SendStr("SW2 released.\n", CLS1_GetStdio()->stdOut);
-			#endif
-      break;
+	#if PL_CONFIG_NOF_KEYS >= 1
+	case EVNT_SW1_PRESSED:
+	case EVNT_SW1_LPRESSED:
+	#if PL_CONFIG_HAS_SHELL
+		CLS1_SendStr("SW1 pressed.\n", CLS1_GetStdio()->stdOut);
+	#endif
+	#if PL_CONFIG_HAS_BUZZER
+		BUZ_Beep(500, 200);
+	#endif
+		LED2_On();
+		break;
+	case EVNT_SW1_RELEASED:
+	#if PL_CONFIG_HAS_SHELL
+		CLS1_SendStr("SW1 released.\n", CLS1_GetStdio()->stdOut);
+		LED2_Off();
+	#endif
+		break;
 	#endif
 
-  #if PL_CONFIG_NOF_KEYS >= 3
-    case EVNT_SW3_PRESSED:
-    case EVNT_SW3_LPRESSED:
-			#if PL_CONFIG_HAS_SHELL
-    	CLS1_SendStr("SW3 pressed.\n", CLS1_GetStdio()->stdOut);
-			#endif
-    	LED2_Neg();
-    	break;
-    case EVNT_SW3_RELEASED:
-			#if PL_CONFIG_HAS_SHELL
-    	CLS1_SendStr("SW3 released.\n", CLS1_GetStdio()->stdOut);
-			#endif
-      break;
-  #endif
-
-  #if PL_CONFIG_NOF_KEYS >= 4
-    case EVNT_SW4_PRESSED:
-    case EVNT_SW4_LPRESSED:
-			#if PL_CONFIG_HAS_SHELL
-    	CLS1_SendStr("SW4 pressed.\n", CLS1_GetStdio()->stdOut);
-			#endif
-    	LED2_Neg();
-    	break;
-    case EVNT_SW4_RELEASED:
-			#if PL_CONFIG_HAS_SHELL
-    	CLS1_SendStr("SW4 released.\n", CLS1_GetStdio()->stdOut);
-			#endif
-      break;
-   #endif
-
-  #if PL_CONFIG_NOF_KEYS >= 5
-    case EVNT_SW5_PRESSED:
-    case EVNT_SW5_LPRESSED:
-			#if PL_CONFIG_HAS_SHELL
-    	CLS1_SendStr("SW5 pressed.\n", CLS1_GetStdio()->stdOut);
-			#endif
-    	LED2_Neg();
-    	break;
-    case EVNT_SW5_RELEASED:
-			#if PL_CONFIG_HAS_SHELL
-    	CLS1_SendStr("SW5 released.\n", CLS1_GetStdio()->stdOut);
-			#endif
-      break;
-   #endif
-
-  #if PL_CONFIG_NOF_KEYS >= 6
-    case EVNT_SW6_PRESSED:
-    case EVNT_SW6_LPRESSED:
-			#if PL_CONFIG_HAS_SHELL
-    	CLS1_SendStr("SW6 pressed.\n", CLS1_GetStdio()->stdOut);
-			#endif
-    	LED2_Neg();
-    	break;
-    case EVNT_SW6_RELEASED:
-			#if PL_CONFIG_HAS_SHELL
-    	CLS1_SendStr("SW6 released.\n", CLS1_GetStdio()->stdOut);
-			#endif
-    	break;
-  #endif
-
-  #if PL_CONFIG_NOF_KEYS >= 7
-    case EVNT_SW7_PRESSED:
-    case EVNT_SW7_LPRESSED:
-			#if PL_CONFIG_HAS_SHELL
-    	CLS1_SendStr("SW7 pressed.\n", CLS1_GetStdio()->stdOut);
-			#endif
-    	LED2_Neg();
-    	break;
-    case EVNT_SW7_RELEASED:
-			#if PL_CONFIG_HAS_SHELL
-    	CLS1_SendStr("SW7 released.\n", CLS1_GetStdio()->stdOut);
-			#endif
-      break;
-   #endif
-    default:
-      break;
-  }
-}
+	#if PL_CONFIG_NOF_KEYS >= 2
+	case EVNT_SW2_PRESSED:
+	case EVNT_SW2_LPRESSED:
+	#if PL_CONFIG_HAS_SHELL
+		CLS1_SendStr("SW2 pressed.\n", CLS1_GetStdio()->stdOut);
+	#endif
+		LED2_Neg();
+		break;
+	case EVNT_SW2_RELEASED:
+#if PL_CONFIG_HAS_SHELL
+		CLS1_SendStr("SW2 released.\n", CLS1_GetStdio()->stdOut);
+#endif
+		break;
 #endif
 
+#if PL_CONFIG_NOF_KEYS >= 3
+	case EVNT_SW3_PRESSED:
+	case EVNT_SW3_LPRESSED:
+#if PL_CONFIG_HAS_SHELL
+		CLS1_SendStr("SW3 pressed.\n", CLS1_GetStdio()->stdOut);
+#endif
+		LED2_Neg();
+		break;
+	case EVNT_SW3_RELEASED:
+#if PL_CONFIG_HAS_SHELL
+		CLS1_SendStr("SW3 released.\n", CLS1_GetStdio()->stdOut);
+#endif
+		break;
+#endif
+
+#if PL_CONFIG_NOF_KEYS >= 4
+	case EVNT_SW4_PRESSED:
+	case EVNT_SW4_LPRESSED:
+#if PL_CONFIG_HAS_SHELL
+		CLS1_SendStr("SW4 pressed.\n", CLS1_GetStdio()->stdOut);
+#endif
+		LED2_Neg();
+		break;
+	case EVNT_SW4_RELEASED:
+#if PL_CONFIG_HAS_SHELL
+		CLS1_SendStr("SW4 released.\n", CLS1_GetStdio()->stdOut);
+#endif
+		break;
+#endif
+
+#if PL_CONFIG_NOF_KEYS >= 5
+	case EVNT_SW5_PRESSED:
+	case EVNT_SW5_LPRESSED:
+#if PL_CONFIG_HAS_SHELL
+		CLS1_SendStr("SW5 pressed.\n", CLS1_GetStdio()->stdOut);
+#endif
+		LED2_Neg();
+		break;
+	case EVNT_SW5_RELEASED:
+#if PL_CONFIG_HAS_SHELL
+		CLS1_SendStr("SW5 released.\n", CLS1_GetStdio()->stdOut);
+#endif
+		break;
+#endif
+
+#if PL_CONFIG_NOF_KEYS >= 6
+	case EVNT_SW6_PRESSED:
+	case EVNT_SW6_LPRESSED:
+#if PL_CONFIG_HAS_SHELL
+		CLS1_SendStr("SW6 pressed.\n", CLS1_GetStdio()->stdOut);
+#endif
+		LED2_Neg();
+		break;
+	case EVNT_SW6_RELEASED:
+#if PL_CONFIG_HAS_SHELL
+		CLS1_SendStr("SW6 released.\n", CLS1_GetStdio()->stdOut);
+#endif
+		break;
+#endif
+
+#if PL_CONFIG_NOF_KEYS >= 7
+	case EVNT_SW7_PRESSED:
+	case EVNT_SW7_LPRESSED:
+#if PL_CONFIG_HAS_SHELL
+		CLS1_SendStr("SW7 pressed.\n", CLS1_GetStdio()->stdOut);
+#endif
+		LED2_Neg();
+		break;
+	case EVNT_SW7_RELEASED:
+#if PL_CONFIG_HAS_SHELL
+		CLS1_SendStr("SW7 released.\n", CLS1_GetStdio()->stdOut);
+#endif
+		break;
+#endif
+	default:
+		break;
+	}
+}
+#endif

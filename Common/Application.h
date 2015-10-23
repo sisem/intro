@@ -10,6 +10,7 @@
 
 #include "Platform.h"
 #include "Event.h"
+#include "RTOS.h"
 
 void APP_Start(void);
 void APP_HandleEvent(EVNT_Handle);
