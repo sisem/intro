@@ -5,6 +5,7 @@
  *      Author: SEM
  */
 
+#include "Platform.h"
 #if PL_CONFIG_HAS_LEDS
 #include "LED.h"
 #if PL_CONFIG_NOF_LED >= 2

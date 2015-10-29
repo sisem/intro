@@ -13,16 +13,18 @@
 #include "Keys.h"
 #include "Application.h"
 
-#define TEST_RTOS_TASKS  (1)
+#define TEST_RTOS_TASKS  (0)
 
 #if TEST_RTOS_TASKS
 static void T2(void* param) {
 	for (;;) {
+		FRTOS1_vTaskDelay(100/portTICK_RATE_MS);
 	}
 }
 
 static void T3(void* param) {
 	for (;;) {
+		FRTOS1_vTaskDelay(100/portTICK_RATE_MS);
 	}
 }
 #endif

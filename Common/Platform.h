@@ -43,6 +43,10 @@
 #if PL_CONFIG_HAS_TRIGGER
 #include "Trigger.h"
 #endif
+#if PL_CONFIG_HAS_DEBOUNCE
+#include "Debounce.h"
+#include "KeyDebounce.h"
+#endif
 #if PL_CONFIG_HAS_BUZZER
 #include "Buzzer.h"
 #endif

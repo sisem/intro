@@ -54,12 +54,13 @@ void APP_Stop(void) {
  */
 void APP_Update(void) {
 	for (;;) {
-		#if PL_CONFIG_HAS_EVENTS
+#if PL_CONFIG_HAS_EVENTS
 		EVNT_HandleEvent(APP_HandleEvent);
-		#endif
-		#if PL_CONFIG_HAS_KEYS
-		KEY_Scan();
-		#endif
+#endif
+#if PL_CONFIG_HAS_KEYS
+		//KEY_Scan();
+		KEYDBNC_Process();
+#endif
 	}
 }
 
@@ -73,9 +74,9 @@ void APP_HandleEvent(EVNT_Handle event) {
 	case EVNT_STARTUP:
 		break;
 	default:
-	#if PL_CONFIG_HAS_KEYS
+#if PL_CONFIG_HAS_KEYS
 		APP_KeyEvntHandler(event);
-	#endif
+#endif
 		break;
 	}
 }
@@ -89,31 +90,31 @@ void APP_HandleEvent(EVNT_Handle event) {
 void APP_KeyEvntHandler(EVNT_Handle event) {
 	switch (event) {
 
-	#if PL_CONFIG_NOF_KEYS >= 1
+#if PL_CONFIG_NOF_KEYS >= 1
 	case EVNT_SW1_PRESSED:
 	case EVNT_SW1_LPRESSED:
-	#if PL_CONFIG_HAS_SHELL
+#if PL_CONFIG_HAS_SHELL
 		CLS1_SendStr("SW1 pressed.\n", CLS1_GetStdio()->stdOut);
-	#endif
-	#if PL_CONFIG_HAS_BUZZER
+#endif
+#if PL_CONFIG_HAS_BUZZER
 		BUZ_Beep(500, 200);
-	#endif
+#endif
 		LED2_On();
 		break;
 	case EVNT_SW1_RELEASED:
-	#if PL_CONFIG_HAS_SHELL
+#if PL_CONFIG_HAS_SHELL
 		CLS1_SendStr("SW1 released.\n", CLS1_GetStdio()->stdOut);
 		LED2_Off();
-	#endif
+#endif
 		break;
-	#endif
+#endif
 
-	#if PL_CONFIG_NOF_KEYS >= 2
+#if PL_CONFIG_NOF_KEYS >= 2
 	case EVNT_SW2_PRESSED:
 	case EVNT_SW2_LPRESSED:
-	#if PL_CONFIG_HAS_SHELL
+#if PL_CONFIG_HAS_SHELL
 		CLS1_SendStr("SW2 pressed.\n", CLS1_GetStdio()->stdOut);
-	#endif
+#endif
 		LED2_Neg();
 		break;
 	case EVNT_SW2_RELEASED:

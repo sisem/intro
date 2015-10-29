@@ -4570,7 +4570,7 @@
     </ItemState>
   </Configuration>
   <Bean>
-    <Repository>file://home/pascal/workspace/kinetis/components/installed</Repository>
+    <Repository>file:/${home_ProcessorExpert_loc}/MyComponents</Repository>
     <BeanType>Wait</BeanType>
     <Name>WAIT1</Name>
     <CompNumb>20</CompNumb>
@@ -4763,7 +4763,7 @@
     <Events />
   </Bean>
   <Bean>
-    <Repository>file://home/pascal/workspace/kinetis/components/installed</Repository>
+    <Repository>file:/${home_ProcessorExpert_loc}/MyComponents</Repository>
     <BeanType>HardFault</BeanType>
     <Name>HF1</Name>
     <CompNumb>21</CompNumb>
@@ -6654,7 +6654,7 @@
     </Events>
   </Bean>
   <Bean>
-    <Repository>file://home/pascal/workspace/kinetis/components/installed</Repository>
+    <Repository>file:/${home_ProcessorExpert_loc}/MyComponents</Repository>
     <BeanType>CriticalSection</BeanType>
     <Name>CS1</Name>
     <CompNumb>41</CompNumb>
@@ -6734,7 +6734,7 @@
     <Events />
   </Bean>
   <Bean>
-    <Repository>file://home/pascal/workspace/kinetis/components/installed</Repository>
+    <Repository>file:/${home_ProcessorExpert_loc}/MyComponents</Repository>
     <BeanType>LED</BeanType>
     <Name>LED1</Name>
     <CompNumb>42</CompNumb>
@@ -7522,7 +7522,7 @@
     <Events />
   </Bean>
   <Bean>
-    <Repository>file://home/pascal/workspace/kinetis/components/installed</Repository>
+    <Repository>file:/${home_ProcessorExpert_loc}/MyComponents</Repository>
     <BeanType>LED</BeanType>
     <Name>LED2</Name>
     <CompNumb>45</CompNumb>
@@ -8310,7 +8310,7 @@
     <Events />
   </Bean>
   <Bean>
-    <Repository>file://home/pascal/workspace/kinetis/components/installed</Repository>
+    <Repository>file:/${home_ProcessorExpert_loc}/MyComponents</Repository>
     <BeanType>LED</BeanType>
     <Name>LED3</Name>
     <CompNumb>48</CompNumb>
@@ -9098,7 +9098,7 @@
     <Events />
   </Bean>
   <Bean>
-    <Repository>file://home/pascal/workspace/kinetis/components/installed</Repository>
+    <Repository>file:/${home_ProcessorExpert_loc}/MyComponents</Repository>
     <BeanType>Shell</BeanType>
     <Name>CLS1</Name>
     <CompNumb>60</CompNumb>
@@ -9645,7 +9645,7 @@
     </Events>
   </Bean>
   <Bean>
-    <Repository>file://home/pascal/workspace/kinetis/components/installed</Repository>
+    <Repository>file:/${home_ProcessorExpert_loc}/MyComponents</Repository>
     <BeanType>Utility</BeanType>
     <Name>UTIL1</Name>
     <CompNumb>61</CompNumb>
@@ -20922,7 +20922,7 @@
     </Events>
   </Bean>
   <Bean>
-    <Repository>file://home/pascal/workspace/kinetis/components/installed</Repository>
+    <Repository>file:/${home_ProcessorExpert_loc}/MyComponents</Repository>
     <BeanType>FreeRTOS</BeanType>
     <Name>FRTOS1</Name>
     <CompNumb>83</CompNumb>
