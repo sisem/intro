@@ -5,6 +5,7 @@
  *      Author: pascal
  */
 
+#define PL_HAS_RTOS_TRACE (1)
 #include "Application.h"
 
 #if PL_CONFIG_HAS_LEDS
@@ -53,7 +54,6 @@ void APP_Stop(void) {
  * Called in an endless loop if applciation is running;
  */
 void APP_Update(void) {
-	for (;;) {
 #if PL_CONFIG_HAS_EVENTS
 		EVNT_HandleEvent(APP_HandleEvent);
 #endif
@@ -61,8 +61,8 @@ void APP_Update(void) {
 		//KEY_Scan();
 		KEYDBNC_Process();
 #endif
-	}
 }
+
 
 /**
  * Handles any type of event in application e.g. LED blinking except key inputs.
