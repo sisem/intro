@@ -13,7 +13,8 @@
 #include "Keys.h"
 #include "Application.h"
 
-#define TEST_RTOS_TASKS  (0)
+#define TEST_RTOS_TASKS   (0)
+
 
 #if TEST_RTOS_TASKS
 static void T2(void* param) {
@@ -39,7 +40,7 @@ static void APP_Task(void* param) {
 
 
 void RTOS_Run(void) {
-FRTOS1_vTaskStartScheduler(); /* does usually not return! */
+	FRTOS1_vTaskStartScheduler(); /* does usually not return! */
 }
 
 void RTOS_Init(void) {

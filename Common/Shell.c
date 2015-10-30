@@ -10,7 +10,6 @@
 #if PL_CONFIG_HAS_SHELL
 #include "Shell.h"
 #include "CLS1.h"
-#include "Application.h"
 #include "FRTOS1.h"
 #if PL_CONFIG_HAS_USB_CDC
   #include "USB1.h"

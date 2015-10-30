@@ -6,6 +6,7 @@
  */
 
 #define PL_HAS_RTOS_TRACE (1)
+
 #include "Application.h"
 
 #if PL_CONFIG_HAS_LEDS
@@ -13,6 +14,10 @@
 #if PL_CONFIG_NOF_LED >=1
 #include "LED1.h"
 #endif
+#endif
+
+#if PL_CONFIG_HAS_BUZZER
+#include "Buzzer.h"
 #endif
 
 #include "CLS1.h"
@@ -30,6 +35,11 @@ void APP_Start(void) {
 
 	// Initialize all tasks
 	RTOS_Init();
+
+#if PL_CONFIG_HAS_SHELL
+	SHELL_Init();
+#endif
+
 	// start scheduler
 	RTOS_Run();
 
@@ -104,7 +114,10 @@ void APP_KeyEvntHandler(EVNT_Handle event) {
 	case EVNT_SW1_LPRESSED:
 #if PL_CONFIG_HAS_SHELL
 		CLS1_SendStr("SW1 pressed.\n", CLS1_GetStdio()->stdOut);
+#endif
+#if PL_CONFIG_HAS_SNAKE
 		EVNT_SetEvent(EVNT_SNAKE_UP);
+
 #endif
 #if PL_CONFIG_HAS_BUZZER
 		BUZ_Beep(500, 200);
@@ -124,6 +137,8 @@ void APP_KeyEvntHandler(EVNT_Handle event) {
 	case EVNT_SW2_LPRESSED:
 #if PL_CONFIG_HAS_SHELL
 		CLS1_SendStr("SW2 pressed.\n", CLS1_GetStdio()->stdOut);
+#endif
+#if PL_CONFIG_HAS_SNAKE
 		EVNT_SetEvent(EVNT_SNAKE_RIGHT);
 #endif
 		LED2_Neg();
@@ -140,12 +155,14 @@ void APP_KeyEvntHandler(EVNT_Handle event) {
 	case EVNT_SW3_LPRESSED:
 #if PL_CONFIG_HAS_SHELL
 		CLS1_SendStr("SW3 pressed.\n", CLS1_GetStdio()->stdOut);
+#endif
+#if PL_CONFIG_HAS_SNAKE
 		EVNT_SetEvent(EVNT_SNAKE_DOWN);
 #endif
 		LED2_Neg();
 		break;
 	case EVNT_SW3_RELEASED:
-#if PL_CONFIG_HAS_SHELL
+#if PL_CONFIG_HAS_SNAKE
 		CLS1_SendStr("SW3 released.\n", CLS1_GetStdio()->stdOut);
 #endif
 		break;
@@ -156,6 +173,8 @@ void APP_KeyEvntHandler(EVNT_Handle event) {
 	case EVNT_SW4_LPRESSED:
 #if PL_CONFIG_HAS_SHELL
 		CLS1_SendStr("SW4 pressed.\n", CLS1_GetStdio()->stdOut);
+#endif
+#if PL_CONFIG_HAS_SNAKE
 		EVNT_SetEvent(EVNT_SNAKE_LEFT);
 #endif
 		LED2_Neg();
@@ -202,6 +221,8 @@ void APP_KeyEvntHandler(EVNT_Handle event) {
 	case EVNT_SW7_LPRESSED:
 #if PL_CONFIG_HAS_SHELL
 		CLS1_SendStr("SW7 pressed.\n", CLS1_GetStdio()->stdOut);
+#endif
+#if PL_CONFIG_HAS_SNAKE
 		EVNT_SetEvent(EVNT_SNAKE_START_PAUSE);
 #endif
 		LED2_Neg();

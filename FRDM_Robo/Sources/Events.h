@@ -55,6 +55,11 @@
 #include "BUZ1.h"
 #include "BitIoLdd4.h"
 #include "FRTOS1.h"
+#include "USB1.h"
+#include "USB0.h"
+#include "CDC1.h"
+#include "Tx1.h"
+#include "Rx1.h"
 #include "Platform.h"
 
 #ifdef __cplusplus
