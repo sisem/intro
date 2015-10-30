@@ -55,7 +55,11 @@ void APP_Stop(void) {
  */
 void APP_Update(void) {
 #if PL_CONFIG_HAS_EVENTS
-		EVNT_HandleEvent(APP_HandleEvent);
+#if PL_CONFIG_EVENTS_AUTO_CLEAR
+		EVNT_HandleEvent(APP_HandleEvent, TRUE);
+#else
+		EVNT_HandleEvent(APP_HandleEvent, FALSE);
+#endif
 #endif
 #if PL_CONFIG_HAS_KEYS
 		//KEY_Scan();
@@ -72,6 +76,9 @@ void APP_Update(void) {
 void APP_HandleEvent(EVNT_Handle event) {
 	switch (event) {
 	case EVNT_STARTUP:
+#if !PL_CONFIG_EVENTS_AUTO_CLEAR
+		EVNT_ClearEvent(event);
+#endif
 		break;
 	default:
 #if PL_CONFIG_HAS_KEYS
@@ -88,6 +95,8 @@ void APP_HandleEvent(EVNT_Handle event) {
  */
 #if PL_CONFIG_HAS_KEYS
 void APP_KeyEvntHandler(EVNT_Handle event) {
+	bool handled = TRUE;
+
 	switch (event) {
 
 #if PL_CONFIG_NOF_KEYS >= 1
@@ -95,6 +104,7 @@ void APP_KeyEvntHandler(EVNT_Handle event) {
 	case EVNT_SW1_LPRESSED:
 #if PL_CONFIG_HAS_SHELL
 		CLS1_SendStr("SW1 pressed.\n", CLS1_GetStdio()->stdOut);
+		EVNT_SetEvent(EVNT_SNAKE_UP);
 #endif
 #if PL_CONFIG_HAS_BUZZER
 		BUZ_Beep(500, 200);
@@ -114,6 +124,7 @@ void APP_KeyEvntHandler(EVNT_Handle event) {
 	case EVNT_SW2_LPRESSED:
 #if PL_CONFIG_HAS_SHELL
 		CLS1_SendStr("SW2 pressed.\n", CLS1_GetStdio()->stdOut);
+		EVNT_SetEvent(EVNT_SNAKE_RIGHT);
 #endif
 		LED2_Neg();
 		break;
@@ -129,6 +140,7 @@ void APP_KeyEvntHandler(EVNT_Handle event) {
 	case EVNT_SW3_LPRESSED:
 #if PL_CONFIG_HAS_SHELL
 		CLS1_SendStr("SW3 pressed.\n", CLS1_GetStdio()->stdOut);
+		EVNT_SetEvent(EVNT_SNAKE_DOWN);
 #endif
 		LED2_Neg();
 		break;
@@ -144,6 +156,7 @@ void APP_KeyEvntHandler(EVNT_Handle event) {
 	case EVNT_SW4_LPRESSED:
 #if PL_CONFIG_HAS_SHELL
 		CLS1_SendStr("SW4 pressed.\n", CLS1_GetStdio()->stdOut);
+		EVNT_SetEvent(EVNT_SNAKE_LEFT);
 #endif
 		LED2_Neg();
 		break;
@@ -189,6 +202,7 @@ void APP_KeyEvntHandler(EVNT_Handle event) {
 	case EVNT_SW7_LPRESSED:
 #if PL_CONFIG_HAS_SHELL
 		CLS1_SendStr("SW7 pressed.\n", CLS1_GetStdio()->stdOut);
+		EVNT_SetEvent(EVNT_SNAKE_START_PAUSE);
 #endif
 		LED2_Neg();
 		break;
@@ -199,7 +213,13 @@ void APP_KeyEvntHandler(EVNT_Handle event) {
 		break;
 #endif
 	default:
+		handled = FALSE;
 		break;
 	}
+#if !PL_CONFIG_EVENTS_AUTO_CLEAR
+	if(handled) {
+		EVNT_ClearEvent(event);
+	}
+#endif
 }
 #endif

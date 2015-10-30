@@ -58,6 +58,13 @@ typedef enum EVNT_Handle {
   EVNT_SW7_LPRESSED,
   EVNT_SW7_RELEASED,
 #endif
+#if PL_CONFIG_HAS_SNAKE
+  EVNT_SNAKE_START_PAUSE,
+  EVNT_SNAKE_UP,
+  EVNT_SNAKE_DOWN,
+  EVNT_SNAKE_LEFT,
+  EVNT_SNAKE_RIGHT,
+#endif
 
 
   EVNT_NOF_EVENTS       /*!< Must be last one! */
@@ -93,7 +100,7 @@ bool EVNT_EventIsSetAutoClear(EVNT_Handle event);
  * \brief Routine to check if an event is pending. If an event is pending, the event is cleared and the provided callback is called.
  * \param[in] callback Callback routine to be called. The event handle is passed as argument to the callback.
  */
-void EVNT_HandleEvent(void (*callback)(EVNT_Handle));
+void EVNT_HandleEvent(void (*callback)(EVNT_Handle), bool clearEvent);
 
 /*! \brief Event module initialization */
 void EVNT_Init(void);

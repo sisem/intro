@@ -16,6 +16,7 @@
 #define PL_CONFIG_HAS_SHELL 1
 #define PL_CONFIG_HAS_DEBOUNCE 1
 #define PL_CONFIG_HAS_RTOS 1
+#define PL_CONFIG_EVENTS_AUTO_CLEAR 0
 
 #ifdef PL_BOARD_IS_ROBO
 #define PL_CONFIG_NOF_LED 2
@@ -24,8 +25,10 @@
 #endif
 
 #ifdef PL_BOARD_IS_FRDM
-#define PL_CONFIG_NOF_LED 3
+#define PL_CONFIG_NOF_LED 2
 #define PL_CONFIG_NOF_KEYS 7
+#define PL_CONFIG_HAS_LCD 1
+#define PL_CONFIG_HAS_SNAKE 1
 #endif
 
 #if PL_CONFIG_HAS_TIMER
@@ -47,8 +50,11 @@
 #include "Debounce.h"
 #include "KeyDebounce.h"
 #endif
-#if PL_CONFIG_HAS_BUZZER
-#include "Buzzer.h"
+#if PL_CONFIG_HAS_LCD
+#include "PDC1.h"
+#endif
+#if PL_CONFIG_HAS_SNAKE
+#include "Snake.h"
 #endif
 
 

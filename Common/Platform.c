@@ -5,6 +5,8 @@
  *      Author: pascal
  */
 
+#include "Platform.h"
+
 void PL_Init(void) {
 #if PL_CONFIG_HAS_LEDS
 	LED_Init();
@@ -13,6 +15,14 @@ void PL_Init(void) {
 	// buzzer on startup
 #if PL_CONFIG_HAS_BUZZER
 	BUZ_Beep(500, 200);
+#endif
+
+#if PL_CONFIG_HAS_LCD
+	PDC1_Init();
+#endif
+
+#if PL_CONFIG_HAS_SNAKE
+	SNAKE_Init();
 #endif
 
 	// clear leds
