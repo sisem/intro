@@ -149,6 +149,11 @@ static portTASK_FUNCTION(ShellTask, pvParameters) {
   (void)CLS1_ParseWithCommandTable((unsigned char*)CLS1_CMD_HELP, ioLocal, CmdParserTable);
 #endif
   for(;;) {
+	  if(SQUEUE_NofElements() > 0) {
+		  unsigned char c;
+		  c = SQUEUE_ReceiveChar();
+		  SHELL_SendString(&c);
+	  }
 #if CLS1_DEFAULT_SERIAL
     (void)CLS1_ReadAndParseWithCommandTable(localConsole_buf, sizeof(localConsole_buf), ioLocal, CmdParserTable);
 #endif

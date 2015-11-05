@@ -16,6 +16,7 @@
 #define PL_CONFIG_HAS_DEBOUNCE 1
 #define PL_CONFIG_HAS_RTOS 1
 #define PL_CONFIG_EVENTS_AUTO_CLEAR 0
+#define PL_CONFIG_HAS_SHELL_QUEUE 1
 
 
 #ifdef PL_BOARD_IS_ROBO
@@ -67,6 +68,9 @@
 #endif
 #if PL_CONFIG_HAS_SHELL
 #include "Shell.h"
+#endif
+#if PL_CONFIG_HAS_SHELL_QUEUE
+#include "ShellQueue.h"
 #endif
 
 void PL_Init(void);

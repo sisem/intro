@@ -15,7 +15,6 @@
 #include "LED1.h"
 #endif
 #endif
-
 #if PL_CONFIG_HAS_BUZZER
 #include "Buzzer.h"
 #endif
@@ -33,12 +32,16 @@ void APP_Start(void) {
 	PL_Init();
 	EVNT_Init();
 
-	// Initialize all tasks
-	RTOS_Init();
-
 #if PL_CONFIG_HAS_SHELL
 	SHELL_Init();
 #endif
+
+#if PL_CONFIG_HAS_SHELL_QUEUE
+	SQUEUE_Init();
+#endif
+
+	// Initialize all tasks
+	RTOS_Init();
 
 	// start scheduler
 	RTOS_Run();
@@ -113,7 +116,7 @@ void APP_KeyEvntHandler(EVNT_Handle event) {
 	case EVNT_SW1_PRESSED:
 	case EVNT_SW1_LPRESSED:
 #if PL_CONFIG_HAS_SHELL
-		CLS1_SendStr("SW1 pressed.\n", CLS1_GetStdio()->stdOut);
+		SQUEUE_SendString("SW1 pressed.\n");
 #endif
 #if PL_CONFIG_HAS_SNAKE
 		EVNT_SetEvent(EVNT_SNAKE_UP);
