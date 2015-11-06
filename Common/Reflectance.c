@@ -410,7 +410,7 @@ static void REF_StateMachine(void) {
     
     case REF_STATE_CALIBRATING:
       REF_CalibrateMinMax(SensorCalibMinMax.minVal, SensorCalibMinMax.maxVal, SensorRaw);
-#if PL_HAS_BUZZER
+#if PL_CONFIG_HAS_BUZZER
       (void)BUZ_Beep(300, 20);
 #endif
 #if REF_START_STOP_CALIB
