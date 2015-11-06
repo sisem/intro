@@ -17,7 +17,7 @@
 #define PL_CONFIG_HAS_RTOS 1
 #define PL_CONFIG_EVENTS_AUTO_CLEAR 0
 #define PL_CONFIG_HAS_SHELL_QUEUE 1
-
+#define PL_CONFIG_HAS_SEMAPHORE 0
 
 #ifdef PL_BOARD_IS_ROBO
 #define PL_CONFIG_NOF_LED        2
@@ -28,6 +28,7 @@
 #define PL_CONFIG_HAS_SHELL      1
 #define PL_CONFIG_HAS_USB_CDC    1
 #define PL_CONFIG_HAS_BLUETOOTH  0
+#define PL_CONFIG_HAS_REFLECTANCE 1
 #endif
 
 #ifdef PL_BOARD_IS_FRDM
@@ -71,6 +72,9 @@
 #endif
 #if PL_CONFIG_HAS_SHELL_QUEUE
 #include "ShellQueue.h"
+#endif
+#if PL_CONFIG_HAS_REFLECTANCE
+#include "Reflectance.h"
 #endif
 
 void PL_Init(void);

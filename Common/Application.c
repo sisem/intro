@@ -35,6 +35,9 @@ void APP_Start(void) {
 	PL_Init();
 	EVNT_Init();
 
+	// Initialize all tasks
+	RTOS_Init();
+
 #if PL_CONFIG_HAS_SHELL
 	SHELL_Init();
 #endif
@@ -43,8 +46,13 @@ void APP_Start(void) {
 	SQUEUE_Init();
 #endif
 
-	// Initialize all tasks
-	RTOS_Init();
+#if PL_CONFIG_HAS_SEMAPHORE
+	SEM_Init();
+#endif
+
+#if PL_CONFIG_HAS_REFLECTANCE
+	REF_Init();
+#endif
 
 	// start scheduler
 	RTOS_Run();

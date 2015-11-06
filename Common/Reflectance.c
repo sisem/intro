@@ -33,7 +33,7 @@
 #define REF_MIN_NOISE_VAL     0x40   /* values below this are not added to the weighted sum */
 #define REF_USE_WHITE_LINE    0  /* if set to 1, then the robot is using a white (on black) line, otherwise a black (on white) line */
 
-#define REF_START_STOP_CALIB      0 /* start/stop calibration commands */
+#define REF_START_STOP_CALIB  1 /* start/stop calibration commands */
 
 #if REF_START_STOP_CALIB
   static xSemaphoreHandle REF_StartStopSem = NULL;
