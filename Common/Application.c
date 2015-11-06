@@ -18,6 +18,9 @@
 #if PL_CONFIG_HAS_BUZZER
 #include "Buzzer.h"
 #endif
+#if PL_CONFIG_HAS_SHELL_QUEUE
+#include "ShellQueue.h"
+#endif
 
 #include "CLS1.h"
 
@@ -129,7 +132,7 @@ void APP_KeyEvntHandler(EVNT_Handle event) {
 		break;
 	case EVNT_SW1_RELEASED:
 #if PL_CONFIG_HAS_SHELL
-		CLS1_SendStr("SW1 released.\n", CLS1_GetStdio()->stdOut);
+		SQUEUE_SendString("SW1 released.\n");
 		LED2_Off();
 #endif
 		break;
@@ -139,7 +142,7 @@ void APP_KeyEvntHandler(EVNT_Handle event) {
 	case EVNT_SW2_PRESSED:
 	case EVNT_SW2_LPRESSED:
 #if PL_CONFIG_HAS_SHELL
-		CLS1_SendStr("SW2 pressed.\n", CLS1_GetStdio()->stdOut);
+		SQUEUE_SendString("SW2 pressed.\n");
 #endif
 #if PL_CONFIG_HAS_SNAKE
 		EVNT_SetEvent(EVNT_SNAKE_RIGHT);
@@ -148,7 +151,7 @@ void APP_KeyEvntHandler(EVNT_Handle event) {
 		break;
 	case EVNT_SW2_RELEASED:
 #if PL_CONFIG_HAS_SHELL
-		CLS1_SendStr("SW2 released.\n", CLS1_GetStdio()->stdOut);
+		SQUEUE_SendString("SW2 released.\n");
 #endif
 		break;
 #endif
@@ -157,7 +160,7 @@ void APP_KeyEvntHandler(EVNT_Handle event) {
 	case EVNT_SW3_PRESSED:
 	case EVNT_SW3_LPRESSED:
 #if PL_CONFIG_HAS_SHELL
-		CLS1_SendStr("SW3 pressed.\n", CLS1_GetStdio()->stdOut);
+		SQUEUE_SendString("SW3 pressed.\n");
 #endif
 #if PL_CONFIG_HAS_SNAKE
 		EVNT_SetEvent(EVNT_SNAKE_DOWN);
@@ -165,8 +168,8 @@ void APP_KeyEvntHandler(EVNT_Handle event) {
 		LED2_Neg();
 		break;
 	case EVNT_SW3_RELEASED:
-#if PL_CONFIG_HAS_SNAKE
-		CLS1_SendStr("SW3 released.\n", CLS1_GetStdio()->stdOut);
+#if PL_CONFIG_HAS_SHELL
+		SQUEUE_SendString("SW3 released.\n");
 #endif
 		break;
 #endif
@@ -175,7 +178,7 @@ void APP_KeyEvntHandler(EVNT_Handle event) {
 	case EVNT_SW4_PRESSED:
 	case EVNT_SW4_LPRESSED:
 #if PL_CONFIG_HAS_SHELL
-		CLS1_SendStr("SW4 pressed.\n", CLS1_GetStdio()->stdOut);
+		SQUEUE_SendString("SW4 pressed.\n");
 #endif
 #if PL_CONFIG_HAS_SNAKE
 		EVNT_SetEvent(EVNT_SNAKE_LEFT);
@@ -184,7 +187,7 @@ void APP_KeyEvntHandler(EVNT_Handle event) {
 		break;
 	case EVNT_SW4_RELEASED:
 #if PL_CONFIG_HAS_SHELL
-		CLS1_SendStr("SW4 released.\n", CLS1_GetStdio()->stdOut);
+		SQUEUE_SendString("SW4 released.\n");
 #endif
 		break;
 #endif
@@ -193,13 +196,13 @@ void APP_KeyEvntHandler(EVNT_Handle event) {
 	case EVNT_SW5_PRESSED:
 	case EVNT_SW5_LPRESSED:
 #if PL_CONFIG_HAS_SHELL
-		CLS1_SendStr("SW5 pressed.\n", CLS1_GetStdio()->stdOut);
+		SQUEUE_SendString("SW5 pressed.\n");
 #endif
 		LED2_Neg();
 		break;
 	case EVNT_SW5_RELEASED:
 #if PL_CONFIG_HAS_SHELL
-		CLS1_SendStr("SW5 released.\n", CLS1_GetStdio()->stdOut);
+		SQUEUE_SendString("SW5 released.\n");
 #endif
 		break;
 #endif
@@ -208,13 +211,13 @@ void APP_KeyEvntHandler(EVNT_Handle event) {
 	case EVNT_SW6_PRESSED:
 	case EVNT_SW6_LPRESSED:
 #if PL_CONFIG_HAS_SHELL
-		CLS1_SendStr("SW6 pressed.\n", CLS1_GetStdio()->stdOut);
+		SQUEUE_SendString("SW6 pressed.\n");
 #endif
 		LED2_Neg();
 		break;
 	case EVNT_SW6_RELEASED:
 #if PL_CONFIG_HAS_SHELL
-		CLS1_SendStr("SW6 released.\n", CLS1_GetStdio()->stdOut);
+		SQUEUE_SendString("SW6 released.\n");
 #endif
 		break;
 #endif
@@ -223,7 +226,7 @@ void APP_KeyEvntHandler(EVNT_Handle event) {
 	case EVNT_SW7_PRESSED:
 	case EVNT_SW7_LPRESSED:
 #if PL_CONFIG_HAS_SHELL
-		CLS1_SendStr("SW7 pressed.\n", CLS1_GetStdio()->stdOut);
+		SQUEUE_SendString("SW7 pressed.\n");
 #endif
 #if PL_CONFIG_HAS_SNAKE
 		EVNT_SetEvent(EVNT_SNAKE_START_PAUSE);
@@ -232,7 +235,7 @@ void APP_KeyEvntHandler(EVNT_Handle event) {
 		break;
 	case EVNT_SW7_RELEASED:
 #if PL_CONFIG_HAS_SHELL
-		CLS1_SendStr("SW7 released.\n", CLS1_GetStdio()->stdOut);
+		SQUEUE_SendString("SW7 released.\n");
 #endif
 		break;
 #endif

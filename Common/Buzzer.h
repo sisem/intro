@@ -9,6 +9,7 @@
 #ifndef BUZZER_H_
 #define BUZZER_H_
 
+#include "CLS1.h"
 /*!
  * \brief Let the buzzer sound for a specified time.
  * \param freqHz Frequency of the sound. Ignored if the buzzer is not supporting it.
@@ -26,5 +27,8 @@ void BUZ_Init(void);
  * \brief De-initialization of the driver
  */
 void BUZ_Deinit(void);
+
+
+uint8_t BUZ_ParseCommand(const unsigned char*, bool* , const CLS1_StdIOType*);
 
 #endif /* BUZZER_H_ */

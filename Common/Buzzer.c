@@ -12,6 +12,7 @@
 #include "BUZ1.h"
 #include "Trigger.h"
 #include "UTIL1.h"
+#include "CLS1.h"
 
 typedef struct {
   uint16_t buzPeriodTicks; /*!< number of trigger ticks for a PWM period */
@@ -19,6 +20,24 @@ typedef struct {
 } BUZ_TrgInfo;
 
 static volatile BUZ_TrgInfo trgInfo;
+
+
+
+uint8_t BUZ_ParseCommand(const unsigned char *cmd, bool *handled, const CLS1_StdIOType *io)
+{
+	  if (UTIL1_strcmp((char*)cmd, CLS1_CMD_HELP)==0 || UTIL1_strcmp((char*)cmd, "BUZ1 help")==0) {
+	    *handled = TRUE;
+	    CLS1_SendHelpStr((unsigned char*)"BUZ", (unsigned char*)"Group of BUZ commands\r\n", io->stdOut);
+	    CLS1_SendHelpStr((unsigned char*)"  beep", (unsigned char*)"Beep with 1kHz for 1 sec\r\n", io->stdOut);
+	    return ERR_OK;
+	  } else if (UTIL1_strcmp((char*)cmd, "BUZ beep")==0) {
+		  *handled = TRUE;
+		  return BUZ_Beep(1000, 1000);
+	    }
+  return ERR_OK;
+}
+
+
 
 static void BUZ_Toggle(void *dataPtr) {
   BUZ_TrgInfo *trgInfo = (BUZ_TrgInfo *)dataPtr;
