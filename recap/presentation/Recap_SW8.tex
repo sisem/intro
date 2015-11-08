@@ -1,0 +1,36 @@
+\documentclass{beamer}
+
+
+% Encoding
+    \usepackage[utf8]{inputenc} % für input utf8
+    \usepackage[T1]{fontenc}    % Schriftcodierung mit UTF-8
+    \usepackage{textcomp}       % Erweiterung von fontenc
+    \usepackage{lmodern}        % Erweiterung des Zeichensatzes
+
+% Anpassungen für die Deutsche
+    \usepackage[ngerman]{babel} % Neue deutsche Rechtschreibung
+    
+    % Source-Code Paket
+    \usepackage{listings}
+
+
+
+\usepackage{todo}
+\usepackage{beamerthemeshadow}
+\beamersetuncovermixins{\opaqueness<1>{25}}{\opaqueness<2->{15}}
+\begin{document}
+
+
+\include{tex/title}
+\include{tex/inhaltsverzeichnis}
+
+% Pixhawk
+\include{tex/01_queue/queue}
+\include{tex/02_sem/sem}
+\include{tex/03_mutex/mutex}
+
+
+
+
+
+\end{document}

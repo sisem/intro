@@ -1,0 +1,55 @@
+Fragen:
+
+Queue
+1.) Wie lauten 2 der 5 allozier Schemen für Queues
+2.) In unserem Projekt wird oft von "IPC" gesprochen. Was bedeudet "IPC"?
+
+Semaphore
+3.) Was ist der Nachteil von "Priotity Ceiling" im Vergleich zu "Priority Inheritace"
+4.) Mache ein Code Beispiel, wie eine Semaphore Threadübergreifen genutzt werden kann.
+
+Mutex
+5.) Wie können Mutex Sections reentrent gemacht werden?
+6.) Was muss immer gemacht werden, wenn ein "FRTOS1_xSemaphoreTake(mutex_1, T_DELAY);""
+
+
+
+
+
+Lösungen:
+
+1.)	Allocation only, deterministic
+	No block merge, not deterministic, heap fragmentation
+	Wrapper to standard malloc() / free() , not deterministic
+	Coalesces free blocks, not deterministic
+	Multiple memory segments, coalesces blocks
+
+2.) Inter-Process Communication, also Kommunikation unter 2 oder mehreren Threads
+
+3.) Es werden mehr Rechenressourcen verwendet.
+
+4.) static xSemaphoreHandle sem = NULL;
+	static void vSlaveTask(void* pvParameters) {
+		/*! \todo Implement functionality */
+		for(;;) {
+			if(sem != NULL) {
+				if(xSemaphoreTake(sem, portMAX_DELAY) == pdTRUE) {
+					LED1_Neg();
+				}
+			}
+		}
+	}
+
+	static void vMasterTask(void* pvParameters) {
+		/*! \todo Implement functionality */
+		for(;;) {
+			if(sem != NULL) {
+				(void)xSemaphoreGive(sem);
+				FRTOS1_vTaskDelay(300/portTICK_RATE_MS);
+			}
+		}
+	}
+
+5.) Die Interrupts müssen manuel ausgeschaltet werden
+
+6.) Der Mutex muss immer freigegeben werden. Dies geschiet mit FRTOS1_xSemaphoreGive(mutex1);

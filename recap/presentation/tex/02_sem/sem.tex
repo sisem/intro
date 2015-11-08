@@ -1,0 +1,79 @@
+\section{Semaphore}
+\begin{frame}
+	%\frametitle{Semaphore}
+  \tableofcontents[
+	    currentsection, 
+	    hideothersections, 
+	    sectionstyle=show/shaded, 
+	    subsectionstyle=hide
+	]
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Übersicht}
+	\begin{itemize}
+	  \item Primitive Lösung für Synchronisation.
+	  \item Thread übergreifende Datenaustausch 
+	  \item Nicht geschützt gegen Interrupts!!!
+	\end{itemize}
+\end{frame}
+
+
+
+% ----------------------------------------------
+%
+% Prio Inheritage
+%
+% ----------------------------------------------
+\begin{frame}
+  \frametitle{Prioritäten Inversion - Vererbung}
+  Problem: Priorität Inversion
+	\begin{itemize}
+	  \item Tiefere priorität blockiert höhere Priorität
+	\end{itemize}
+	Lösung:
+  \begin{itemize}
+	  \item Prioräten Vererbung: "Lower-prio task inherits the prio of any higher-prio task pending on resource"
+	\end{itemize}
+	\bigskip
+	Death locks weiterhin möglich
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Prio Inheritance}
+  \begin{figure}
+  \includegraphics[scale=0.3]{pic/02_sem/sem_01.png} 
+  %\caption{Prio Inheritance}
+  \end{figure}
+\end{frame}
+
+
+% ----------------------------------------------
+%
+% Prio Ceiling
+%
+% ----------------------------------------------
+\begin{frame}
+  \frametitle{Prioritäten Inversion - "Ceiling"}
+  Problem: Priorität Inversion
+	\begin{itemize}
+	  \item Tiefere priorität blockiert höhere Priorität
+	  \item Death locks
+	\end{itemize}
+	Lösung:
+  \begin{itemize}
+	  \item Prioräten Vererbung: "Lower-prio task inherits the prio of any higher-prio task pending on resource"
+	\end{itemize}
+	\bigskip
+	Deathlocks weiterhin möglich
+\end{frame}
+
+\begin{frame}
+  \frametitle{Prio Ceiling}
+  \begin{figure}
+  \includegraphics[scale=0.3]{pic/02_sem/sem_02.png} 
+  %\caption{Prio Inheritance}
+  \end{figure}
+\end{frame}
