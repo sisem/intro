@@ -30,6 +30,10 @@
 #if PL_HAS_SEGGER_RTT
   #include "RTT1.h"
 #endif
+#if PL_CONFIG_HAS_MOTOR
+  #include "Motor.h"
+#endif
+
 
 #define SHELL_COPY_CDC_TO_UART   (1)
 
@@ -55,6 +59,9 @@ static const CLS1_ParseCommandCallback CmdParserTable[] =
   #if REF_PARSE_COMMAND_ENABLED
   REF_ParseCommand,
   #endif
+#endif
+#if PL_CONFIG_HAS_MOTOR
+	MOT_ParseCommand,
 #endif
   NULL /* Sentinel */
 };

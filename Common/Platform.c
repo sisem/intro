@@ -22,7 +22,7 @@ void PL_Init(void) {
 #endif
 
 #if PL_CONFIG_HAS_MOTOR
-	MOT Init();
+	MOT_Init();
 #endif
 
 #if PL_CONFIG_HAS_SNAKE

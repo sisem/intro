@@ -17,7 +17,7 @@
 
 static MOT_MotorDevice motorL, motorR;
 
-MOT_MotorDevice *MOT_GetMotorHandle(MOT_MotorSide side) {
+MOT_MotorDevice* MOT_GetMotorHandle(MOT_MotorSide side) {
   if (side==MOT_MOTOR_LEFT) {
     return &motorL;
   } else {
@@ -60,12 +60,25 @@ void MOT_SetSpeedPercent(MOT_MotorDevice *motor, MOT_SpeedPercent percent) {
     percent = -100;
   }
   motor->currSpeedPercent = percent; /* store value */
+
+#if HW == HW_IS_PASCAL
   if (percent<0) {
     MOT_SetDirection(motor, MOT_DIR_BACKWARD);
-    percent = -percent; /* make it positive */
-  } else {
-    MOT_SetDirection(motor, MOT_DIR_FORWARD);
-  }
+      percent = -percent; /* make it positive */
+    } else {
+      MOT_SetDirection(motor, MOT_DIR_FORWARD);
+    }
+#elif HW == HW_IS_SILVIO
+  if (percent<0) {
+      MOT_SetDirection(motor, MOT_DIR_FORWARD);
+      percent = -percent; /* make it positive */
+    } else {
+      MOT_SetDirection(motor, MOT_DIR_BACKWARD);
+    }
+#else
+	#error "Please choose hardware: HW == [HW_IS_SILVIO | HW == HW_IS_PASCAL]"
+#endif
+
   val = ((100-percent)*0xffff)/100; /* H-Bridge is low active! */
   MOT_SetVal(motor, (uint16_t)val);
 }
@@ -190,6 +203,10 @@ uint8_t MOT_ParseCommand(const unsigned char *cmd, bool *handled, const CLS1_Std
 
 void MOT_Deinit(void) {
   /*! \todo What could you do here? */
+  MOT_SetSpeedPercent(&motorL, 0);
+  MOT_SetSpeedPercent(&motorR, 0);
+  PWML_Disable();
+  PWMR_Disable();
 }
 
 void MOT_Init(void) {

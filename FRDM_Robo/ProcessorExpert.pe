@@ -3,7 +3,7 @@
   <Header>
     <Name>FRDM_Robo</Name>
     <SavedBy>SEM</SavedBy>
-    <ModificationStamp>36</ModificationStamp>
+    <ModificationStamp>37</ModificationStamp>
     <Date>2015-09-25</Date>
     <IDE>Eclipse IDE</IDE>
     <PEversion>1.12.0.RT7_b1515-0427</PEversion>
@@ -10387,7 +10387,7 @@
     </ItemState>
   </Configuration>
   <Bean>
-    <Repository>file://home/pascal/workspace/kinetis/components/installed</Repository>
+    <Repository>file:/${home_ProcessorExpert_loc}/MyComponents</Repository>
     <BeanType>Wait</BeanType>
     <Name>WAIT1</Name>
     <CompNumb>3</CompNumb>
@@ -10580,7 +10580,7 @@
     <Events />
   </Bean>
   <Bean>
-    <Repository>file://home/pascal/workspace/kinetis/components/installed</Repository>
+    <Repository>file:/${home_ProcessorExpert_loc}/MyComponents</Repository>
     <BeanType>HardFault</BeanType>
     <Name>HF1</Name>
     <CompNumb>13</CompNumb>
@@ -12469,7 +12469,7 @@
     </Events>
   </Bean>
   <Bean>
-    <Repository>file://home/pascal/workspace/kinetis/components/installed</Repository>
+    <Repository>file:/${home_ProcessorExpert_loc}/MyComponents</Repository>
     <BeanType>LED</BeanType>
     <Name>LED1</Name>
     <CompNumb>18</CompNumb>
@@ -13257,7 +13257,7 @@
     <Events />
   </Bean>
   <Bean>
-    <Repository>file://home/pascal/workspace/kinetis/components/installed</Repository>
+    <Repository>file:/${home_ProcessorExpert_loc}/MyComponents</Repository>
     <BeanType>LED</BeanType>
     <Name>LED2</Name>
     <CompNumb>21</CompNumb>
@@ -14045,7 +14045,7 @@
     <Events />
   </Bean>
   <Bean>
-    <Repository>file://home/pascal/workspace/kinetis/components/installed</Repository>
+    <Repository>file:/${home_ProcessorExpert_loc}/MyComponents</Repository>
     <BeanType>CriticalSection</BeanType>
     <Name>CS1</Name>
     <CompNumb>24</CompNumb>
@@ -14125,7 +14125,7 @@
     <Events />
   </Bean>
   <Bean>
-    <Repository>file://home/pascal/workspace/kinetis/components/installed</Repository>
+    <Repository>file:/${home_ProcessorExpert_loc}/MyComponents</Repository>
     <BeanType>Shell</BeanType>
     <Name>CLS1</Name>
     <CompNumb>25</CompNumb>
@@ -14672,7 +14672,7 @@
     </Events>
   </Bean>
   <Bean>
-    <Repository>file://home/pascal/workspace/kinetis/components/installed</Repository>
+    <Repository>file:/${home_ProcessorExpert_loc}/MyComponents</Repository>
     <BeanType>Utility</BeanType>
     <Name>UTIL1</Name>
     <CompNumb>26</CompNumb>
@@ -15346,7 +15346,7 @@
     <Events />
   </Bean>
   <Bean>
-    <Repository>file://home/pascal/workspace/kinetis/components/installed</Repository>
+    <Repository>file:/${home_ProcessorExpert_loc}/MyComponents</Repository>
     <BeanType>Bluetooth_EGBT</BeanType>
     <Name>BT1</Name>
     <CompNumb>27</CompNumb>
@@ -20138,7 +20138,7 @@
     <Events />
   </Bean>
   <Bean>
-    <Repository>file://home/pascal/workspace/kinetis/components/installed</Repository>
+    <Repository>file:/${home_ProcessorExpert_loc}/MyComponents</Repository>
     <BeanType>FreeRTOS</BeanType>
     <Name>FRTOS1</Name>
     <CompNumb>44</CompNumb>
@@ -22313,7 +22313,7 @@
     </Events>
   </Bean>
   <Bean>
-    <Repository>file://home/pascal/workspace/kinetis/components/installed</Repository>
+    <Repository>file:/${home_ProcessorExpert_loc}/MyComponents</Repository>
     <BeanType>FSL_USB_Stack</BeanType>
     <Name>USB1</Name>
     <CompNumb>46</CompNumb>
@@ -23911,9 +23911,9 @@
         <UserReadOnly>false</UserReadOnly>
         <Index>0</Index>
         <RegCompType>FSL_USB_CDC_Device</RegCompType>
-        <RegCompRepository>file://home/pascal/workspace/kinetis/components/installed</RegCompRepository>
+        <RegCompRepository>file:/${home_ProcessorExpert_loc}/MyComponents</RegCompRepository>
         <InheritedComponentState>
-          <Repository>file://home/pascal/workspace/kinetis/components/installed</Repository>
+          <Repository>file:/${home_ProcessorExpert_loc}/MyComponents</Repository>
           <BeanType>FSL_USB_CDC_Device</BeanType>
           <Name>CDC1</Name>
           <CompNumb>48</CompNumb>
@@ -24010,9 +24010,9 @@
               <UserReadOnly>false</UserReadOnly>
               <Index>0</Index>
               <RegCompType>RingBuffer</RegCompType>
-              <RegCompRepository>file://home/pascal/workspace/kinetis/components/installed</RegCompRepository>
+              <RegCompRepository>file:/${home_ProcessorExpert_loc}/MyComponents</RegCompRepository>
               <InheritedComponentState>
-                <Repository>file://home/pascal/workspace/kinetis/components/installed</Repository>
+                <Repository>file:/${home_ProcessorExpert_loc}/MyComponents</Repository>
                 <BeanType>RingBuffer</BeanType>
                 <Name>Tx1</Name>
                 <CompNumb>49</CompNumb>
@@ -24272,9 +24272,9 @@
               <UserReadOnly>false</UserReadOnly>
               <Index>0</Index>
               <RegCompType>RingBuffer</RegCompType>
-              <RegCompRepository>file://home/pascal/workspace/kinetis/components/installed</RegCompRepository>
+              <RegCompRepository>file:/${home_ProcessorExpert_loc}/MyComponents</RegCompRepository>
               <InheritedComponentState>
-                <Repository>file://home/pascal/workspace/kinetis/components/installed</Repository>
+                <Repository>file:/${home_ProcessorExpert_loc}/MyComponents</Repository>
                 <BeanType>RingBuffer</BeanType>
                 <Name>Rx1</Name>
                 <CompNumb>50</CompNumb>
@@ -24921,7 +24921,7 @@
     </Events>
   </Bean>
   <Bean>
-    <Repository>file://home/pascal/workspace/kinetis/components/installed</Repository>
+    <Repository>file:/${home_ProcessorExpert_loc}/MyComponents</Repository>
     <BeanType>LED</BeanType>
     <Name>LED_IR</Name>
     <CompNumb>52</CompNumb>
@@ -37788,7 +37788,7 @@
     <Events />
   </Bean>
   <Bean>
-    <Repository>file://home/pascal/workspace/kinetis/components/installed</Repository>
+    <Repository>file:/${home_ProcessorExpert_loc}/MyComponents</Repository>
     <BeanType>QuadCounter</BeanType>
     <Name>Q4CLeft</Name>
     <CompNumb>86</CompNumb>
@@ -39202,7 +39202,7 @@
     </Events>
   </Bean>
   <Bean>
-    <Repository>file://home/pascal/workspace/kinetis/components/installed</Repository>
+    <Repository>file:/${home_ProcessorExpert_loc}/MyComponents</Repository>
     <BeanType>QuadCounter</BeanType>
     <Name>Q4CRight</Name>
     <CompNumb>91</CompNumb>

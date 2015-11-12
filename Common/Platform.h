@@ -44,6 +44,7 @@
 #define PL_CONFIG_HAS_MOTOR      0
 #endif
 
+#include "HW.h"
 #if PL_CONFIG_HAS_TIMER
 #include "Timer.h"
 #endif
