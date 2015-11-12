@@ -21,6 +21,10 @@ void PL_Init(void) {
 	PDC1_Init();
 #endif
 
+#if PL_CONFIG_HAS_MOTOR
+	MOT Init();
+#endif
+
 #if PL_CONFIG_HAS_SNAKE
 	SNAKE_Init();
 #endif

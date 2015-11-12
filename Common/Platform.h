@@ -29,6 +29,7 @@
 #define PL_CONFIG_HAS_USB_CDC    1
 #define PL_CONFIG_HAS_BLUETOOTH  0
 #define PL_CONFIG_HAS_REFLECTANCE 1
+#define PL_CONFIG_HAS_MOTOR      1
 #endif
 
 #ifdef PL_BOARD_IS_FRDM
@@ -40,6 +41,7 @@
 #define PL_CONFIG_HAS_SHELL      1
 #define PL_CONFIG_HAS_USB_CDC    1
 #define PL_CONFIG_HAS_BLUETOOTH  0
+#define PL_CONFIG_HAS_MOTOR      0
 #endif
 
 #if PL_CONFIG_HAS_TIMER
