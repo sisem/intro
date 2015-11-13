@@ -20,24 +20,27 @@
 #define PL_CONFIG_HAS_SEMAPHORE 0
 
 #ifdef PL_BOARD_IS_ROBO
-#define PL_CONFIG_NOF_LED        2
-#define PL_CONFIG_NOF_KEYS       1
-#define PL_CONFIG_HAS_BUZZER     1
-#define PL_CONFIG_HAS_LCD 		 0
-#define PL_CONFIG_HAS_SNAKE 	 0
-#define PL_CONFIG_HAS_SHELL      1
-#define PL_CONFIG_HAS_USB_CDC    1
-#define PL_CONFIG_HAS_BLUETOOTH  0
+#define PL_CONFIG_NOF_LED         2
+#define PL_CONFIG_NOF_KEYS        1
+#define PL_CONFIG_HAS_BUZZER      1
+#define PL_CONFIG_HAS_LCD 		    0
+#define PL_CONFIG_HAS_SNAKE 	    0
+#define PL_CONFIG_HAS_SHELL       1
+#define PL_CONFIG_HAS_USB_CDC     1
+#define PL_CONFIG_HAS_BLUETOOTH   0
 #define PL_CONFIG_HAS_REFLECTANCE 1
-#define PL_CONFIG_HAS_MOTOR      1
+#define PL_CONFIG_HAS_MOTOR       1
+#define PL_CONFIG_HAS_QUAD_CALIBRATION 1
+#define PL_CONFIG_HAS_MCP4728		  1
+#define PL_CONFIG_HAS_MOTOR_QUAD  1
 #endif
 
 #ifdef PL_BOARD_IS_FRDM
-#define PL_CONFIG_NOF_LED 		 2
-#define PL_CONFIG_NOF_KEYS 		 7
+#define PL_CONFIG_NOF_LED 		   2
+#define PL_CONFIG_NOF_KEYS 		   7
 #define PL_CONFIG_HAS_BUZZER     0
-#define PL_CONFIG_HAS_LCD 		 1
-#define PL_CONFIG_HAS_SNAKE 	 0
+#define PL_CONFIG_HAS_LCD 		   1
+#define PL_CONFIG_HAS_SNAKE 	 	 0
 #define PL_CONFIG_HAS_SHELL      1
 #define PL_CONFIG_HAS_USB_CDC    1
 #define PL_CONFIG_HAS_BLUETOOTH  0

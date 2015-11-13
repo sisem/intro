@@ -63,17 +63,17 @@ void MOT_SetSpeedPercent(MOT_MotorDevice *motor, MOT_SpeedPercent percent) {
 
 #if HW == HW_IS_PASCAL
   if (percent<0) {
-    MOT_SetDirection(motor, MOT_DIR_BACKWARD);
+    	MOT_SetDirection(motor, MOT_DIR_BACKWARD);
       percent = -percent; /* make it positive */
     } else {
       MOT_SetDirection(motor, MOT_DIR_FORWARD);
     }
 #elif HW == HW_IS_SILVIO
   if (percent<0) {
-      MOT_SetDirection(motor, MOT_DIR_FORWARD);
+    	MOT_SetDirection(motor, MOT_DIR_FORWARD);
       percent = -percent; /* make it positive */
     } else {
-      MOT_SetDirection(motor, MOT_DIR_BACKWARD);
+    	MOT_SetDirection(motor, MOT_DIR_BACKWARD);
     }
 #else
 	#error "Please choose hardware: HW == [HW_IS_SILVIO | HW == HW_IS_PASCAL]"
