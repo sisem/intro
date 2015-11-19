@@ -6,6 +6,12 @@
  */
 
 #include "Platform.h"
+#if PL_CONFIG_HAS_BUZZER
+	#include "Buzzer.h"
+#endif
+#if PL_CONFIG_HAS_MOTOR
+	#include "Motor.h"
+#endif
 
 void PL_Init(void) {
 #if PL_CONFIG_HAS_LEDS
