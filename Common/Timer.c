@@ -12,6 +12,7 @@
 #if PL_CONFIG_HAS_TIMER
 #include "Timer.h"
 #include "Trigger.h"
+#include "Tacho.h"
 
 void TMR_OnInterrupt(void) {
   /* this one gets called from an interrupt!!!! */
@@ -25,6 +26,7 @@ void TMR_OnInterrupt(void) {
   }
   */
   TRG_IncTick();
+  TACHO_Sample();
 }
 
 void TMR_Init(void) {

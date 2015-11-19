@@ -43,7 +43,9 @@
 	#include "Q4CLeft.h"
 	#include "Q4CRight.h"
 #endif
-
+#if PL_CONFIG_HAS_MOTOR_TACHO
+	#include "Tacho.h"
+#endif
 
 #define SHELL_COPY_CDC_TO_UART   (1)
 
@@ -82,6 +84,9 @@ static const CLS1_ParseCommandCallback CmdParserTable[] =
 #if PL_CONFIG_HAS_MOTOR_QUAD
 	Q4CLeft_ParseCommand,
 	Q4CRight_ParseCommand,
+#endif
+#if PL_CONFIG_HAS_MOTOR_TACHO
+	TACHO_ParseCommand,
 #endif
   NULL /* Sentinel */
 };
