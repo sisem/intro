@@ -9,7 +9,7 @@
 #define SOURCES_COMMON_PLATFORM_H_
 
 #define PL_CONFIG_HAS_TIMER 1
-#define PL_CONFIG_HAS_LEDS 1
+#define PL_CONFIG_HAS_LED 1
 #define PL_CONFIG_HAS_KEYS 1
 #define PL_CONFIG_HAS_EVENTS 1
 #define PL_CONFIG_HAS_TRIGGER 1
@@ -29,23 +29,26 @@
 #define PL_CONFIG_HAS_USB_CDC     1
 #define PL_CONFIG_HAS_BLUETOOTH   0
 #define PL_CONFIG_HAS_REFLECTANCE 1
+#define PL_CONFIG_HAS_CONFIG_NVM 	0
 #define PL_CONFIG_HAS_MOTOR       1
 #define PL_CONFIG_HAS_QUAD_CALIBRATION 1
 #define PL_CONFIG_HAS_MCP4728		  1
 #define PL_CONFIG_HAS_MOTOR_QUAD  1
 #define PL_CONFIG_HAS_MOTOR_TACHO 1
+#define PL_CONFIG_HAS_ULTRASONIC	0
+#define PL_CONFIG_HAS_PID					0
 #endif
 
 #ifdef PL_BOARD_IS_FRDM
-#define PL_CONFIG_NOF_LED 		   2
-#define PL_CONFIG_NOF_KEYS 		   7
-#define PL_CONFIG_HAS_BUZZER     0
-#define PL_CONFIG_HAS_LCD 		   1
-#define PL_CONFIG_HAS_SNAKE 	 	 0
-#define PL_CONFIG_HAS_SHELL      1
-#define PL_CONFIG_HAS_USB_CDC    1
-#define PL_CONFIG_HAS_BLUETOOTH  0
-#define PL_CONFIG_HAS_MOTOR      0
+#define PL_CONFIG_NOF_LED 		   	2
+#define PL_CONFIG_NOF_KEYS 		   	7
+#define PL_CONFIG_HAS_BUZZER     	0
+#define PL_CONFIG_HAS_LCD 		   	1
+#define PL_CONFIG_HAS_SNAKE 	 	 	0
+#define PL_CONFIG_HAS_SHELL      	1
+#define PL_CONFIG_HAS_USB_CDC    	1
+#define PL_CONFIG_HAS_CONFIG_NVM 	0
+
 #endif
 
 #include "HW.h"

@@ -9,10 +9,13 @@
 
 #include "Application.h"
 
-#if PL_CONFIG_HAS_LEDS
+#if PL_CONFIG_HAS_LED
 #include "LED.h"
 #if PL_CONFIG_NOF_LED >=1
 #include "LED1.h"
+#endif
+#if PL_CONFIG_NOF_LED >=2
+#include "LED2.h"
 #endif
 #endif
 #if PL_CONFIG_HAS_BUZZER
@@ -31,40 +34,18 @@ static bool isRunning = FALSE;
  */
 void APP_Start(void) {
 
-	// initialize
+	// Initialize Platform
 	PL_Init();
-	EVNT_Init();
-
-	// Initialize all tasks
-	RTOS_Init();
-
-#if PL_CONFIG_HAS_SHELL
-	SHELL_Init();
-#endif
-
-#if PL_CONFIG_HAS_SHELL_QUEUE
-	SQUEUE_Init();
-#endif
-
-#if PL_CONFIG_HAS_SEMAPHORE
-	SEM_Init();
-#endif
-
-#if PL_CONFIG_HAS_REFLECTANCE
-	REF_Init();
-#endif
 
 	// start scheduler
 	RTOS_Run();
 
 	// Wait forever, we don't want to Deinit!
-	for (;;) {
-	}
+	for(;;);
 
 // deinitialize
 	PL_Deinit();
-	for (;;)
-		;
+	for(;;);
 }
 
 /**

@@ -6,10 +6,13 @@
  */
 
 #include "Platform.h"
-#if PL_CONFIG_HAS_LEDS
+#if PL_CONFIG_HAS_LED
 #include "LED.h"
-#if PL_CONFIG_NOF_LED >= 2
+#if PL_CONFIG_NOF_LED >=1
 #include "LED1.h"
+#endif
+#if PL_CONFIG_NOF_LED >=2
+#include "LED2.h"
 #endif
 #endif
 
