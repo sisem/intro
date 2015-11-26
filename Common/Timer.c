@@ -27,6 +27,14 @@ void TMR_OnInterrupt(void) {
   */
   TRG_IncTick();
   TACHO_Sample();
+
+	// call pid
+	#define PID_MS 5
+	static int i = PID_MS;
+	if(i-- > 0) {
+
+		i = PID_MS;
+	}
 }
 
 void TMR_Init(void) {

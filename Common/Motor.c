@@ -14,6 +14,7 @@
 #include "PWMR.h"
 #include "PWML.h"
 #include "UTIL1.h"
+#include "HW.h"
 
 static MOT_MotorDevice motorL, motorR;
 

@@ -12,6 +12,7 @@
 
 #include "Platform.h"
 #include "Timer.h"
+#include "stdint.h"
 
 #define TRG_TICKS_MS  TMR_TICK_MS
   /*!< Defines the period at which TRG_IncTick gets called */

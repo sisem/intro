@@ -24,7 +24,29 @@
 #if PL_CONFIG_HAS_SHELL_QUEUE
 #include "ShellQueue.h"
 #endif
-
+#if PL_CONFIG_HAS_BUZZER
+#include "Buzzer.h"
+#include "BUZ1.h"
+#endif
+#if PL_CONFIG_HAS_SHELL
+#include "Shell.h"
+#endif
+#if PL_CONFIG_HAS_SHELL_QUEUE
+#include "ShellQueue.h"
+#endif
+#if PL_CONFIG_HAS_ULTRASONIC
+#include "Ultrasonic.h"
+#endif
+#if PL_CONFIG_HAS_TIMER
+#include "Timer.h"
+#endif
+#if PL_CONFIG_HAS_KEYS
+#include "Keys.h"
+#endif
+#if PL_CONFIG_HAS_DEBOUNCE
+#include "Debounce.h"
+#include "KeyDebounce.h"
+#endif
 #include "CLS1.h"
 
 static bool isRunning = FALSE;

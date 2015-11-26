@@ -46,6 +46,15 @@
 #if PL_CONFIG_HAS_MOTOR_TACHO
 	#include "Tacho.h"
 #endif
+#if PL_CONFIG_HAS_ULTRASONIC
+	#include "Ultrasonic.h"
+#endif
+#if PL_CONFIG_HAS_DRIVE
+	#include "Drive.h"
+#endif
+#if PL_CONFIG_HAS_PID
+	#include "Pid.h"
+#endif
 
 #define SHELL_COPY_CDC_TO_UART   (1)
 
@@ -87,6 +96,15 @@ static const CLS1_ParseCommandCallback CmdParserTable[] =
 #endif
 #if PL_CONFIG_HAS_MOTOR_TACHO
 	TACHO_ParseCommand,
+#endif
+#if PL_CONFIG_HAS_ULTRASONIC
+	US_ParseCommand,
+#endif
+#if PL_CONFIG_HAS_DRIVE
+	DRV_ParseCommand,
+#endif
+#if PL_CONFIG_HAS_PID
+	PID_ParseCommand,
 #endif
   NULL /* Sentinel */
 };

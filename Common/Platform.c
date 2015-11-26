@@ -63,6 +63,7 @@
   #include "PID.h"
 #endif
 
+
 void PL_Init(void) {
 
 #if PL_CONFIG_HAS_EVENTS
@@ -148,6 +149,10 @@ void PL_Init(void) {
 
 #if PL_CONFIG_HAS_ULTRASONIC
 	US_Init();
+#endif
+
+#if PL_CONFIG_HAS_DRIVE
+  DRV_Init();
 #endif
 
 #if PL_CONFIG_HAS_PID

@@ -89,6 +89,8 @@
 #include "BitIoLdd18.h"
 #include "C22.h"
 #include "BitIoLdd19.h"
+#include "TU_US.h"
+#include "TRIG.h"
 #include "Q4CRight.h"
 #include "C11.h"
 #include "BitIoLdd16.h"

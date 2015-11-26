@@ -8,6 +8,8 @@
 #ifndef SOURCES_COMMON_PLATFORM_H_
 #define SOURCES_COMMON_PLATFORM_H_
 
+#include "PE_Types.h"
+
 #define PL_CONFIG_HAS_TIMER 1
 #define PL_CONFIG_HAS_LED 1
 #define PL_CONFIG_HAS_KEYS 1
@@ -35,8 +37,9 @@
 #define PL_CONFIG_HAS_MCP4728		  1
 #define PL_CONFIG_HAS_MOTOR_QUAD  1
 #define PL_CONFIG_HAS_MOTOR_TACHO 1
-#define PL_CONFIG_HAS_ULTRASONIC	0
-#define PL_CONFIG_HAS_PID					0
+#define PL_CONFIG_HAS_ULTRASONIC	1
+#define PL_CONFIG_HAS_DRIVE				1
+#define PL_CONFIG_HAS_PID					1
 #endif
 
 #ifdef PL_BOARD_IS_FRDM
@@ -51,44 +54,7 @@
 
 #endif
 
-#include "HW.h"
-#if PL_CONFIG_HAS_TIMER
-#include "Timer.h"
-#endif
-#if PL_CONFIG_HAS_LEDS
-#include "LED.h"
-#endif
-#if PL_CONFIG_HAS_KEYS
-#include "Keys.h"
-#endif
-#if PL_CONFIG_HAS_EVENTS
-#include "Event.h"
-#endif
-#if PL_CONFIG_HAS_TRIGGER
-#include "Trigger.h"
-#endif
-#if PL_CONFIG_HAS_DEBOUNCE
-#include "Debounce.h"
-#include "KeyDebounce.h"
-#endif
-#if PL_CONFIG_HAS_LCD
-#include "PDC1.h"
-#endif
-#if PL_CONFIG_HAS_SNAKE
-#include "Snake.h"
-#endif
-#if PL_CONFIG_HAS_SHELL
-#include "Shell.h"
-#endif
-#if PL_CONFIG_HAS_SHELL_QUEUE
-#include "ShellQueue.h"
-#endif
-#if PL_CONFIG_HAS_REFLECTANCE
-#include "Reflectance.h"
-#endif
-
 void PL_Init(void);
 void PL_Deinit(void);
-
 
 #endif /* SOURCES_COMMON_PLATFORM_H_ */
