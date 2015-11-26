@@ -35,6 +35,8 @@
 
 #define REF_START_STOP_CALIB  1 /* start/stop calibration commands */
 
+#define REF_TIMEOUT			5000
+
 #if REF_START_STOP_CALIB
   static xSemaphoreHandle REF_StartStopSem = NULL;
 #endif
@@ -126,6 +128,7 @@ void REF_CalibrateStartStop(void) {
  * \return ERR_OVERFLOW if there is a timeout, ERR_OK otherwise
  */
 static void REF_MeasureRaw(SensorTimeType raw[REF_NOF_SENSORS]) {
+  int timeout = REF_TIMEOUT
   uint8_t cnt; /* number of sensor */
   uint8_t i;
   RefCnt_TValueType timerVal;
@@ -143,6 +146,7 @@ static void REF_MeasureRaw(SensorTimeType raw[REF_NOF_SENSORS]) {
   }
   (void)RefCnt_ResetCounter(timerHandle); /* reset timer counter */
   do {
+	timeout -= 1;
     cnt = 0;
     timerVal = RefCnt_GetCounterValue(timerHandle);
     for(i=0;i<REF_NOF_SENSORS;i++) {
@@ -154,8 +158,14 @@ static void REF_MeasureRaw(SensorTimeType raw[REF_NOF_SENSORS]) {
         cnt++;
       }
     }
-  } while(cnt!=REF_NOF_SENSORS);
+  } while(cnt!=REF_NOF_SENSORS || timeout<=0);
   LED_IR_Off(); /* IR LED's off */
+
+  #if PL_CONFIG_HAS_SHELL
+    if (timeout<=0) {
+      SHELL_SendString((unsigned char*)"Timeout during Reflectance measurment. Maybe increase counter?.\r\n");
+    }
+  #endif
 }
 
 static void REF_CalibrateMinMax(SensorTimeType min[REF_NOF_SENSORS], SensorTimeType max[REF_NOF_SENSORS], SensorTimeType raw[REF_NOF_SENSORS]) {
