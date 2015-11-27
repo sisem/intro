@@ -19,38 +19,41 @@
 #define PL_CONFIG_HAS_RTOS 1
 #define PL_CONFIG_EVENTS_AUTO_CLEAR 0
 #define PL_CONFIG_HAS_SHELL_QUEUE 1
+#define PL_SQUEUE_SINGLE_CHAR 1
 #define PL_CONFIG_HAS_SEMAPHORE 0
 
 #ifdef PL_BOARD_IS_ROBO
-#define PL_CONFIG_NOF_LED         2
-#define PL_CONFIG_NOF_KEYS        1
-#define PL_CONFIG_HAS_BUZZER      1
-#define PL_CONFIG_HAS_LCD 		    0
-#define PL_CONFIG_HAS_SNAKE 	    0
-#define PL_CONFIG_HAS_SHELL       1
-#define PL_CONFIG_HAS_USB_CDC     1
-#define PL_CONFIG_HAS_BLUETOOTH   0
-#define PL_CONFIG_HAS_REFLECTANCE 1
-#define PL_CONFIG_HAS_CONFIG_NVM 	0
-#define PL_CONFIG_HAS_MOTOR       1
-#define PL_CONFIG_HAS_QUAD_CALIBRATION 1
-#define PL_CONFIG_HAS_MCP4728		  1
-#define PL_CONFIG_HAS_MOTOR_QUAD  1
-#define PL_CONFIG_HAS_MOTOR_TACHO 1
-#define PL_CONFIG_HAS_ULTRASONIC	1
-#define PL_CONFIG_HAS_DRIVE				1
+#define PL_CONFIG_NOF_LED         			2
+#define PL_CONFIG_NOF_KEYS        			1
+#define PL_CONFIG_HAS_BUZZER      			1
+#define PL_CONFIG_HAS_LCD 		    		0
+#define PL_CONFIG_HAS_SNAKE 	    		0
+#define PL_CONFIG_HAS_SHELL       			1
+#define PL_CONFIG_HAS_USB_CDC     			1
+#define PL_CONFIG_HAS_BLUETOOTH   			1
+#define PL_CONFIG_HAS_REFLECTANCE		 	1
+#define PL_CONFIG_HAS_CONFIG_NVM 			0
+#define PL_CONFIG_HAS_MOTOR       			1
+#define PL_CONFIG_HAS_QUAD_CALIBRATION 		1
+#define PL_CONFIG_HAS_MCP4728		  		1
+#define PL_CONFIG_HAS_MOTOR_QUAD  			1
+#define PL_CONFIG_HAS_MOTOR_TACHO 			1
+#define PL_CONFIG_HAS_ULTRASONIC			1
+#define PL_CONFIG_HAS_DRIVE					1
 #define PL_CONFIG_HAS_PID					1
+#define PL_CONFIG_HAS_TURN					1
+#define PL_CONFIG_HAS_LINE_FOLLOW			1
 #endif
 
 #ifdef PL_BOARD_IS_FRDM
-#define PL_CONFIG_NOF_LED 		   	2
-#define PL_CONFIG_NOF_KEYS 		   	7
-#define PL_CONFIG_HAS_BUZZER     	0
-#define PL_CONFIG_HAS_LCD 		   	1
-#define PL_CONFIG_HAS_SNAKE 	 	 	0
-#define PL_CONFIG_HAS_SHELL      	1
-#define PL_CONFIG_HAS_USB_CDC    	1
-#define PL_CONFIG_HAS_CONFIG_NVM 	0
+#define PL_CONFIG_NOF_LED 		   			2
+#define PL_CONFIG_NOF_KEYS 		   			7
+#define PL_CONFIG_HAS_BUZZER     			0
+#define PL_CONFIG_HAS_LCD 		   			1
+#define PL_CONFIG_HAS_SNAKE 	 	 		0
+#define PL_CONFIG_HAS_SHELL      			1
+#define PL_CONFIG_HAS_USB_CDC    			1
+#define PL_CONFIG_HAS_CONFIG_NVM 			0
 
 #endif
 

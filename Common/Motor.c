@@ -14,11 +14,12 @@
 #include "PWMR.h"
 #include "PWML.h"
 #include "UTIL1.h"
-#include "HW.h"
+
+#define PL_INVERT_LEFT_MOTOR_DIRECTION   1 /* 1 for 'greeny' robot */
 
 static MOT_MotorDevice motorL, motorR;
 
-MOT_MotorDevice* MOT_GetMotorHandle(MOT_MotorSide side) {
+MOT_MotorDevice *MOT_GetMotorHandle(MOT_MotorSide side) {
   if (side==MOT_MOTOR_LEFT) {
     return &motorL;
   } else {
@@ -35,7 +36,10 @@ static uint8_t PWMRSetRatio16(uint16_t ratio) {
 }
 
 static void DirLPutVal(bool val) {
-  DIRL_PutVal(!val);
+#if PL_INVERT_LEFT_MOTOR_DIRECTION
+  val = !val;
+#endif
+  DIRL_PutVal(val);
 }
 
 static void DirRPutVal(bool val) {
@@ -61,25 +65,12 @@ void MOT_SetSpeedPercent(MOT_MotorDevice *motor, MOT_SpeedPercent percent) {
     percent = -100;
   }
   motor->currSpeedPercent = percent; /* store value */
-
-#if HW == HW_IS_PASCAL
   if (percent<0) {
-    	MOT_SetDirection(motor, MOT_DIR_BACKWARD);
-      percent = -percent; /* make it positive */
-    } else {
-      MOT_SetDirection(motor, MOT_DIR_FORWARD);
-    }
-#elif HW == HW_IS_SILVIO
-  if (percent<0) {
-    	MOT_SetDirection(motor, MOT_DIR_FORWARD);
-      percent = -percent; /* make it positive */
-    } else {
-    	MOT_SetDirection(motor, MOT_DIR_BACKWARD);
-    }
-#else
-	#error "Please choose hardware: HW == [HW_IS_SILVIO | HW == HW_IS_PASCAL]"
-#endif
-
+    MOT_SetDirection(motor, MOT_DIR_BACKWARD);
+    percent = -percent; /* make it positive */
+  } else {
+    MOT_SetDirection(motor, MOT_DIR_FORWARD);
+  }
   val = ((100-percent)*0xffff)/100; /* H-Bridge is low active! */
   MOT_SetVal(motor, (uint16_t)val);
 }
@@ -103,12 +94,12 @@ void MOT_ChangeSpeedPercent(MOT_MotorDevice *motor, MOT_SpeedPercent relPercent)
 
 void MOT_SetDirection(MOT_MotorDevice *motor, MOT_Direction dir) {
   /*! \todo Check if directions are working properly with your hardware */
-  if (dir==MOT_DIR_BACKWARD) {
+  if (dir==MOT_DIR_FORWARD ) {
     motor->DirPutVal(1);
     if (motor->currSpeedPercent<0) {
       motor->currSpeedPercent = -motor->currSpeedPercent;
     }
-  } else if (dir==MOT_DIR_FORWARD) {
+  } else if (dir==MOT_DIR_BACKWARD) {
     motor->DirPutVal(0);
     if (motor->currSpeedPercent>0) {
       motor->currSpeedPercent = -motor->currSpeedPercent;
@@ -204,10 +195,6 @@ uint8_t MOT_ParseCommand(const unsigned char *cmd, bool *handled, const CLS1_Std
 
 void MOT_Deinit(void) {
   /*! \todo What could you do here? */
-  MOT_SetSpeedPercent(&motorL, 0);
-  MOT_SetSpeedPercent(&motorR, 0);
-  PWML_Disable();
-  PWMR_Disable();
 }
 
 void MOT_Init(void) {

@@ -29,13 +29,10 @@
 
 #define REF_NOF_SENSORS       6 /* number of sensors */
 #define REF_SENSOR1_IS_LEFT   1 /* sensor number one is on the left side */
-#define REF_MIN_LINE_VAL      0x60   /* minimum value indicating a line */
 #define REF_MIN_NOISE_VAL     0x40   /* values below this are not added to the weighted sum */
 #define REF_USE_WHITE_LINE    0  /* if set to 1, then the robot is using a white (on black) line, otherwise a black (on white) line */
 
-#define REF_START_STOP_CALIB  1 /* start/stop calibration commands */
-
-#define REF_TIMEOUT			5000
+#define REF_START_STOP_CALIB      1 /* start/stop calibration commands */
 
 #if REF_START_STOP_CALIB
   static xSemaphoreHandle REF_StartStopSem = NULL;
@@ -128,7 +125,6 @@ void REF_CalibrateStartStop(void) {
  * \return ERR_OVERFLOW if there is a timeout, ERR_OK otherwise
  */
 static void REF_MeasureRaw(SensorTimeType raw[REF_NOF_SENSORS]) {
-  int timeout = REF_TIMEOUT
   uint8_t cnt; /* number of sensor */
   uint8_t i;
   RefCnt_TValueType timerVal;
@@ -146,7 +142,6 @@ static void REF_MeasureRaw(SensorTimeType raw[REF_NOF_SENSORS]) {
   }
   (void)RefCnt_ResetCounter(timerHandle); /* reset timer counter */
   do {
-	timeout -= 1;
     cnt = 0;
     timerVal = RefCnt_GetCounterValue(timerHandle);
     for(i=0;i<REF_NOF_SENSORS;i++) {
@@ -154,18 +149,17 @@ static void REF_MeasureRaw(SensorTimeType raw[REF_NOF_SENSORS]) {
         if (SensorFctArray[i].GetVal()==0) {
           raw[i] = timerVal;
         }
+        else {
+        	if(timerVal > 0xFF00) {
+        		break;
+        	}
+        }
       } else { /* have value */
         cnt++;
       }
     }
-  } while(cnt!=REF_NOF_SENSORS || timeout<=0);
+  } while(cnt!=REF_NOF_SENSORS);
   LED_IR_Off(); /* IR LED's off */
-
-  #if PL_CONFIG_HAS_SHELL
-    if (timeout<=0) {
-      SHELL_SendString((unsigned char*)"Timeout during Reflectance measurment. Maybe increase counter?.\r\n");
-    }
-  #endif
 }
 
 static void REF_CalibrateMinMax(SensorTimeType min[REF_NOF_SENSORS], SensorTimeType max[REF_NOF_SENSORS], SensorTimeType raw[REF_NOF_SENSORS]) {
@@ -257,9 +251,86 @@ uint16_t REF_GetLineValue(void) {
   return refCenterLineVal;
 }
 
+#if PL_CONFIG_HAS_LINE_FOLLOW
+static REF_LineKind ReadLineKind(SensorTimeType val[REF_NOF_SENSORS]) {
+  uint32_t sum, sumLeft, sumRight, outerLeft, outerRight;
+  int i;
+  #define REF_MIN_LINE_VAL      0x100   /* minimum value indicating a line */
+
+  for(i=0;i<REF_NOF_SENSORS;i++) {
+    if (val[i]<REF_MIN_LINE_VAL) { /* smaller value? White seen! */
+      break;
+    }
+  }
+  if (i==REF_NOF_SENSORS) { /* all sensors see 'black' */
+    return REF_LINE_FULL;
+  }
+  /* check the line type */
+  sum = 0; sumLeft = 0; sumRight = 0;
+  for(i=0;i<REF_NOF_SENSORS;i++) {
+    if (val[i]>REF_MIN_LINE_VAL) { /* count only line values */
+      sum += val[i];
+      if (i<REF_NOF_SENSORS/2) {
+#if REF_SENSOR1_IS_LEFT
+        sumLeft += val[i];
+#else
+        sumRight += val[i];
+#endif
+      } else {
+#if REF_SENSOR1_IS_LEFT
+        sumRight += val[i];
+#else
+        sumLeft += val[i];
+#endif
+      }
+    }
+  }
+#if REF_SENSOR1_IS_LEFT
+  outerLeft = val[0];
+  outerRight = val[REF_NOF_SENSORS-1];
+#else
+  outerLeft = val[REF_NOF_SENSORS-1];
+  outerRight = val[0];
+#endif
+
+  #define MIN_LEFT_RIGHT_SUM   ((REF_NOF_SENSORS*1000)/4) /* 1/4 of full sensor values */
+
+  if (outerLeft>=REF_MIN_LINE_VAL && outerRight<REF_MIN_LINE_VAL && sumLeft>MIN_LEFT_RIGHT_SUM && sumRight<MIN_LEFT_RIGHT_SUM) {
+#if PL_APP_LINE_MAZE
+    return REF_LINE_LEFT; /* line going to the left side */
+#else
+    return REF_LINE_STRAIGHT;
+#endif
+  } else if (outerLeft<REF_MIN_LINE_VAL && outerRight>=REF_MIN_LINE_VAL && sumRight>MIN_LEFT_RIGHT_SUM && sumLeft<MIN_LEFT_RIGHT_SUM) {
+#if PL_APP_LINE_MAZE
+    return REF_LINE_RIGHT; /* line going to the right side */
+#else
+    return REF_LINE_STRAIGHT;
+#endif
+  } else if (outerLeft>=REF_MIN_LINE_VAL && outerRight>=REF_MIN_LINE_VAL && sumRight>MIN_LEFT_RIGHT_SUM && sumLeft>MIN_LEFT_RIGHT_SUM) {
+    return REF_LINE_FULL; /* full line */
+  } else if (sumRight==0 && sumLeft==0 && sum == 0) {
+    return REF_LINE_NONE; /* no line */
+  } else {
+    return REF_LINE_STRAIGHT; /* straight line forward */
+  }
+}
+#endif
+
+#if PL_CONFIG_HAS_LINE_FOLLOW
+static REF_LineKind refLineKind = REF_LINE_NONE;
+
+REF_LineKind REF_GetLineKind(void) {
+  return refLineKind;
+}
+#endif
+
 static void REF_Measure(void) {
   ReadCalibrated(SensorCalibrated, SensorRaw);
   refCenterLineVal = ReadLine(SensorCalibrated, SensorRaw, REF_USE_WHITE_LINE);
+#if PL_CONFIG_HAS_LINE_FOLLOW
+  refLineKind = ReadLineKind(SensorCalibrated);
+#endif
 }
 
 static uint8_t PrintHelp(const CLS1_StdIOType *io) {
@@ -298,11 +369,6 @@ static uint8_t PrintStatus(const CLS1_StdIOType *io) {
   UTIL1_strcatNum16Hex(buf, sizeof(buf), REF_MIN_NOISE_VAL);
   UTIL1_strcat(buf, sizeof(buf), (unsigned char*)"\r\n");
   CLS1_SendStatusStr((unsigned char*)"  min noise", buf, io->stdOut);
-
-  UTIL1_strcpy(buf, sizeof(buf), (unsigned char*)"0x");
-  UTIL1_strcatNum16Hex(buf, sizeof(buf), REF_MIN_LINE_VAL);
-  UTIL1_strcat(buf, sizeof(buf), (unsigned char*)"\r\n");
-  CLS1_SendStatusStr((unsigned char*)"  min line", buf, io->stdOut);
 
   CLS1_SendStatusStr((unsigned char*)"  line val", (unsigned char*)"", io->stdOut);
   buf[0] = '\0'; UTIL1_strcatNum16s(buf, sizeof(buf), refCenterLineVal);
@@ -400,7 +466,7 @@ static void REF_StateMachine(void) {
       
     case REF_STATE_NOT_CALIBRATED:
       REF_MeasureRaw(SensorRaw);
-      /*! \todo Add a new event to your event module...*/
+      /*! \todo You might add a new event to your event module...*/
 #if REF_START_STOP_CALIB
       if (FRTOS1_xSemaphoreTake(REF_StartStopSem, 0)==pdTRUE) {
         refState = REF_STATE_START_CALIBRATION;
@@ -450,8 +516,9 @@ bool REF_IsReady(void) {
   return refState==REF_STATE_READY;
 }
 
-static portTASK_FUNCTION(ReflTask, pvParameters) {
+static void ReflTask (void *pvParameters) {
   (void)pvParameters; /* not used */
+//  SQUEUE_SendString("Reflectance task started!\r\n");
   for(;;) {
     REF_StateMachine();
     FRTOS1_vTaskDelay(10/portTICK_RATE_MS);

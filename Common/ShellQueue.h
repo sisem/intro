@@ -24,10 +24,16 @@ void SQUEUE_SendString(const unsigned char *str);
 unsigned short SQUEUE_NofElements(void);
 
 /*!
- * \brief Receives an a message character from the queue, and returns immediately if the queue is empty.
+ * \brief Receives a message character from the queue, and returns immediately if the queue is empty.
  * \return Message character, or '\0' if there was no message.
  */
 unsigned char SQUEUE_ReceiveChar(void);
+
+/*!
+ * \brief Receives a message from the queue, and returns immediately if the queue is empty.
+ * \return Message, or '\0' if there was no message.
+ */
+unsigned char* SQUEUE_ReceiveMessage(void);
 
 /*! \brief Initializes the queue module */
 void SQUEUE_Init(void);

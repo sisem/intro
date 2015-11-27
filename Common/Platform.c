@@ -10,6 +10,9 @@
 #if PL_CONFIG_HAS_LED
   #include "LED.h"
 #endif
+#if PL_CONFIG_HAS_BUZZER
+  #include "Buzzer.h"
+#endif
 #if PL_CONFIG_HAS_EVENTS
   #include "Event.h"
 #endif
@@ -36,8 +39,8 @@
   #include "Snake.h"
 #endif
 #if PL_CONFIG_HAS_SHELL_QUEUE
-  #include "ShellQueue.h"
-#endif
+	  #include "ShellQueue.h"
+	#endif
 #if PL_HAS_CONFIG_SEMAPHORE
   #include "Sem.h"
 #endif
@@ -46,6 +49,9 @@
 #endif
 #if PL_CONFIG_HAS_MOTOR
   #include "Motor.h"
+#endif
+#if PL_CONFIG_HAS_DRIVE
+  #include "Drive.h"
 #endif
 #if PL_CONFIG_HAS_CONFIG_NVM
   #include "NVM_Config.h"
@@ -62,7 +68,12 @@
 #if PL_CONFIG_HAS_PID
   #include "PID.h"
 #endif
-
+#if PL_CONFIG_HAS_TURN
+  #include "Turn.h"
+#endif
+#if PL_CONFIG_HAS_LINE_FOLLOW
+  #include "LineFollow.h"
+#endif
 
 void PL_Init(void) {
 
@@ -157,6 +168,13 @@ void PL_Init(void) {
 
 #if PL_CONFIG_HAS_PID
 	PID_Init();
+#endif
+
+#if PL_CONFIG_HAS_TURN
+	TURN_Init();
+#endif
+#if PL_CONFIG_HAS_LINE_FOLLOW
+	LF_Init();
 #endif
 
 }
