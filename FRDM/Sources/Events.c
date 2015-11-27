@@ -27,7 +27,13 @@
 /* MODULE Events */
 
 #include "Cpu.h"
+#include "Platform.h"
+#if PL_CONFIG_HAS_EVENTS
 #include "Events.h"
+#endif
+#if PL_CONFIG_HAS_TIMER
+ #include "Timer.h"
+#endif
 
 #ifdef __cplusplus
 extern "C" {

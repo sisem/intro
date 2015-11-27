@@ -13,6 +13,9 @@
 #if PL_CONFIG_HAS_BUZZER
   #include "Buzzer.h"
 #endif
+#if PL_CONFIG_HAS_LCD
+  #include "PDC1.h"
+#endif
 #if PL_CONFIG_HAS_EVENTS
   #include "Event.h"
 #endif

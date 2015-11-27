@@ -26,6 +26,9 @@
 #if PL_CONFIG_HAS_BUZZER
   #include "Buzzer.h"
 #endif
+#if PL_CONFIG_HAS_CONFIG_NVM
+  #include "NVM_Config.h"
+#endif
 
 #define REF_NOF_SENSORS       6 /* number of sensors */
 #define REF_SENSOR1_IS_LEFT   1 /* sensor number one is on the left side */
@@ -498,6 +501,9 @@ static void REF_StateMachine(void) {
     
     case REF_STATE_STOP_CALIBRATION:
       SHELL_SendString((unsigned char*)"...stopping calibration.\r\n");
+#if PL_CONFIG_HAS_CONFIG_NVM
+      NVMC_SaveReflectanceData(&SensorCalibMinMax, sizeof(SensorCalibMinMax));
+#endif
       refState = REF_STATE_READY;
       break;
         
@@ -539,6 +545,10 @@ void REF_Init(void) {
 #endif
   refState = REF_STATE_INIT;
   timerHandle = RefCnt_Init(NULL);
+#if PL_CONFIG_HAS_CONFIG_NVM
+  SensorCalibMinMax = *(SensorCalibT*)NVMC_GetReflectanceData();
+  refState = REF_STATE_READY;
+#endif
   /*! \todo You might need to adjust priority or other task settings */
   if (FRTOS1_xTaskCreate(ReflTask, "Refl", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY, NULL) != pdPASS) {
     for(;;){} /* error */
