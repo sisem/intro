@@ -69,7 +69,7 @@
   #include "Ultrasonic.h"
 #endif
 #if PL_CONFIG_HAS_PID
-  #include "PID.h"
+  #include "Pid.h"
 #endif
 #if PL_CONFIG_HAS_TURN
   #include "Turn.h"
@@ -77,6 +77,10 @@
 #if PL_CONFIG_HAS_LINE_FOLLOW
   #include "LineFollow.h"
 #endif
+#if PL_CONFIG_HAS_RADIO
+  #include "RNET1.h"
+#endif
+
 
 void PL_Init(void) {
 
@@ -94,7 +98,7 @@ void PL_Init(void) {
 	LED3_Off();
 #endif
 
-#if PL_CONFIG_HAS_LEDS
+#if PL_CONFIG_HAS_LED
 	LED_Init();
 #endif
 
@@ -176,8 +180,14 @@ void PL_Init(void) {
 #if PL_CONFIG_HAS_TURN
 	TURN_Init();
 #endif
+
 #if PL_CONFIG_HAS_LINE_FOLLOW
 	LF_Init();
+#endif
+
+#if PL_CONFIG_HAS_RADIO
+	//RNET1_Init();
+	RNETA_Init();
 #endif
 
 }

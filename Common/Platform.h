@@ -10,17 +10,19 @@
 
 #include "PE_Types.h"
 
-#define PL_CONFIG_HAS_TIMER 1
-#define PL_CONFIG_HAS_LED 1
-#define PL_CONFIG_HAS_KEYS 1
-#define PL_CONFIG_HAS_EVENTS 1
-#define PL_CONFIG_HAS_TRIGGER 1
-#define PL_CONFIG_HAS_DEBOUNCE 1
-#define PL_CONFIG_HAS_RTOS 1
-#define PL_CONFIG_EVENTS_AUTO_CLEAR 0
-#define PL_CONFIG_HAS_SHELL_QUEUE 1
-#define PL_SQUEUE_SINGLE_CHAR 1
-#define PL_CONFIG_HAS_SEMAPHORE 0
+#define PL_CONFIG_HAS_TIMER 				1
+#define PL_CONFIG_HAS_LED 					1
+#define PL_CONFIG_HAS_KEYS 					1
+#define PL_CONFIG_HAS_EVENTS 				1
+#define PL_CONFIG_HAS_TRIGGER 				1
+#define PL_CONFIG_HAS_DEBOUNCE 				1
+#define PL_CONFIG_HAS_RTOS 					1
+#define PL_CONFIG_EVENTS_AUTO_CLEAR 		0
+#define PL_CONFIG_HAS_SHELL_QUEUE 			1
+#define PL_SQUEUE_SINGLE_CHAR 				1
+#define PL_CONFIG_HAS_SEMAPHORE 			0
+#define PL_CONFIG_HAS_RADIO					1	//nRF
+
 
 #ifdef PL_BOARD_IS_ROBO
 #define PL_CONFIG_NOF_LED         			2
@@ -50,7 +52,7 @@
 #define PL_CONFIG_NOF_LED 		   			2
 #define PL_CONFIG_NOF_KEYS 		   			7
 #define PL_CONFIG_HAS_BUZZER     			0
-#define PL_CONFIG_HAS_LCD 		   			1
+#define PL_CONFIG_HAS_LCD 		   			0	//disable because of nRF module
 #define PL_CONFIG_HAS_SNAKE 	 	 		0
 #define PL_CONFIG_HAS_SHELL      			1
 #define PL_CONFIG_HAS_USB_CDC    			1

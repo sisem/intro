@@ -375,10 +375,10 @@ void PID_Init(void) {
   speedRightConfig.lastError = 0;
   speedRightConfig.integral = 0;
 #else
-  speedLeftConfig.pFactor100 = 1000;
-  speedLeftConfig.iFactor100 = 45;
-  speedLeftConfig.dFactor100 = 0;
-  speedLeftConfig.iAntiWindup = 120000;
+  speedLeftConfig.pFactor100 = 4000;
+  speedLeftConfig.iFactor100 = 145;
+  speedLeftConfig.dFactor100 = 5000;
+  speedLeftConfig.iAntiWindup = 500;
   speedLeftConfig.lastError = 0;
   speedLeftConfig.integral = 0;
   speedLeftConfig.maxSpeedPercent = 50;
