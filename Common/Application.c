@@ -78,7 +78,7 @@ void APP_Stop(void) {
 }
 
 /**
- * Called in an endless loop if applciation is running;
+ * Called in an endless loop if application is running;
  */
 void APP_Update(void) {
 #if PL_CONFIG_HAS_EVENTS
@@ -125,22 +125,30 @@ void APP_KeyEvntHandler(EVNT_Handle event) {
 	bool handled = TRUE;
 
 	switch (event) {
-
+/** KEY #1 **/
 #if PL_CONFIG_NOF_KEYS >= 1
 	case EVNT_SW1_PRESSED:
+#if PL_CONFIG_HAS_SHELL
+		SQUEUE_SendString("SW1 short pressed.\n");		//Add breaks; for all cases!
+#endif
+#if PL_CONFIG_HAS_BUZZER
+		BUZ_Beep(500, 200);
+#endif
+#if PL_CONFIG_HAS_LED && (PL_CONFIG_NOF_LED >= 2)
+		LED2_On();
+#endif
+		break;
+
 	case EVNT_SW1_LPRESSED:
 #if PL_CONFIG_HAS_SHELL
-		SQUEUE_SendString("SW1 pressed.\n");
+		SQUEUE_SendString("SW1 long pressed.\n");
 #endif
 #if PL_CONFIG_HAS_SNAKE
 		EVNT_SetEvent(EVNT_SNAKE_UP);
 
 #endif
-#if PL_CONFIG_HAS_BUZZER
-		BUZ_Beep(500, 200);
-#endif
-		LED2_On();
 		break;
+
 	case EVNT_SW1_RELEASED:
 #if PL_CONFIG_HAS_SHELL
 		SQUEUE_SendString("SW1 released.\n");
@@ -149,17 +157,24 @@ void APP_KeyEvntHandler(EVNT_Handle event) {
 		break;
 #endif
 
+/** KEY #2 **/
 #if PL_CONFIG_NOF_KEYS >= 2
 	case EVNT_SW2_PRESSED:
+#if PL_CONFIG_HAS_SHELL
+		SQUEUE_SendString("SW2 short pressed.\n");
+#endif
+		break;
+
 	case EVNT_SW2_LPRESSED:
 #if PL_CONFIG_HAS_SHELL
-		SQUEUE_SendString("SW2 pressed.\n");
+		SQUEUE_SendString("SW2 long pressed.\n");
 #endif
 #if PL_CONFIG_HAS_SNAKE
 		EVNT_SetEvent(EVNT_SNAKE_RIGHT);
 #endif
 		LED2_Neg();
 		break;
+
 	case EVNT_SW2_RELEASED:
 #if PL_CONFIG_HAS_SHELL
 		SQUEUE_SendString("SW2 released.\n");
@@ -167,17 +182,23 @@ void APP_KeyEvntHandler(EVNT_Handle event) {
 		break;
 #endif
 
+/** KEY #3 **/
 #if PL_CONFIG_NOF_KEYS >= 3
 	case EVNT_SW3_PRESSED:
+#if PL_CONFIG_HAS_SHELL
+		SQUEUE_SendString("SW3 short pressed.\n");
+#endif
+		break;
+
 	case EVNT_SW3_LPRESSED:
 #if PL_CONFIG_HAS_SHELL
-		SQUEUE_SendString("SW3 pressed.\n");
+		SQUEUE_SendString("SW3 long pressed.\n");
 #endif
 #if PL_CONFIG_HAS_SNAKE
 		EVNT_SetEvent(EVNT_SNAKE_DOWN);
 #endif
-		LED2_Neg();
 		break;
+
 	case EVNT_SW3_RELEASED:
 #if PL_CONFIG_HAS_SHELL
 		SQUEUE_SendString("SW3 released.\n");
@@ -185,17 +206,23 @@ void APP_KeyEvntHandler(EVNT_Handle event) {
 		break;
 #endif
 
+/** KEY #4 **/
 #if PL_CONFIG_NOF_KEYS >= 4
 	case EVNT_SW4_PRESSED:
+#if PL_CONFIG_HAS_SHELL
+		SQUEUE_SendString("SW4 short pressed.\n");
+#endif
+		break;
+
 	case EVNT_SW4_LPRESSED:
 #if PL_CONFIG_HAS_SHELL
-		SQUEUE_SendString("SW4 pressed.\n");
+		SQUEUE_SendString("SW4 long pressed.\n");
 #endif
 #if PL_CONFIG_HAS_SNAKE
 		EVNT_SetEvent(EVNT_SNAKE_LEFT);
 #endif
-		LED2_Neg();
 		break;
+
 	case EVNT_SW4_RELEASED:
 #if PL_CONFIG_HAS_SHELL
 		SQUEUE_SendString("SW4 released.\n");
@@ -203,14 +230,19 @@ void APP_KeyEvntHandler(EVNT_Handle event) {
 		break;
 #endif
 
+/** KEY #5 **/
 #if PL_CONFIG_NOF_KEYS >= 5
 	case EVNT_SW5_PRESSED:
+#if PL_CONFIG_HAS_SHELL
+		SQUEUE_SendString("SW5 short pressed.\n");
+#endif		break;
+
 	case EVNT_SW5_LPRESSED:
 #if PL_CONFIG_HAS_SHELL
-		SQUEUE_SendString("SW5 pressed.\n");
+		SQUEUE_SendString("SW5 long pressed.\n");
 #endif
-		LED2_Neg();
 		break;
+
 	case EVNT_SW5_RELEASED:
 #if PL_CONFIG_HAS_SHELL
 		SQUEUE_SendString("SW5 released.\n");
@@ -218,14 +250,19 @@ void APP_KeyEvntHandler(EVNT_Handle event) {
 		break;
 #endif
 
+/** KEY #6 **/
 #if PL_CONFIG_NOF_KEYS >= 6
 	case EVNT_SW6_PRESSED:
+#if PL_CONFIG_HAS_SHELL
+		SQUEUE_SendString("SW6 short pressed.\n");
+#endif
+		break;
 	case EVNT_SW6_LPRESSED:
 #if PL_CONFIG_HAS_SHELL
-		SQUEUE_SendString("SW6 pressed.\n");
+		SQUEUE_SendString("SW6 long pressed.\n");
 #endif
-		LED2_Neg();
 		break;
+
 	case EVNT_SW6_RELEASED:
 #if PL_CONFIG_HAS_SHELL
 		SQUEUE_SendString("SW6 released.\n");
@@ -233,27 +270,36 @@ void APP_KeyEvntHandler(EVNT_Handle event) {
 		break;
 #endif
 
+/** KEY #7 **/
 #if PL_CONFIG_NOF_KEYS >= 7
 	case EVNT_SW7_PRESSED:
-	case EVNT_SW7_LPRESSED:
 #if PL_CONFIG_HAS_SHELL
-		SQUEUE_SendString("SW7 pressed.\n");
+		SQUEUE_SendString("SW7 short pressed.\n");
+#endif
+		break;
+
+case EVNT_SW7_LPRESSED:
+#if PL_CONFIG_HAS_SHELL
+		SQUEUE_SendString("SW7 long pressed.\n");
 #endif
 #if PL_CONFIG_HAS_SNAKE
 		EVNT_SetEvent(EVNT_SNAKE_START_PAUSE);
 #endif
-		LED2_Neg();
 		break;
+
 	case EVNT_SW7_RELEASED:
 #if PL_CONFIG_HAS_SHELL
 		SQUEUE_SendString("SW7 released.\n");
 #endif
 		break;
 #endif
+
+/** DEFAULT **/
 	default:
 		handled = FALSE;
 		break;
 	}
+
 #if !PL_CONFIG_EVENTS_AUTO_CLEAR
 	if(handled) {
 		EVNT_ClearEvent(event);

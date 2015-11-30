@@ -62,6 +62,20 @@
 	#include "LineFollow.h"
 #endif
 
+#if PL_CONFIG_HAS_RADIO
+  #include "Radio.h"
+  #include "RNet_App.h"
+  #include "RNetConf.h"
+#endif
+
+#if RNET_CONFIG_REMOTE_STDIO
+  #include "RStdIO.h"
+#endif
+#if PL_HAS_REMOTE
+  #include "Remote.h"
+#endif
+
+
 #define SHELL_COPY_CDC_TO_UART   (1)
 
 /* forward declaration */
@@ -75,9 +89,9 @@ static const CLS1_ParseCommandCallback CmdParserTable[] =
   FRTOS1_ParseCommand, /* FreeRTOS shell parser */
 #endif
 #if PL_CONFIG_HAS_BLUETOOTH
-#if BT1_PARSE_COMMAND_ENABLED
-  BT1_ParseCommand,
-#endif
+	#if BT1_PARSE_COMMAND_ENABLED
+  		BT1_ParseCommand,
+	#endif
 #endif
 #if PL_CONFIG_HAS_BUZZER
   BUZ_ParseCommand,
@@ -117,6 +131,12 @@ static const CLS1_ParseCommandCallback CmdParserTable[] =
 #endif
 #if PL_CONFIG_HAS_LINE_FOLLOW
 	LF_ParseCommand,
+#endif
+#if PL_CONFIG_HAS_RADIO
+  #if RNET1_PARSE_COMMAND_ENABLED
+    RNET1_ParseCommand,
+  #endif
+    RNETA_ParseCommand,
 #endif
 
   NULL /* Sentinel */
@@ -241,7 +261,9 @@ static CLS1_ConstStdIOType RTT_Stdio = {
 #endif
 
 static void ShellTask(void *pvParameters) {
+  (void)pvParameters; /* not used */
   static unsigned char localConsole_buf[48];
+
 #if PL_CONFIG_HAS_USB_CDC
   static unsigned char cdc_buf[48];
 #endif
@@ -254,8 +276,11 @@ static void ShellTask(void *pvParameters) {
 #if CLS1_DEFAULT_SERIAL
   CLS1_ConstStdIOTypePtr ioLocal = CLS1_GetStdio();  
 #endif
-  
-  (void)pvParameters; /* not used */
+#if PL_HAS_RADIO && RNET_CONFIG_REMOTE_STDIO
+  static unsigned char radio_cmd_buf[48];
+  CLS1_ConstStdIOType *ioRemote = RSTDIO_GetStdioRx();
+#endif
+
 #if PL_CONFIG_HAS_USB_CDC
   cdc_buf[0] = '\0';
 #endif
@@ -289,6 +314,10 @@ static void ShellTask(void *pvParameters) {
 #if PL_HAS_SEGGER_RTT
     (void)CLS1_ReadAndParseWithCommandTable(rtt_buf, sizeof(rtt_buf), &RTT_Stdio, CmdParserTable);
 #endif
+#if PL_HAS_RADIO && RNET_CONFIG_REMOTE_STDIO
+    RSTDIO_Print(ioLocal); /* dispatch incoming messages */
+    (void)CLS1_ReadAndParseWithCommandTable(radio_cmd_buf, sizeof(radio_cmd_buf), ioRemote, CmdParserTable);
+#endif
 #if PL_CONFIG_HAS_SHELL_QUEUE
 #if PL_SQUEUE_SINGLE_CHAR
     {
@@ -304,6 +333,9 @@ static void ShellTask(void *pvParameters) {
     #endif
     #if PL_HAS_USB_CDC
         CDC_stdio.stdOut(ch); /* copy on USB CDC */
+    #endif
+    #if PL_HAS_RADIO && RNET_CONFIG_REMOTE_STDIO
+      ioRemote->stdOut(ch);
     #endif
       }
     }
