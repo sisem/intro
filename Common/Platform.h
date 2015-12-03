@@ -22,6 +22,7 @@
 #define PL_SQUEUE_SINGLE_CHAR 				1
 #define PL_CONFIG_HAS_SEMAPHORE 			0
 #define PL_CONFIG_HAS_RADIO					1	//nRF
+#define PL_CONFIG_HAS_REMOTE				1
 
 
 #ifdef PL_BOARD_IS_ROBO
@@ -57,6 +58,7 @@
 #define PL_CONFIG_HAS_SHELL      			1
 #define PL_CONFIG_HAS_USB_CDC    			1
 #define PL_CONFIG_HAS_CONFIG_NVM 			0
+#define PL_CONFIG_HAS_JOYSTICK				1
 
 #endif
 
