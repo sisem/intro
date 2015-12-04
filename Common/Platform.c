@@ -81,11 +81,10 @@
   #include "RNet_App.h"
   #include "RNET1.h"
 #endif
-
-
 #if PL_CONFIG_HAS_REMOTE
   #include "Remote.h"
 #endif
+
 
 void PL_Init(void) {
 
@@ -196,7 +195,7 @@ void PL_Init(void) {
 #endif
 
 #if PL_CONFIG_HAS_REMOTE
-
+	REMOTE_Init();
 #endif
 
 
