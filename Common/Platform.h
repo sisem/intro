@@ -24,9 +24,6 @@
 #define PL_CONFIG_HAS_RADIO					1	//nRF
 #define PL_HAS_RADIO						(PL_CONFIG_HAS_RADIO)
 
-
-
-
 #ifdef PL_BOARD_IS_ROBO
 #define PL_CONFIG_NOF_LED         			2
 #define PL_CONFIG_NOF_KEYS        			1

@@ -406,6 +406,7 @@ void PID_Init(void) {
   posLeftConfig.maxSpeedPercent = 40;
   posLeftConfig.lastError = 0;
   posLeftConfig.integral = 0;
+
   posRightConfig.pFactor100 = posLeftConfig.pFactor100;
   posRightConfig.iFactor100 = posLeftConfig.iFactor100;
   posRightConfig.dFactor100 = posLeftConfig.dFactor100;
