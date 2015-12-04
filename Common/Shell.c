@@ -133,10 +133,10 @@ static const CLS1_ParseCommandCallback CmdParserTable[] =
 	LF_ParseCommand,
 #endif
 #if PL_CONFIG_HAS_RADIO
+  RNETA_ParseCommand,
   #if RNET1_PARSE_COMMAND_ENABLED
     RNET1_ParseCommand,
   #endif
-    RNETA_ParseCommand,
 #endif
 
   NULL /* Sentinel */
@@ -289,6 +289,9 @@ static void ShellTask(void *pvParameters) {
 #endif
 #if PL_HAS_SEGGER_RTT
   rtt_buf[0] = '\0';
+#endif
+#if RNET_CONFIG_REMOTE_STDIO
+  radio_cmd_buf[0] = '\0';
 #endif
   localConsole_buf[0] = '\0';
 #if CLS1_DEFAULT_SERIAL

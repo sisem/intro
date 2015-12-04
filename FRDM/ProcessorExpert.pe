@@ -3,7 +3,7 @@
   <Header>
     <Name>FRDM</Name>
     <SavedBy>SEM</SavedBy>
-    <ModificationStamp>51</ModificationStamp>
+    <ModificationStamp>56</ModificationStamp>
     <Date>2015-09-24</Date>
     <IDE>Eclipse IDE</IDE>
     <PEversion>1.12.0.RT7_b1515-0427</PEversion>
@@ -21767,8 +21767,8 @@
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-        <Index>1</Index>
-        <EnumSymbVal>Scheme2</EnumSymbVal>
+        <Index>3</Index>
+        <EnumSymbVal>Scheme4</EnumSymbVal>
       </ItemState>
       <ItemState>
         <ItemSymbol>UserHeapSectionEnabled</ItemSymbol>
@@ -32705,7 +32705,7 @@
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-        <Value>99</Value>
+        <Value>69</Value>
         <Base>DEC</Base>
       </ItemState>
       <ItemState>
@@ -33026,14 +33026,14 @@
               <ItemSymbol>_Pin</ItemSymbol>
               <ReadOnly>false</ReadOnly>
               <UserReadOnly>false</UserReadOnly>
-              <Value>PTE0/UART1_TX/RTC_CLKOUT/CMP0_OUT/I2C1_SDA</Value>
+              <Value>ADC0_SE6b/PTD5/SPI1_SCK/UART2_TX/TPM0_CH5</Value>
               <SharedPrphMode>false</SharedPrphMode>
             </ItemState>
             <ItemState>
               <ItemSymbol>PinSignal</ItemSymbol>
               <ReadOnly>false</ReadOnly>
               <UserReadOnly>false</UserReadOnly>
-              <Value />
+              <Value>RF_CE</Value>
             </ItemState>
             <ItemState>
               <ItemSymbol>FeatureCondGrpLDD</ItemSymbol>
@@ -33072,7 +33072,7 @@
                     <ItemSymbol>_Pin</ItemSymbol>
                     <ReadOnly>false</ReadOnly>
                     <UserReadOnly>false</UserReadOnly>
-                    <Value>PTE0/UART1_TX/RTC_CLKOUT/CMP0_OUT/I2C1_SDA</Value>
+                    <Value>ADC0_SE6b/PTD5/SPI1_SCK/UART2_TX/TPM0_CH5</Value>
                     <SharedPrphMode>false</SharedPrphMode>
                   </ItemState>
                   <ItemState>
@@ -33622,14 +33622,14 @@
               <ItemSymbol>_Pin</ItemSymbol>
               <ReadOnly>false</ReadOnly>
               <UserReadOnly>false</UserReadOnly>
-              <Value>PTE1/SPI1_MOSI/UART1_RX/SPI1_MISO/I2C1_SCL</Value>
+              <Value>PTD0/SPI0_PCS0/TPM0_CH0</Value>
               <SharedPrphMode>false</SharedPrphMode>
             </ItemState>
             <ItemState>
               <ItemSymbol>PinSignal</ItemSymbol>
               <ReadOnly>false</ReadOnly>
               <UserReadOnly>false</UserReadOnly>
-              <Value />
+              <Value>RF_CSN</Value>
             </ItemState>
             <ItemState>
               <ItemSymbol>FeatureCondGrpLDD</ItemSymbol>
@@ -33668,7 +33668,7 @@
                     <ItemSymbol>_Pin</ItemSymbol>
                     <ReadOnly>false</ReadOnly>
                     <UserReadOnly>false</UserReadOnly>
-                    <Value>PTE1/SPI1_MOSI/UART1_RX/SPI1_MISO/I2C1_SCL</Value>
+                    <Value>PTD0/SPI0_PCS0/TPM0_CH0</Value>
                     <SharedPrphMode>false</SharedPrphMode>
                   </ItemState>
                   <ItemState>
@@ -34192,7 +34192,7 @@
         <UserReadOnly>false</UserReadOnly>
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
         <Value>false</Value>
-        <Expanded>false</Expanded>
+        <Expanded>true</Expanded>
       </ItemState>
       <ItemState>
         <ItemSymbol>SWSPI</ItemSymbol>
@@ -34220,7 +34220,7 @@
         <UserReadOnly>false</UserReadOnly>
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
         <Value>false</Value>
-        <Expanded>false</Expanded>
+        <Expanded>true</Expanded>
       </ItemState>
       <ItemState>
         <ItemSymbol>BaudRateMode</ItemSymbol>
@@ -34242,7 +34242,7 @@
         <UserReadOnly>false</UserReadOnly>
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
         <Value>false</Value>
-        <Expanded>false</Expanded>
+        <Expanded>true</Expanded>
       </ItemState>
       <ItemState>
         <ItemSymbol>IRQ</ItemSymbol>

@@ -22,7 +22,8 @@
 #define PL_SQUEUE_SINGLE_CHAR 				1
 #define PL_CONFIG_HAS_SEMAPHORE 			0
 #define PL_CONFIG_HAS_RADIO					1	//nRF
-#define PL_CONFIG_HAS_REMOTE				1
+#define PL_HAS_RADIO						(PL_CONFIG_HAS_RADIO)
+#define PL_CONFIG_HAS_REMOTE				0
 
 
 #ifdef PL_BOARD_IS_ROBO

@@ -235,7 +235,8 @@ void APP_KeyEvntHandler(EVNT_Handle event) {
 	case EVNT_SW5_PRESSED:
 #if PL_CONFIG_HAS_SHELL
 		SQUEUE_SendString("SW5 short pressed.\n");
-#endif		break;
+#endif
+		break;
 
 	case EVNT_SW5_LPRESSED:
 #if PL_CONFIG_HAS_SHELL
