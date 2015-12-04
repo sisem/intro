@@ -23,7 +23,7 @@
 #define PL_CONFIG_HAS_SEMAPHORE 			0
 #define PL_CONFIG_HAS_RADIO					1	//nRF
 #define PL_HAS_RADIO						(PL_CONFIG_HAS_RADIO)
-#define PL_CONFIG_HAS_REMOTE				1
+
 
 
 
@@ -49,6 +49,8 @@
 #define PL_CONFIG_HAS_PID					1
 #define PL_CONFIG_HAS_TURN					1
 #define PL_CONFIG_HAS_LINE_FOLLOW			1
+#define PL_CONFIG_HAS_REMOTE				1
+#define PL_CONFIG_CONTROL_SENDER			0	// IS REALLY 0 !!!
 #endif
 
 #ifdef PL_BOARD_IS_FRDM
@@ -62,6 +64,8 @@
 #define PL_CONFIG_HAS_CONFIG_NVM 			0
 #define PL_CONFIG_HAS_JOYSTICK				1
 #define PL_CONFIG_CONTROL_SENDER			1
+#define PL_CONFIG_HAS_REMOTE				1
+
 #endif
 
 void PL_Init(void);

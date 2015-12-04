@@ -47,6 +47,9 @@
 #include "Debounce.h"
 #include "KeyDebounce.h"
 #endif
+#if PL_CONFIG_CONTROL_SENDER
+	#include "RApp.h"
+#endif
 #include "CLS1.h"
 
 static bool isRunning = FALSE;
@@ -124,10 +127,15 @@ void APP_HandleEvent(EVNT_Handle event) {
 void APP_KeyEvntHandler(EVNT_Handle event) {
 	bool handled = TRUE;
 
+	uint8_t data = 0;
 	switch (event) {
 /** KEY #1 **/
 #if PL_CONFIG_NOF_KEYS >= 1
 	case EVNT_SW1_PRESSED:
+#if PL_CONFIG_CONTROL_SENDER
+		data = 'A';
+		(void)RAPP_SendPayloadDataBlock(&data, sizeof(data), RAPP_MSG_TYPE_JOYSTICK_BTN, RNWK_ADDR_BROADCAST, RPHY_PACKET_FLAGS_NONE);
+#endif
 #if PL_CONFIG_HAS_SHELL
 		SQUEUE_SendString("SW1 short pressed.\n");		//Add breaks; for all cases!
 #endif
