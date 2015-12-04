@@ -71,7 +71,7 @@
 #if RNET_CONFIG_REMOTE_STDIO
   #include "RStdIO.h"
 #endif
-#if PL_HAS_REMOTE
+#if PL_CONFIG_HAS_REMOTE
   #include "Remote.h"
 #endif
 
@@ -138,6 +138,9 @@ static const CLS1_ParseCommandCallback CmdParserTable[] =
     RNET1_ParseCommand,
   #endif
 #endif
+#if PL_CONFIG_HAS_REMOTE
+  REMOTE_ParseCommand,
+#endif
 
   NULL /* Sentinel */
 };
@@ -200,6 +203,10 @@ static uint8_t SHELL_ParseCommand(const unsigned char *cmd, bool *handled, const
     }
   }
   return ERR_OK;
+}
+
+void SHELL_ParseCmd(unsigned char *cmd) {
+  (void)CLS1_ParseWithCommandTable(cmd, CLS1_GetStdio(), CmdParserTable);
 }
 
 #if PL_CONFIG_HAS_BLUETOOTH

@@ -26,6 +26,7 @@
 #define PL_CONFIG_HAS_REMOTE				1
 
 
+
 #ifdef PL_BOARD_IS_ROBO
 #define PL_CONFIG_NOF_LED         			2
 #define PL_CONFIG_NOF_KEYS        			1
@@ -60,7 +61,7 @@
 #define PL_CONFIG_HAS_USB_CDC    			1
 #define PL_CONFIG_HAS_CONFIG_NVM 			0
 #define PL_CONFIG_HAS_JOYSTICK				1
-
+#define PL_CONFIG_CONTROL_SENDER			1
 #endif
 
 void PL_Init(void);

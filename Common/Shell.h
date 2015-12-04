@@ -21,4 +21,7 @@ void SHELL_Init(void);
 /*! \brief Shell driver de-initialization */
 void SHELL_Deinit(void);
 
+/* For remote.c */
+void SHELL_ParseCmd(unsigned char *cmd);
+
 #endif /* SHELL_H_ */
