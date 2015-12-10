@@ -23,6 +23,7 @@
 #define PL_CONFIG_HAS_SEMAPHORE 			0
 #define PL_CONFIG_HAS_RADIO					1	//nRF
 #define PL_HAS_RADIO						(PL_CONFIG_HAS_RADIO)
+#define PL_CONFIG_HAS_LINE_MAZE				1
 
 #ifdef PL_BOARD_IS_ROBO
 #define PL_CONFIG_NOF_LED         			2
@@ -35,6 +36,7 @@
 #define PL_CONFIG_HAS_BLUETOOTH   			1
 #define PL_CONFIG_HAS_REFLECTANCE		 	1
 #define PL_CONFIG_HAS_CONFIG_NVM 			1
+#define PL_CONFIG_EST						(PL_CONFIG_HAS_CONFIG_NVM)
 #define PL_CONFIG_HAS_MOTOR       			1
 #define PL_CONFIG_HAS_QUADRATURE			1
 #define PL_CONFIG_HAS_QUAD_CALIBRATION 		1
@@ -59,11 +61,13 @@
 #define PL_CONFIG_HAS_SHELL      			1
 #define PL_CONFIG_HAS_USB_CDC    			1
 #define PL_CONFIG_HAS_CONFIG_NVM 			0
+#define PL_CONFIG_EST						(PL_CONFIG_HAS_CONFIG_NVM)
 #define PL_CONFIG_HAS_JOYSTICK				1
 #define PL_CONFIG_CONTROL_SENDER			1
 #define PL_CONFIG_HAS_REMOTE				1
 
 #endif
+
 
 void PL_Init(void);
 void PL_Deinit(void);

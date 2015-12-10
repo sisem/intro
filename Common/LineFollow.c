@@ -61,7 +61,7 @@ static void ChangeState(StateType newState) {
  * \brief follows a line segment.
  * \return Returns TRUE if still on line segment
  */
-static bool FollowSegment(bool forward) {
+static bool FollowSegment(void) {
   uint16_t currLine;
   REF_LineKind currLineKind;
 
@@ -80,7 +80,7 @@ static void StateMachine(void) {
     case STATE_IDLE:
       break;
     case STATE_FOLLOW_SEGMENT:
-      if (!FollowSegment(LINE_FOLLOW_FW)) {
+      if (!FollowSegment()) {
         LF_currState = STATE_STOP; /* stop if we do not have a line any more */
         SHELL_SendString((unsigned char*)"No line, stopped!\r\n");
       }

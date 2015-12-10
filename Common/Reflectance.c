@@ -26,7 +26,7 @@
 #if PL_CONFIG_HAS_BUZZER
   #include "Buzzer.h"
 #endif
-#if PL_CONFIG_HAS_CONFIG_NVM
+#if PL_CONFIG_EST
   #include "NVM_Config.h"
 #endif
 
@@ -114,6 +114,16 @@ static const SensorFctType SensorFctArray[REF_NOF_SENSORS] = {
   {S6_SetOutput, S6_SetInput, S6_SetVal, S6_GetVal},
 };
 
+#if PL_CONFIG_HAS_LINE_MAZE
+void REF_GetSensorValues(uint16_t *values, int nofValues) {
+  int i;
+
+  for(i=0;i<nofValues && i<REF_NOF_SENSORS;i++) {
+    values[i] = SensorCalibrated[i];
+  }
+}
+#endif
+
 #if REF_START_STOP_CALIB
 void REF_CalibrateStartStop(void) {
   if (refState==REF_STATE_NOT_CALIBRATED || refState==REF_STATE_CALIBRATING || refState==REF_STATE_READY) {
@@ -147,15 +157,13 @@ static void REF_MeasureRaw(SensorTimeType raw[REF_NOF_SENSORS]) {
   do {
     cnt = 0;
     timerVal = RefCnt_GetCounterValue(timerHandle);
+	if(timerVal > 0xFF00) {
+		break;
+	}
     for(i=0;i<REF_NOF_SENSORS;i++) {
       if (raw[i]==MAX_SENSOR_VALUE) { /* not measured yet? */
         if (SensorFctArray[i].GetVal()==0) {
           raw[i] = timerVal;
-        }
-        else {
-        	if(timerVal > 0xFF00) {
-        		break;
-        	}
         }
       } else { /* have value */
         cnt++;
@@ -359,6 +367,25 @@ static unsigned char*REF_GetStateString(void) {
   return (unsigned char*)"UNKNOWN";
 }
 
+#if PL_CONFIG_HAS_LINE_FOLLOW
+unsigned char *REF_LineKindStr(REF_LineKind line) {
+  switch(line) {
+  case REF_LINE_NONE:
+    return (unsigned char *)"NONE";
+  case REF_LINE_STRAIGHT:
+    return (unsigned char *)"STRAIGHT";
+  case REF_LINE_LEFT:
+    return (unsigned char *)"LEFT";
+  case REF_LINE_RIGHT:
+    return (unsigned char *)"RIGHT";
+  case REF_LINE_FULL:
+    return (unsigned char *)"FULL";
+  default:
+    return (unsigned char *)"unknown";
+  } /* switch */
+}
+#endif
+
 static uint8_t PrintStatus(const CLS1_StdIOType *io) {
   unsigned char buf[24];
   int i;
@@ -424,7 +451,17 @@ static uint8_t PrintStatus(const CLS1_StdIOType *io) {
     CLS1_SendStr(buf, io->stdOut);
   }
   CLS1_SendStr((unsigned char*)"\r\n", io->stdOut);
-  return ERR_OK;
+
+  CLS1_SendStatusStr((unsigned char*)"  line val", (unsigned char*)"", io->stdOut);
+  buf[0] = '\0'; UTIL1_strcatNum16s(buf, sizeof(buf), refCenterLineVal);
+  CLS1_SendStr(buf, io->stdOut);
+  CLS1_SendStr((unsigned char*)"\r\n", io->stdOut);
+
+#if PL_CONFIG_HAS_LINE_FOLLOW
+  CLS1_SendStatusStr((unsigned char*)"  line kind", REF_LineKindStr(refLineKind), io->stdOut);
+  CLS1_SendStr((unsigned char*)"\r\n", io->stdOut);
+#endif
+return ERR_OK;
 }
 
 byte REF_ParseCommand(const unsigned char *cmd, bool *handled, const CLS1_StdIOType *io) {
@@ -463,8 +500,22 @@ static void REF_StateMachine(void) {
 
   switch (refState) {
     case REF_STATE_INIT:
+    #if PL_CONFIG_EST
+    {
+      SensorCalibT *ptr;
+
+      ptr = (SensorCalibT*)NVMC_GetReflectanceData();
+      if (ptr!=NULL) { /* valid data */
+        SensorCalibMinMax = *ptr;
+        refState = REF_STATE_READY;
+      } else {
+        refState = REF_STATE_NOT_CALIBRATED;
+      }
+    }
+    #else
       SHELL_SendString((unsigned char*)"INFO: No calibration data present.\r\n");
       refState = REF_STATE_NOT_CALIBRATED;
+    #endif
       break;
       
     case REF_STATE_NOT_CALIBRATED:
@@ -501,8 +552,12 @@ static void REF_StateMachine(void) {
     
     case REF_STATE_STOP_CALIBRATION:
       SHELL_SendString((unsigned char*)"...stopping calibration.\r\n");
-#if PL_CONFIG_HAS_CONFIG_NVM
-      NVMC_SaveReflectanceData(&SensorCalibMinMax, sizeof(SensorCalibMinMax));
+#if PL_CONFIG_EST
+      if (NVMC_SaveReflectanceData(&SensorCalibMinMax, sizeof(SensorCalibMinMax))!=ERR_OK) {
+        SHELL_SendString((unsigned char*)"Flashing calibration data FAILED!\r\n");
+      } else {
+        SHELL_SendString((unsigned char*)"Stored calibration data.\r\n");
+      }
 #endif
       refState = REF_STATE_READY;
       break;
@@ -527,7 +582,7 @@ static void ReflTask (void *pvParameters) {
 //  SQUEUE_SendString("Reflectance task started!\r\n");
   for(;;) {
     REF_StateMachine();
-    FRTOS1_vTaskDelay(10/portTICK_RATE_MS);
+    FRTOS1_vTaskDelay(10/portTICK_PERIOD_MS);
   }
 }
 

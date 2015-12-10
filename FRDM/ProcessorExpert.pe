@@ -3,7 +3,7 @@
   <Header>
     <Name>FRDM</Name>
     <SavedBy>SEM</SavedBy>
-    <ModificationStamp>57</ModificationStamp>
+    <ModificationStamp>58</ModificationStamp>
     <Date>2015-09-24</Date>
     <IDE>Eclipse IDE</IDE>
     <PEversion>1.12.0.RT7_b1515-0427</PEversion>
@@ -4664,7 +4664,7 @@
     </ItemState>
   </Configuration>
   <Bean>
-    <Repository>file://home/user3/MyComponents/2015_11_08</Repository>
+    <Repository>file:/${home_ProcessorExpert_loc}/MyComponents</Repository>
     <BeanType>Wait</BeanType>
     <Name>WAIT1</Name>
     <CompNumb>20</CompNumb>
@@ -4857,7 +4857,7 @@
     <Events />
   </Bean>
   <Bean>
-    <Repository>file://home/user3/MyComponents/2015_11_08</Repository>
+    <Repository>file:/${home_ProcessorExpert_loc}/MyComponents</Repository>
     <BeanType>HardFault</BeanType>
     <Name>HF1</Name>
     <CompNumb>21</CompNumb>
@@ -6748,7 +6748,7 @@
     </Events>
   </Bean>
   <Bean>
-    <Repository>file://home/user3/MyComponents/2015_11_08</Repository>
+    <Repository>file:/${home_ProcessorExpert_loc}/MyComponents</Repository>
     <BeanType>CriticalSection</BeanType>
     <Name>CS1</Name>
     <CompNumb>41</CompNumb>
@@ -6828,7 +6828,7 @@
     <Events />
   </Bean>
   <Bean>
-    <Repository>file://home/user3/MyComponents/2015_11_08</Repository>
+    <Repository>file:/${home_ProcessorExpert_loc}/MyComponents</Repository>
     <BeanType>LED</BeanType>
     <Name>LED1</Name>
     <CompNumb>45</CompNumb>
@@ -6838,7 +6838,7 @@
     <UserFolderName />
     <Comment lines_count="0" />
     <Template />
-    <BeanVersion>01.066</BeanVersion>
+    <BeanVersion>01.065</BeanVersion>
     <LightErrorsIgnored>false</LightErrorsIgnored>
     <Properties>
       <ItemState>
@@ -7616,7 +7616,7 @@
     <Events />
   </Bean>
   <Bean>
-    <Repository>file://home/user3/MyComponents/2015_11_08</Repository>
+    <Repository>file:/${home_ProcessorExpert_loc}/MyComponents</Repository>
     <BeanType>LED</BeanType>
     <Name>LED2</Name>
     <CompNumb>48</CompNumb>
@@ -7626,7 +7626,7 @@
     <UserFolderName />
     <Comment lines_count="0" />
     <Template />
-    <BeanVersion>01.066</BeanVersion>
+    <BeanVersion>01.065</BeanVersion>
     <LightErrorsIgnored>false</LightErrorsIgnored>
     <Properties>
       <ItemState>
@@ -8404,7 +8404,7 @@
     <Events />
   </Bean>
   <Bean>
-    <Repository>file://home/user3/MyComponents/2015_11_08</Repository>
+    <Repository>file:/${home_ProcessorExpert_loc}/MyComponents</Repository>
     <BeanType>LED</BeanType>
     <Name>LED3</Name>
     <CompNumb>42</CompNumb>
@@ -8414,7 +8414,7 @@
     <UserFolderName />
     <Comment lines_count="0" />
     <Template />
-    <BeanVersion>01.066</BeanVersion>
+    <BeanVersion>01.065</BeanVersion>
     <LightErrorsIgnored>false</LightErrorsIgnored>
     <Properties>
       <ItemState>
@@ -9192,7 +9192,7 @@
     <Events />
   </Bean>
   <Bean>
-    <Repository>file://home/user3/MyComponents/2015_11_08</Repository>
+    <Repository>file:/${home_ProcessorExpert_loc}/MyComponents</Repository>
     <BeanType>Utility</BeanType>
     <Name>UTIL1</Name>
     <CompNumb>61</CompNumb>
@@ -9866,7 +9866,7 @@
     <Events />
   </Bean>
   <Bean>
-    <Repository>file://home/user3/MyComponents/2015_11_08</Repository>
+    <Repository>file:/${home_ProcessorExpert_loc}/MyComponents</Repository>
     <BeanType>Shell</BeanType>
     <Name>CLS1</Name>
     <CompNumb>60</CompNumb>
@@ -9876,7 +9876,7 @@
     <UserFolderName />
     <Comment lines_count="0" />
     <Template />
-    <BeanVersion>01.075</BeanVersion>
+    <BeanVersion>01.073</BeanVersion>
     <LightErrorsIgnored>false</LightErrorsIgnored>
     <Properties>
       <ItemState>
@@ -21022,7 +21022,7 @@
     </Events>
   </Bean>
   <Bean>
-    <Repository>file://home/user3/MyComponents/2015_11_08</Repository>
+    <Repository>file:/${home_ProcessorExpert_loc}/MyComponents</Repository>
     <BeanType>FreeRTOS</BeanType>
     <Name>FRTOS1</Name>
     <CompNumb>83</CompNumb>
@@ -21032,7 +21032,7 @@
     <UserFolderName />
     <Comment lines_count="0" />
     <Template />
-    <BeanVersion>01.446</BeanVersion>
+    <BeanVersion>01.435</BeanVersion>
     <LightErrorsIgnored>false</LightErrorsIgnored>
     <Properties>
       <ItemState>
@@ -21045,7 +21045,7 @@
         <ItemSymbol>FreeRTOSVersion</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
-        <Value>V8.2.3</Value>
+        <Value>V8.2.2</Value>
       </ItemState>
       <ItemState>
         <ItemSymbol>KinetisSDKGroup</ItemSymbol>
@@ -21190,14 +21190,6 @@
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
         <Index>0</Index>
         <Value>true</Value>
-      </ItemState>
-      <ItemState>
-        <ItemSymbol>EnableGDBDebugHelper</ItemSymbol>
-        <ReadOnly>false</ReadOnly>
-        <UserReadOnly>false</UserReadOnly>
-        <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-        <Index>1</Index>
-        <Value>false</Value>
       </ItemState>
       <ItemState>
         <ItemSymbol>UseApplicationTaskTags</ItemSymbol>
@@ -21360,6 +21352,14 @@
         <EnumSymbVal>M0+</EnumSymbVal>
       </ItemState>
       <ItemState>
+        <ItemSymbol>M4FFloatingPointSupport</ItemSymbol>
+        <ReadOnly>true</ReadOnly>
+        <UserReadOnly>false</UserReadOnly>
+        <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
+        <Index>1</Index>
+        <Value>false</Value>
+      </ItemState>
+      <ItemState>
         <ItemSymbol>KinetisLibraryMaxInterruptPriority</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
@@ -21498,14 +21498,6 @@
       </ItemState>
       <ItemState>
         <ItemSymbol>UsePreemption</ItemSymbol>
-        <ReadOnly>false</ReadOnly>
-        <UserReadOnly>false</UserReadOnly>
-        <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-        <Index>0</Index>
-        <Value>true</Value>
-      </ItemState>
-      <ItemState>
-        <ItemSymbol>UseTimeSlicing</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
@@ -21887,12 +21879,20 @@
         <Value>UTIL1</Value>
       </ItemState>
       <ItemState>
-        <ItemSymbol>M4FFloatingPointSupport</ItemSymbol>
-        <ReadOnly>true</ReadOnly>
+        <ItemSymbol>EnableGDBDebugHelper</ItemSymbol>
+        <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
         <Index>1</Index>
         <Value>false</Value>
+      </ItemState>
+      <ItemState>
+        <ItemSymbol>UseTimeSlicing</ItemSymbol>
+        <ReadOnly>false</ReadOnly>
+        <UserReadOnly>false</UserReadOnly>
+        <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
+        <Index>0</Index>
+        <Value>true</Value>
       </ItemState>
     </Properties>
     <Methods>
@@ -23063,17 +23063,6 @@
         <UsrMethodName>xTaskNotifyWait</UsrMethodName>
       </ItemState>
       <ItemState>
-        <ItemSymbol>xTaskNotifyStateClear</ItemSymbol>
-        <ReadOnly>false</ReadOnly>
-        <UserReadOnly>false</UserReadOnly>
-        <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-        <Index>0</Index>
-        <Value>true</Value>
-        <LastSelection>true</LastSelection>
-        <LastUserSel>yes</LastUserSel>
-        <UsrMethodName>xTaskNotifyStateClear</UsrMethodName>
-      </ItemState>
-      <ItemState>
         <ItemSymbol>vTaskSetThreadLocalStoragePointer</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
@@ -23116,6 +23105,17 @@
         <LastSelection>true</LastSelection>
         <LastUserSel>yes</LastUserSel>
         <UsrMethodName>Init</UsrMethodName>
+      </ItemState>
+      <ItemState>
+        <ItemSymbol>xTaskNotifyStateClear</ItemSymbol>
+        <ReadOnly>false</ReadOnly>
+        <UserReadOnly>false</UserReadOnly>
+        <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
+        <Index>0</Index>
+        <Value>true</Value>
+        <LastSelection>true</LastSelection>
+        <LastUserSel>yes</LastUserSel>
+        <UsrMethodName>xTaskNotifyStateClear</UsrMethodName>
       </ItemState>
     </Methods>
     <Events>
@@ -23224,7 +23224,7 @@
     </Events>
   </Bean>
   <Bean>
-    <Repository>file://home/user3/MyComponents/2015_11_08</Repository>
+    <Repository>file:/${home_ProcessorExpert_loc}/MyComponents</Repository>
     <BeanType>GenericSWSPI</BeanType>
     <Name>SPI1</Name>
     <CompNumb>88</CompNumb>
@@ -24902,7 +24902,7 @@
     <Events />
   </Bean>
   <Bean>
-    <Repository>file://home/user3/MyComponents/2015_11_08</Repository>
+    <Repository>file:/${home_ProcessorExpert_loc}/MyComponents</Repository>
     <BeanType>GDisplay</BeanType>
     <Name>GDisp1</Name>
     <CompNumb>100</CompNumb>
@@ -25382,7 +25382,7 @@
     </Events>
   </Bean>
   <Bean>
-    <Repository>file://home/user3/MyComponents/2015_11_08</Repository>
+    <Repository>file:/${home_ProcessorExpert_loc}/MyComponents</Repository>
     <BeanType>GFont</BeanType>
     <Name>GFONT1</Name>
     <CompNumb>101</CompNumb>
@@ -25531,7 +25531,7 @@
     <Events />
   </Bean>
   <Bean>
-    <Repository>file://home/user3/MyComponents/2015_11_08</Repository>
+    <Repository>file:/${home_ProcessorExpert_loc}/MyComponents</Repository>
     <BeanType>FontDisplay</BeanType>
     <Name>FDisp1</Name>
     <CompNumb>102</CompNumb>
@@ -25666,7 +25666,7 @@
     <Events />
   </Bean>
   <Bean>
-    <Repository>file://home/user3/MyComponents/2015_11_08</Repository>
+    <Repository>file:/${home_ProcessorExpert_loc}/MyComponents</Repository>
     <BeanType>PDC8544</BeanType>
     <Name>PDC1</Name>
     <CompNumb>119</CompNumb>
@@ -27906,7 +27906,7 @@
     </Events>
   </Bean>
   <Bean>
-    <Repository>file://home/user3/MyComponents/2015_11_08</Repository>
+    <Repository>file:/${home_ProcessorExpert_loc}/MyComponents</Repository>
     <BeanType>FSL_USB_Stack</BeanType>
     <Name>USB1</Name>
     <CompNumb>151</CompNumb>
@@ -27916,7 +27916,7 @@
     <UserFolderName />
     <Comment lines_count="0" />
     <Template />
-    <BeanVersion>01.041</BeanVersion>
+    <BeanVersion>01.036</BeanVersion>
     <LightErrorsIgnored>false</LightErrorsIgnored>
     <Properties>
       <ItemState>
@@ -27928,20 +27928,6 @@
       <ItemState>
         <ItemSymbol>FSLUSBStackVersion</ItemSymbol>
         <Value>v4.1.1</Value>
-      </ItemState>
-      <ItemState>
-        <ItemSymbol>InitUSBFunctionName</ItemSymbol>
-        <ReadOnly>false</ReadOnly>
-        <UserReadOnly>false</UserReadOnly>
-        <Value>USB0_Init</Value>
-      </ItemState>
-      <ItemState>
-        <ItemSymbol>InheritedUSBInitEnabled</ItemSymbol>
-        <ReadOnly>false</ReadOnly>
-        <UserReadOnly>false</UserReadOnly>
-        <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-        <Value>true</Value>
-        <Expanded>true</Expanded>
       </ItemState>
       <ItemState>
         <ItemSymbol>USBInit</ItemSymbol>
@@ -29518,9 +29504,9 @@
         <UserReadOnly>false</UserReadOnly>
         <Index>0</Index>
         <RegCompType>FSL_USB_CDC_Device</RegCompType>
-        <RegCompRepository>file://home/user3/MyComponents/2015_11_08</RegCompRepository>
+        <RegCompRepository>file:/${home_ProcessorExpert_loc}/MyComponents</RegCompRepository>
         <InheritedComponentState>
-          <Repository>file://home/user3/MyComponents/2015_11_08</Repository>
+          <Repository>file:/${home_ProcessorExpert_loc}/MyComponents</Repository>
           <BeanType>FSL_USB_CDC_Device</BeanType>
           <Name>CDC1</Name>
           <CompNumb>153</CompNumb>
@@ -29530,7 +29516,7 @@
           <UserFolderName />
           <Comment lines_count="0" />
           <Template />
-          <BeanVersion>01.062</BeanVersion>
+          <BeanVersion>01.050</BeanVersion>
           <LightErrorsIgnored>false</LightErrorsIgnored>
           <Properties>
             <ItemState>
@@ -29612,44 +29598,14 @@
               <Value>FREESCALE INC.</Value>
             </ItemState>
             <ItemState>
-              <ItemSymbol>Configuration</ItemSymbol>
-              <ReadOnly>false</ReadOnly>
-              <UserReadOnly>false</UserReadOnly>
-              <Expanded>true</Expanded>
-            </ItemState>
-            <ItemState>
-              <ItemSymbol>USB_EP0_SIZE</ItemSymbol>
-              <ReadOnly>false</ReadOnly>
-              <UserReadOnly>false</UserReadOnly>
-              <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-              <Value>32</Value>
-              <Base>DEC</Base>
-            </ItemState>
-            <ItemState>
-              <ItemSymbol>USB_EP1_SIZE</ItemSymbol>
-              <ReadOnly>false</ReadOnly>
-              <UserReadOnly>false</UserReadOnly>
-              <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-              <Value>32</Value>
-              <Base>DEC</Base>
-            </ItemState>
-            <ItemState>
-              <ItemSymbol>USB_EP2_SIZE</ItemSymbol>
-              <ReadOnly>false</ReadOnly>
-              <UserReadOnly>false</UserReadOnly>
-              <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-              <Value>32</Value>
-              <Base>DEC</Base>
-            </ItemState>
-            <ItemState>
               <ItemSymbol>TxBuffer</ItemSymbol>
               <ReadOnly>false</ReadOnly>
               <UserReadOnly>false</UserReadOnly>
               <Index>0</Index>
               <RegCompType>RingBuffer</RegCompType>
-              <RegCompRepository>file://home/user3/MyComponents/2015_11_08</RegCompRepository>
+              <RegCompRepository>file:/${home_ProcessorExpert_loc}/MyComponents</RegCompRepository>
               <InheritedComponentState>
-                <Repository>file://home/user3/MyComponents/2015_11_08</Repository>
+                <Repository>file:/${home_ProcessorExpert_loc}/MyComponents</Repository>
                 <BeanType>RingBuffer</BeanType>
                 <Name>Tx1</Name>
                 <CompNumb>154</CompNumb>
@@ -29659,7 +29615,7 @@
                 <UserFolderName />
                 <Comment lines_count="0" />
                 <Template />
-                <BeanVersion>01.041</BeanVersion>
+                <BeanVersion>01.039</BeanVersion>
                 <LightErrorsIgnored>false</LightErrorsIgnored>
                 <Properties>
                   <ItemState>
@@ -29754,18 +29710,6 @@
                     <UsrMethodName>Peek</UsrMethodName>
                   </ItemState>
                   <ItemState>
-                    <ItemSymbol>Delete</ItemSymbol>
-                    <ReadOnly>false</ReadOnly>
-                    <UserReadOnly>false</UserReadOnly>
-                    <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-                    <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
-                    <Index>0</Index>
-                    <Value>true</Value>
-                    <LastSelection>true</LastSelection>
-                    <LastUserSel>yes</LastUserSel>
-                    <UsrMethodName>Delete</UsrMethodName>
-                  </ItemState>
-                  <ItemState>
                     <ItemSymbol>NofElements</ItemSymbol>
                     <ReadOnly>true</ReadOnly>
                     <UserReadOnly>false</UserReadOnly>
@@ -29812,6 +29756,18 @@
                     <LastSelection>true</LastSelection>
                     <LastUserSel>yes</LastUserSel>
                     <UsrMethodName>Init</UsrMethodName>
+                  </ItemState>
+                  <ItemState>
+                    <ItemSymbol>Delete</ItemSymbol>
+                    <ReadOnly>false</ReadOnly>
+                    <UserReadOnly>false</UserReadOnly>
+                    <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
+                    <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
+                    <Index>0</Index>
+                    <Value>true</Value>
+                    <LastSelection>true</LastSelection>
+                    <LastUserSel>yes</LastUserSel>
+                    <UsrMethodName>Delete</UsrMethodName>
                   </ItemState>
                 </Methods>
                 <Events>
@@ -29921,9 +29877,9 @@
               <UserReadOnly>false</UserReadOnly>
               <Index>0</Index>
               <RegCompType>RingBuffer</RegCompType>
-              <RegCompRepository>file://home/user3/MyComponents/2015_11_08</RegCompRepository>
+              <RegCompRepository>file:/${home_ProcessorExpert_loc}/MyComponents</RegCompRepository>
               <InheritedComponentState>
-                <Repository>file://home/user3/MyComponents/2015_11_08</Repository>
+                <Repository>file:/${home_ProcessorExpert_loc}/MyComponents</Repository>
                 <BeanType>RingBuffer</BeanType>
                 <Name>Rx1</Name>
                 <CompNumb>155</CompNumb>
@@ -29933,7 +29889,7 @@
                 <UserFolderName />
                 <Comment lines_count="0" />
                 <Template />
-                <BeanVersion>01.041</BeanVersion>
+                <BeanVersion>01.039</BeanVersion>
                 <LightErrorsIgnored>false</LightErrorsIgnored>
                 <Properties>
                   <ItemState>
@@ -30028,18 +29984,6 @@
                     <UsrMethodName>Peek</UsrMethodName>
                   </ItemState>
                   <ItemState>
-                    <ItemSymbol>Delete</ItemSymbol>
-                    <ReadOnly>false</ReadOnly>
-                    <UserReadOnly>false</UserReadOnly>
-                    <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-                    <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
-                    <Index>0</Index>
-                    <Value>true</Value>
-                    <LastSelection>true</LastSelection>
-                    <LastUserSel>yes</LastUserSel>
-                    <UsrMethodName>Delete</UsrMethodName>
-                  </ItemState>
-                  <ItemState>
                     <ItemSymbol>NofElements</ItemSymbol>
                     <ReadOnly>true</ReadOnly>
                     <UserReadOnly>false</UserReadOnly>
@@ -30086,6 +30030,18 @@
                     <LastSelection>true</LastSelection>
                     <LastUserSel>yes</LastUserSel>
                     <UsrMethodName>Init</UsrMethodName>
+                  </ItemState>
+                  <ItemState>
+                    <ItemSymbol>Delete</ItemSymbol>
+                    <ReadOnly>false</ReadOnly>
+                    <UserReadOnly>false</UserReadOnly>
+                    <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
+                    <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
+                    <Index>0</Index>
+                    <Value>true</Value>
+                    <LastSelection>true</LastSelection>
+                    <LastUserSel>yes</LastUserSel>
+                    <UsrMethodName>Delete</UsrMethodName>
                   </ItemState>
                 </Methods>
                 <Events>
@@ -30190,12 +30146,6 @@
               </InheritedComponentState>
             </ItemState>
             <ItemState>
-              <ItemSymbol>SendBlockConfig</ItemSymbol>
-              <ReadOnly>false</ReadOnly>
-              <UserReadOnly>false</UserReadOnly>
-              <Expanded>true</Expanded>
-            </ItemState>
-            <ItemState>
               <ItemSymbol>TimeoutEnabled</ItemSymbol>
               <ReadOnly>false</ReadOnly>
               <UserReadOnly>false</UserReadOnly>
@@ -30218,20 +30168,6 @@
               <Base>DEC</Base>
             </ItemState>
             <ItemState>
-              <ItemSymbol>SendDataBlockWaitms</ItemSymbol>
-              <ReadOnly>false</ReadOnly>
-              <UserReadOnly>false</UserReadOnly>
-              <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-              <Value>0</Value>
-              <Base>DEC</Base>
-            </ItemState>
-            <ItemState>
-              <ItemSymbol>Wait</ItemSymbol>
-              <ReadOnly>false</ReadOnly>
-              <UserReadOnly>false</UserReadOnly>
-              <Value>WAIT1</Value>
-            </ItemState>
-            <ItemState>
               <ItemSymbol>PowerOptionsGroup</ItemSymbol>
               <ReadOnly>false</ReadOnly>
               <UserReadOnly>false</UserReadOnly>
@@ -30251,6 +30187,56 @@
               <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
               <Index>0</Index>
               <Value>true</Value>
+            </ItemState>
+            <ItemState>
+              <ItemSymbol>Configuration</ItemSymbol>
+              <ReadOnly>false</ReadOnly>
+              <UserReadOnly>false</UserReadOnly>
+              <Expanded>true</Expanded>
+            </ItemState>
+            <ItemState>
+              <ItemSymbol>USB_EP0_SIZE</ItemSymbol>
+              <ReadOnly>false</ReadOnly>
+              <UserReadOnly>false</UserReadOnly>
+              <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
+              <Value>32</Value>
+              <Base>DEC</Base>
+            </ItemState>
+            <ItemState>
+              <ItemSymbol>USB_EP1_SIZE</ItemSymbol>
+              <ReadOnly>false</ReadOnly>
+              <UserReadOnly>false</UserReadOnly>
+              <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
+              <Value>32</Value>
+              <Base>DEC</Base>
+            </ItemState>
+            <ItemState>
+              <ItemSymbol>USB_EP2_SIZE</ItemSymbol>
+              <ReadOnly>false</ReadOnly>
+              <UserReadOnly>false</UserReadOnly>
+              <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
+              <Value>32</Value>
+              <Base>DEC</Base>
+            </ItemState>
+            <ItemState>
+              <ItemSymbol>SendBlockConfig</ItemSymbol>
+              <ReadOnly>false</ReadOnly>
+              <UserReadOnly>false</UserReadOnly>
+              <Expanded>true</Expanded>
+            </ItemState>
+            <ItemState>
+              <ItemSymbol>SendDataBlockWaitms</ItemSymbol>
+              <ReadOnly>false</ReadOnly>
+              <UserReadOnly>false</UserReadOnly>
+              <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
+              <Value>0</Value>
+              <Base>DEC</Base>
+            </ItemState>
+            <ItemState>
+              <ItemSymbol>Wait</ItemSymbol>
+              <ReadOnly>false</ReadOnly>
+              <UserReadOnly>false</UserReadOnly>
+              <Value>WAIT1</Value>
             </ItemState>
           </Properties>
           <Methods>
@@ -30409,6 +30395,28 @@
               <UsrMethodName>App_Task</UsrMethodName>
             </ItemState>
             <ItemState>
+              <ItemSymbol>Deinit</ItemSymbol>
+              <ReadOnly>false</ReadOnly>
+              <UserReadOnly>false</UserReadOnly>
+              <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
+              <Index>0</Index>
+              <Value>true</Value>
+              <LastSelection>true</LastSelection>
+              <LastUserSel>yes</LastUserSel>
+              <UsrMethodName>Deinit</UsrMethodName>
+            </ItemState>
+            <ItemState>
+              <ItemSymbol>Init</ItemSymbol>
+              <ReadOnly>true</ReadOnly>
+              <UserReadOnly>false</UserReadOnly>
+              <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
+              <Index>0</Index>
+              <Value>true</Value>
+              <LastSelection>true</LastSelection>
+              <LastUserSel>yes</LastUserSel>
+              <UsrMethodName>Init</UsrMethodName>
+            </ItemState>
+            <ItemState>
               <ItemSymbol>StdIOKeyPressed</ItemSymbol>
               <ReadOnly>false</ReadOnly>
               <UserReadOnly>false</UserReadOnly>
@@ -30440,28 +30448,6 @@
               <LastSelection>true</LastSelection>
               <LastUserSel>yes</LastUserSel>
               <UsrMethodName>StdIOSendChar</UsrMethodName>
-            </ItemState>
-            <ItemState>
-              <ItemSymbol>Deinit</ItemSymbol>
-              <ReadOnly>false</ReadOnly>
-              <UserReadOnly>false</UserReadOnly>
-              <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-              <Index>0</Index>
-              <Value>true</Value>
-              <LastSelection>true</LastSelection>
-              <LastUserSel>yes</LastUserSel>
-              <UsrMethodName>Deinit</UsrMethodName>
-            </ItemState>
-            <ItemState>
-              <ItemSymbol>Init</ItemSymbol>
-              <ReadOnly>true</ReadOnly>
-              <UserReadOnly>false</UserReadOnly>
-              <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-              <Index>0</Index>
-              <Value>true</Value>
-              <LastSelection>true</LastSelection>
-              <LastUserSel>yes</LastUserSel>
-              <UsrMethodName>Init</UsrMethodName>
             </ItemState>
           </Methods>
           <Events>
@@ -30583,6 +30569,20 @@
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
         <Index>0</Index>
         <Value>true</Value>
+      </ItemState>
+      <ItemState>
+        <ItemSymbol>InitUSBFunctionName</ItemSymbol>
+        <ReadOnly>false</ReadOnly>
+        <UserReadOnly>false</UserReadOnly>
+        <Value>USB0_Init</Value>
+      </ItemState>
+      <ItemState>
+        <ItemSymbol>InheritedUSBInitEnabled</ItemSymbol>
+        <ReadOnly>false</ReadOnly>
+        <UserReadOnly>false</UserReadOnly>
+        <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
+        <Value>true</Value>
+        <Expanded>true</Expanded>
       </ItemState>
     </Properties>
     <Methods>
@@ -32630,7 +32630,7 @@
     </Events>
   </Bean>
   <Bean>
-    <Repository>file://home/user3/MyComponents/2015_11_08</Repository>
+    <Repository>file:/${home_ProcessorExpert_loc}/MyComponents</Repository>
     <BeanType>KinetisSDK</BeanType>
     <Name>KSDK1</Name>
     <CompNumb>164</CompNumb>
@@ -32655,7 +32655,7 @@
     <Events />
   </Bean>
   <Bean>
-    <Repository>file://home/user3/MyComponents/2015_11_08</Repository>
+    <Repository>file:/${home_ProcessorExpert_loc}/MyComponents</Repository>
     <BeanType>RNet</BeanType>
     <Name>RNET1</Name>
     <CompNumb>166</CompNumb>
@@ -32969,7 +32969,7 @@
     </Events>
   </Bean>
   <Bean>
-    <Repository>file://home/user3/MyComponents/2015_11_08</Repository>
+    <Repository>file:/${home_ProcessorExpert_loc}/MyComponents</Repository>
     <BeanType>nRF24L01</BeanType>
     <Name>RF1</Name>
     <CompNumb>167</CompNumb>
