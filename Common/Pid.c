@@ -375,7 +375,7 @@ void PID_Init(void) {
   speedRightConfig.lastError = 0;
   speedRightConfig.integral = 0;
 #else
-  speedLeftConfig.pFactor100 = 1200;
+  speedLeftConfig.pFactor100 = 2200;	//was 1200
   speedLeftConfig.iFactor100 = 80;
   speedLeftConfig.dFactor100 = 0;
   speedLeftConfig.iAntiWindup = 50000;

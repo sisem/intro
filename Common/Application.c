@@ -127,7 +127,7 @@ void APP_HandleEvent(EVNT_Handle event) {
 void APP_KeyEvntHandler(EVNT_Handle event) {
 	bool handled = TRUE;
 
-	uint8_t data = 0;
+	uint8_t data;
 	switch (event) {
 /** KEY #1 **/
 #if PL_CONFIG_NOF_KEYS >= 1
@@ -168,6 +168,10 @@ void APP_KeyEvntHandler(EVNT_Handle event) {
 /** KEY #2 **/
 #if PL_CONFIG_NOF_KEYS >= 2
 	case EVNT_SW2_PRESSED:
+#if PL_CONFIG_CONTROL_SENDER
+		data = 'B';
+		(void)RAPP_SendPayloadDataBlock(&data, sizeof(data), RAPP_MSG_TYPE_JOYSTICK_BTN, RNWK_ADDR_BROADCAST, RPHY_PACKET_FLAGS_NONE);
+#endif
 #if PL_CONFIG_HAS_SHELL
 		SQUEUE_SendString("SW2 short pressed.\n");
 #endif
@@ -193,7 +197,11 @@ void APP_KeyEvntHandler(EVNT_Handle event) {
 /** KEY #3 **/
 #if PL_CONFIG_NOF_KEYS >= 3
 	case EVNT_SW3_PRESSED:
-#if PL_CONFIG_HAS_SHELL
+#if PL_CONFIG_CONTROL_SENDER
+		data = 'C';
+		(void)RAPP_SendPayloadDataBlock(&data, sizeof(data), RAPP_MSG_TYPE_JOYSTICK_BTN, RNWK_ADDR_BROADCAST, RPHY_PACKET_FLAGS_NONE);
+#endif
+		#if PL_CONFIG_HAS_SHELL
 		SQUEUE_SendString("SW3 short pressed.\n");
 #endif
 		break;
@@ -217,6 +225,10 @@ void APP_KeyEvntHandler(EVNT_Handle event) {
 /** KEY #4 **/
 #if PL_CONFIG_NOF_KEYS >= 4
 	case EVNT_SW4_PRESSED:
+#if PL_CONFIG_CONTROL_SENDER
+		data = 'D';
+		(void)RAPP_SendPayloadDataBlock(&data, sizeof(data), RAPP_MSG_TYPE_JOYSTICK_BTN, RNWK_ADDR_BROADCAST, RPHY_PACKET_FLAGS_NONE);
+#endif
 #if PL_CONFIG_HAS_SHELL
 		SQUEUE_SendString("SW4 short pressed.\n");
 #endif
@@ -241,6 +253,10 @@ void APP_KeyEvntHandler(EVNT_Handle event) {
 /** KEY #5 **/
 #if PL_CONFIG_NOF_KEYS >= 5
 	case EVNT_SW5_PRESSED:
+#if PL_CONFIG_CONTROL_SENDER
+		data = 'E';
+		(void)RAPP_SendPayloadDataBlock(&data, sizeof(data), RAPP_MSG_TYPE_JOYSTICK_BTN, RNWK_ADDR_BROADCAST, RPHY_PACKET_FLAGS_NONE);
+#endif
 #if PL_CONFIG_HAS_SHELL
 		SQUEUE_SendString("SW5 short pressed.\n");
 #endif
@@ -262,6 +278,10 @@ void APP_KeyEvntHandler(EVNT_Handle event) {
 /** KEY #6 **/
 #if PL_CONFIG_NOF_KEYS >= 6
 	case EVNT_SW6_PRESSED:
+#if PL_CONFIG_CONTROL_SENDER
+		data = 'F';
+		(void)RAPP_SendPayloadDataBlock(&data, sizeof(data), RAPP_MSG_TYPE_JOYSTICK_BTN, RNWK_ADDR_BROADCAST, RPHY_PACKET_FLAGS_NONE);
+#endif
 #if PL_CONFIG_HAS_SHELL
 		SQUEUE_SendString("SW6 short pressed.\n");
 #endif
@@ -282,6 +302,10 @@ void APP_KeyEvntHandler(EVNT_Handle event) {
 /** KEY #7 **/
 #if PL_CONFIG_NOF_KEYS >= 7
 	case EVNT_SW7_PRESSED:
+#if PL_CONFIG_CONTROL_SENDER
+		data = 'G';
+		(void)RAPP_SendPayloadDataBlock(&data, sizeof(data), RAPP_MSG_TYPE_JOYSTICK_BTN, RNWK_ADDR_BROADCAST, RPHY_PACKET_FLAGS_NONE);
+#endif
 #if PL_CONFIG_HAS_SHELL
 		SQUEUE_SendString("SW7 short pressed.\n");
 #endif

@@ -43,6 +43,8 @@ static bool REMOTE_useJoystick = TRUE;
 static uint16_t midPointX, midPointY;
 #endif
 
+static uint8_t boost = 1;
+
 #if PL_CONFIG_CONTROL_SENDER
 static int8_t ToSigned8Bit(uint16_t val, bool isX) {
   int32_t tmp;
@@ -221,7 +223,8 @@ static int16_t scaleJoystickTo1K(int8_t val) {
   } else if (tmp>1000) {
     tmp = 1000;
   }
-  return tmp;
+
+  return (tmp*boost);
 }
 #endif
 
@@ -290,9 +293,11 @@ uint8_t REMOTE_HandleRemoteRxMessage(RAPP_MSG_Type type, uint8_t size, uint8_t *
         DRV_SetMode(DRV_MODE_SPEED);
         SHELL_SendString("Remote ON\r\n");
       } else if (val=='C') { /* red 'C' button */
+    	  boost = 3;
         /*! \todo add functionality */
       } else if (val=='A') { /* green 'A' button */
-        /*! \todo add functionality */
+    	  boost = 10;
+    	  /*! \todo add functionality */
       }
 #else
       *handled = FALSE; /* no shell and no buzzer? */
