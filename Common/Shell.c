@@ -61,20 +61,20 @@
 #if PL_CONFIG_HAS_LINE_FOLLOW
 	#include "LineFollow.h"
 #endif
-
 #if PL_CONFIG_HAS_RADIO
   #include "Radio.h"
   #include "RNet_App.h"
   #include "RNetConf.h"
 #endif
-
 #if RNET_CONFIG_REMOTE_STDIO
   #include "RStdIO.h"
 #endif
 #if PL_CONFIG_HAS_REMOTE
   #include "Remote.h"
 #endif
-
+#if PL_CONFIG_HAS_LINE_MAZE
+	#include "Maze.h"
+#endif
 
 #define SHELL_COPY_CDC_TO_UART   (1)
 
@@ -141,7 +141,9 @@ static const CLS1_ParseCommandCallback CmdParserTable[] =
 #if PL_CONFIG_HAS_REMOTE
   REMOTE_ParseCommand,
 #endif
-
+#if PL_CONFIG_HAS_LINE_MAZE
+  MAZE_ParseCommand,
+#endif
   NULL /* Sentinel */
 };
 

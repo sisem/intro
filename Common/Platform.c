@@ -84,6 +84,9 @@
 #if PL_CONFIG_HAS_REMOTE
   #include "Remote.h"
 #endif
+#if PL_CONFIG_HAS_LINE_MAZE
+  #include "Maze.h"
+#endif
 
 
 void PL_Init(void) {
@@ -197,6 +200,11 @@ void PL_Init(void) {
 #if PL_CONFIG_HAS_REMOTE
 	REMOTE_Init();
 #endif
+
+#if PL_CONFIG_HAS_REMOTE
+	MAZE_Init();
+#endif
+
 
 
 }

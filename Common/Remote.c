@@ -293,10 +293,10 @@ uint8_t REMOTE_HandleRemoteRxMessage(RAPP_MSG_Type type, uint8_t size, uint8_t *
         DRV_SetMode(DRV_MODE_SPEED);
         SHELL_SendString("Remote ON\r\n");
       } else if (val=='C') { /* red 'C' button */
-    	  boost = 3;
+    	  boost = 1;
         /*! \todo add functionality */
       } else if (val=='A') { /* green 'A' button */
-    	  boost = 10;
+    	  boost = 5;
     	  /*! \todo add functionality */
       }
 #else
