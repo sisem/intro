@@ -393,9 +393,9 @@ void PID_Init(void) {
 #endif
   lineFwConfig.pFactor100 = 4500;
   lineFwConfig.iFactor100 = 150;
-  lineFwConfig.dFactor100 = 6000;
+  lineFwConfig.dFactor100 = 60;
   lineFwConfig.iAntiWindup = 100000;
-  lineFwConfig.maxSpeedPercent = 40;
+  lineFwConfig.maxSpeedPercent = 10;
   lineFwConfig.lastError = 0;
   lineFwConfig.integral = 0;
 
