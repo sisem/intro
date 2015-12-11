@@ -91,10 +91,9 @@
 
 void PL_Init(void) {
 
-#if PL_CONFIG_HAS_EVENTS
-	EVNT_Init();
+#if PL_CONFIG_HAS_LED
+	LED_Init();
 #endif
-
 #if PL_CONFIG_NOF_LED >=1
 	LED1_Off();
 #endif
@@ -105,12 +104,16 @@ void PL_Init(void) {
 	LED3_Off();
 #endif
 
-#if PL_CONFIG_HAS_LED
-	LED_Init();
+#if PL_CONFIG_HAS_EVENTS
+	EVNT_Init();
 #endif
 
 #if PL_CONFIG_HAS_KEYS
 	KEY_Init();
+#endif
+
+#if PL_CONFIG_HAS_TRIGGER
+	TRG_Init();
 #endif
 
 #if PL_CONFIG_HAS_DEBOUNCE
@@ -122,9 +125,6 @@ void PL_Init(void) {
 	RTOS_Init();
 #endif
 
-#if PL_CONFIG_HAS_TRIGGER
-	TRG_Init();
-#endif
 
 	// buzzer on startup
 #if PL_CONFIG_HAS_BUZZER

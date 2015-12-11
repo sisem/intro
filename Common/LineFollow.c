@@ -78,33 +78,32 @@ static bool FollowSegment(void) {
   }
 }
 
-static void StateMachine(void) {
-  static bool finished = FALSE;
-  switch (LF_currState) {
 
+static void StateMachine(void) {
+  bool finished = FALSE;
+  switch (LF_currState) {
     case STATE_IDLE:
       break;
 
     case STATE_FOLLOW_SEGMENT:
-      if(!FollowSegment()) {
+      if (!FollowSegment()) {
         LF_currState = STATE_TURN; /* stop if we do not have a line any more */
       }
       break;
 
     case STATE_TURN:
-	  if(MAZE_EvaluteTurn(&finished) == ERR_FAILED) {
-		LF_currState = STATE_STOP;
-		break;
-	  }
-	  if(finished == TRUE) {
-		LF_currState = STATE_FINISHED;
-		break;
-	  }
-      LF_currState = STATE_FOLLOW_SEGMENT;
+    	if(MAZE_EvaluteTurn(&finished,lefthand) == ERR_OK){
+    		LF_currState = STATE_FOLLOW_SEGMENT;
+    	} else {
+    		LF_currState = STATE_STOP;
+    	}
+    	if(finished == TRUE){
+    		LF_currState = STATE_FINISHED;
+    	}
       break;
 
     case STATE_FINISHED:
-        /*! \todo Handle maze finished? */
+      /*! \todo Handle maze finished? */
     	LF_currState = STATE_STOP;
       break;
 
@@ -116,6 +115,7 @@ static void StateMachine(void) {
 
   } /* switch */
 }
+
 
 bool LF_IsFollowing(void) {
   return LF_currState != STATE_IDLE;
