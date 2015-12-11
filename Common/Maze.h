@@ -5,8 +5,8 @@
  *      Author: Erich Styger
  */
 
-#ifndef MAZE_H_
-#define MAZE_H_
+#ifndef SOURCES_INTRO_COMMON_MAZE_H_
+#define SOURCES_INTRO_COMMON_MAZE_H_
 
 #include "Platform.h"
 #if PL_CONFIG_HAS_LINE_MAZE
@@ -52,16 +52,16 @@ TURN_Kind MAZE_GetSolvedTurn(uint8_t *solvedIdx);
  * \param curr Line kind of the intersection.
  * \return The new turn.
  */
-//TURN_Kind MAZE_SelectTurn(REF_LineKind prev, REF_LineKind curr);
-TURN_Kind MAZE_SelectTurn(REF_LineKind prev, REF_LineKind curr, bool lefthand);
+TURN_Kind MAZE_SelectTurn(REF_LineKind prev, REF_LineKind curr, bool rule);
 
 /*!
  * \brief Performs a turn.
  * \return Returns TRUE while turn is still in progress.
  * \param finished Set to TRUE if we have reached the finish area
  */
-//uint8_t MAZE_EvaluteTurn(bool *finished);
-uint8_t MAZE_EvaluteTurn(bool *finished, bool lefthand);
+uint8_t MAZE_EvaluteTurn(bool *finished, bool rule);
+
+void MAZE_RevertPath(void);
 
 #if PL_CONFIG_HAS_SHELL
 #include "CLS1.h"
@@ -87,4 +87,4 @@ void MAZE_Init(void);
 
 #endif /* PL_HAS_LINE_SENSOR */
 
-#endif /* MAZE_H_ */
+#endif /* SOURCES_INTRO_COMMON_MAZE_H_ */

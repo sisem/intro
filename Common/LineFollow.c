@@ -24,25 +24,31 @@
 #if PL_CONFIG_HAS_DRIVE
   #include "Drive.h"
 #endif
+#if PL_CONFIG_HAS_LINE_MAZE
+	#include "Maze.h"
+#endif
 
 #define LINE_DEBUG      1   /* careful: this will slow down the PID loop frequency! */
-#define LINE_FOLLOW_FW  1   /* test setting to do forward line following */
-
-static bool lefthand = TRUE;
 
 typedef enum {
   STATE_IDLE,              /* idle, not doing anything */
   STATE_FOLLOW_SEGMENT,    /* line following segment, going forward */
   STATE_TURN,              /* reached an intersection, turning around */
   STATE_FINISHED,          /* reached finish area */
-  STATE_STOP               /* stop the engines */
+  STATE_STOP,              /* stop the engines */
+  STATE_GOHOME			   /* found way, go back to start */
 } StateType;
+
+static bool rule = TRUE; /* True for left hand on the wall, false for right hand on the wall */
 
 static volatile StateType LF_currState = STATE_IDLE;
 static volatile bool LF_stopIt = FALSE;
 
-void LF_StartFollowing(bool mode) {
-  lefthand = mode;
+void LF_SetRule(bool newRule){
+	rule = newRule;
+}
+
+void LF_StartFollowing(void) {
   PID_Start();
   LF_currState = STATE_FOLLOW_SEGMENT;
   DRV_SetMode(DRV_MODE_NONE); /* disable any drive mode */
@@ -78,50 +84,57 @@ static bool FollowSegment(void) {
   }
 }
 
-
 static void StateMachine(void) {
-  bool finished = FALSE;
+	bool finished = FALSE;
   switch (LF_currState) {
+
     case STATE_IDLE:
       break;
 
     case STATE_FOLLOW_SEGMENT:
-      if (!FollowSegment()) {
-        LF_currState = STATE_TURN; /* stop if we do not have a line any more */
-      }
-      break;
+    	if (!FollowSegment()) {
+    		LF_currState = STATE_TURN; /* Lost line, do U-turn */
+    	}
+    	break;
 
     case STATE_TURN:
-    	if(MAZE_EvaluteTurn(&finished,lefthand) == ERR_OK){
-    		LF_currState = STATE_FOLLOW_SEGMENT;
-    	} else {
+    	if(MAZE_EvaluteTurn(&finished, rule)== ERR_FAILED){
     		LF_currState = STATE_STOP;
+    	    break;
     	}
     	if(finished == TRUE){
-    		LF_currState = STATE_FINISHED;
+    	   	LF_currState = STATE_FINISHED;
+    	   	break;
     	}
-      break;
+    	LF_currState = STATE_FOLLOW_SEGMENT;
+    	break;
 
     case STATE_FINISHED:
-      /*! \todo Handle maze finished? */
+    	TURN_Turn(TURN_RIGHT180, NULL); /*to do: U-Turn invert track go back */
+    	LF_currState = STATE_GOHOME;
+    	SHELL_SendString("LINE: Finished!\r\n");
+    	break;
+
+    case STATE_GOHOME:
+    	MAZE_SimplifyPath();
+    	MAZE_RevertPath();
+    	/* toDo: fahren bis abzweigung, dann TURN_Turn(MAZE_GetSolvedTurn(pointer auf pfad),NULL)*/
     	LF_currState = STATE_STOP;
-      break;
+    	break;
 
     case STATE_STOP:
-      SHELL_SendString("LINE: Stop!\r\n");
-      TURN_Turn(TURN_STOP, NULL);
-      LF_currState = STATE_IDLE;
-      break;
-
+    	SHELL_SendString("LINE: Stop!\r\n");
+    	TURN_Turn(TURN_STOP, NULL);
+    	LF_currState = STATE_IDLE;
+    	break;
   } /* switch */
 }
 
-
 bool LF_IsFollowing(void) {
-  return LF_currState != STATE_IDLE;
+  return LF_currState!=STATE_IDLE;
 }
 
-static void LineTask(void *pvParameters) {
+static void LineTask (void *pvParameters) {
   (void)pvParameters; /* not used */
   for(;;) {
     if (LF_stopIt) {
@@ -145,19 +158,19 @@ static void LF_PrintStatus(const CLS1_StdIOType *io) {
     case STATE_IDLE: 
       CLS1_SendStatusStr((unsigned char*)"  state", (unsigned char*)"IDLE\r\n", io->stdOut);
       break;
-    case STATE_FOLLOW_SEGMENT: 
+    case STATE_FOLLOW_SEGMENT:
       CLS1_SendStatusStr((unsigned char*)"  state", (unsigned char*)"FOLLOW_SEGMENT\r\n", io->stdOut);
       break;
-    case STATE_STOP: 
+    case STATE_STOP:
       CLS1_SendStatusStr((unsigned char*)"  state", (unsigned char*)"STOP\r\n", io->stdOut);
       break;
-    case STATE_TURN: 
+    case STATE_TURN:
       CLS1_SendStatusStr((unsigned char*)"  state", (unsigned char*)"TURN\r\n", io->stdOut);
       break;
-    case STATE_FINISHED: 
+    case STATE_FINISHED:
       CLS1_SendStatusStr((unsigned char*)"  state", (unsigned char*)"FINISHED\r\n", io->stdOut);
       break;
-    default: 
+    default:
       CLS1_SendStatusStr((unsigned char*)"  state", (unsigned char*)"UNKNOWN\r\n", io->stdOut);
       break;
   } /* switch */
@@ -173,7 +186,9 @@ uint8_t LF_ParseCommand(const unsigned char *cmd, bool *handled, const CLS1_StdI
     LF_PrintStatus(io);
     *handled = TRUE;
   } else if (UTIL1_strcmp((char*)cmd, (char*)"line start")==0) {
-    LF_StartFollowing(TRUE);
+    if(!LF_IsFollowing()){
+    	LF_StartFollowing();
+    }
     *handled = TRUE;
   } else if (UTIL1_strcmp((char*)cmd, (char*)"line stop")==0) {
     LF_StopFollowing();
