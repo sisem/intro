@@ -76,34 +76,49 @@ static bool FollowSegment(void) {
 }
 
 static void StateMachine(void) {
+  static bool finished = FALSE;
   switch (LF_currState) {
+
     case STATE_IDLE:
       break;
+
     case STATE_FOLLOW_SEGMENT:
-      if (!FollowSegment()) {
-        LF_currState = STATE_STOP; /* stop if we do not have a line any more */
-        SHELL_SendString((unsigned char*)"No line, stopped!\r\n");
+      if(!FollowSegment()) {
+        LF_currState = STATE_TURN; /* stop if we do not have a line any more */
       }
       break;
+
     case STATE_TURN:
-      /*! \todo Handle maze turning? */
+	  if(MAZE_EvaluteTurn(&finished) == ERR_FAILED) {
+		LF_currState = STATE_STOP;
+		break;
+	  }
+	  if(finished == TRUE) {
+		LF_currState = STATE_FINISHED;
+		break;
+	  }
+      LF_currState = STATE_FOLLOW_SEGMENT;
       break;
+
     case STATE_FINISHED:
-      /*! \todo Handle maze finished? */
+        /*! \todo Handle maze finished? */
+    	LF_currState = STATE_STOP;
       break;
+
     case STATE_STOP:
       SHELL_SendString("LINE: Stop!\r\n");
       TURN_Turn(TURN_STOP, NULL);
       LF_currState = STATE_IDLE;
       break;
+
   } /* switch */
 }
 
 bool LF_IsFollowing(void) {
-  return LF_currState!=STATE_IDLE;
+  return LF_currState != STATE_IDLE;
 }
 
-static void LineTask (void *pvParameters) {
+static void LineTask(void *pvParameters) {
   (void)pvParameters; /* not used */
   for(;;) {
     if (LF_stopIt) {
