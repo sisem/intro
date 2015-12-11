@@ -10,27 +10,48 @@
 #include "Application.h"
 
 #if PL_CONFIG_HAS_LED
-#include "LED.h"
-#if PL_CONFIG_NOF_LED >=1
-#include "LED1.h"
+	#include "LED.h"
+	#if PL_CONFIG_NOF_LED >=1
+	#include "LED1.h"
+	#endif
+	#if PL_CONFIG_NOF_LED >=2
+	#include "LED2.h"
+	#endif
+	#if PL_CONFIG_NOF_LED >=3
+	#include "LED3.h"
+	#endif
 #endif
-#if PL_CONFIG_NOF_LED >=2
-#include "LED2.h"
+
+#if PL_CONFIG_HAS_KEYS
+#include "Keys.h"
 #endif
+
+#if PL_CONFIG_HAS_EVENTS
+  #include "Event.h"
 #endif
-#if PL_CONFIG_HAS_BUZZER
-#include "Buzzer.h"
+
+#if PL_CONFIG_HAS_TETIRS
+  #include "Tetris.h"
 #endif
+
+#if PL_CONFIG_HAS_SHELL
+#include "CLS1.h"
+#include "Shell.h"
+#endif
+
 #if PL_CONFIG_HAS_SHELL_QUEUE
 #include "ShellQueue.h"
 #endif
+
 #if PL_CONFIG_HAS_BUZZER
 #include "Buzzer.h"
-#include "BUZ1.h"
+//#include "BUZ1.h"
 #endif
-#if PL_CONFIG_HAS_SHELL
-#include "Shell.h"
+
+#if PL_CONFIG_HAS_RTOS
+  #include "RTOS.h"
 #endif
+
 #if PL_CONFIG_HAS_SHELL_QUEUE
 #include "ShellQueue.h"
 #endif
@@ -40,9 +61,6 @@
 #if PL_CONFIG_HAS_TIMER
 #include "Timer.h"
 #endif
-#if PL_CONFIG_HAS_KEYS
-#include "Keys.h"
-#endif
 #if PL_CONFIG_HAS_DEBOUNCE
 #include "Debounce.h"
 #include "KeyDebounce.h"
@@ -50,7 +68,6 @@
 #if PL_CONFIG_CONTROL_SENDER
 	#include "RApp.h"
 #endif
-#include "CLS1.h"
 
 static bool isRunning = FALSE;
 
@@ -85,6 +102,7 @@ void APP_Stop(void) {
  */
 void APP_Update(void) {
 #if PL_CONFIG_HAS_EVENTS
+
 #if PL_CONFIG_EVENTS_AUTO_CLEAR
 		EVNT_HandleEvent(APP_HandleEvent, TRUE);
 #else
@@ -106,14 +124,24 @@ void APP_Update(void) {
 void APP_HandleEvent(EVNT_Handle event) {
 	switch (event) {
 	case EVNT_STARTUP:
-#if !PL_CONFIG_EVENTS_AUTO_CLEAR
-		EVNT_ClearEvent(event);
-#endif
+		#if !PL_CONFIG_EVENTS_AUTO_CLEAR
+			EVNT_ClearEvent(event);
+		#endif
 		break;
+
+    case EVENT_LED_HEARTBEAT:
+  	  #if PL_CONFIG_NOF_LED>=1
+    	LED1_Neg();
+  	  #endif
+  	  #if !PL_CONFIG_EVENTS_AUTO_CLEAR
+    	EVNT_ClearEvent(EVENT_LED_HEARTBEAT);
+  	  #endif
+      break;
+
 	default:
-#if PL_CONFIG_HAS_KEYS
-		APP_KeyEvntHandler(event);
-#endif
+		#if PL_CONFIG_HAS_KEYS
+			APP_KeyEvntHandler(event);
+		#endif
 		break;
 	}
 }

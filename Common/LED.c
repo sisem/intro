@@ -27,8 +27,16 @@ static void LED_HeartBeat(void *p) {
 #endif
 
 void LED_Init(void) {
-	#if PL_CONFIG_NOF_LED >= 1
-	void *p;
-	LED_HeartBeat(&p);
-	#endif
+#if PL_CONFIG_NOF_LED>=1
+  LED1_Off();
+#endif
+#if PL_CONFIG_NOF_LED>=2
+  LED2_Off();
+#endif
+#if PL_CONFIG_NOF_LED>=3
+  LED3_Off();
+#endif
+#if PL_CONFIG_NOF_LED>=4
+  #error "only 3 LEDs supported"
+#endif
 }

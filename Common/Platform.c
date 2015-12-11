@@ -94,18 +94,13 @@ void PL_Init(void) {
 #if PL_CONFIG_HAS_LED
 	LED_Init();
 #endif
-#if PL_CONFIG_NOF_LED >=1
-	LED1_Off();
-#endif
-#if PL_CONFIG_NOF_LED >=2
-	LED2_Off();
-#endif
-#if PL_CONFIG_NOF_LED >=3
-	LED3_Off();
-#endif
 
 #if PL_CONFIG_HAS_EVENTS
 	EVNT_Init();
+#endif
+
+#if PL_CONFIG_HAS_TIMER
+  TMR_Init();
 #endif
 
 #if PL_CONFIG_HAS_KEYS
@@ -125,6 +120,9 @@ void PL_Init(void) {
 	RTOS_Init();
 #endif
 
+#if PL_CONFIG_HAS_SHELL
+	SHELL_Init();
+#endif
 
 	// buzzer on startup
 #if PL_CONFIG_HAS_BUZZER
@@ -138,10 +136,6 @@ void PL_Init(void) {
 
 #if PL_CONFIG_HAS_MOTOR
 	MOT_Init();
-#endif
-
-#if PL_CONFIG_HAS_SHELL
-	SHELL_Init();
 #endif
 
 #if PL_CONFIG_HAS_SHELL_QUEUE
