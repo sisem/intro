@@ -73,7 +73,6 @@ void MAZE_ClearSensorHistory(void) {
   }
 }
 
-
 #define MAZE_MAX_PATH        10 /* maximum number of turns in path */
 
 static TURN_Kind path[MAZE_MAX_PATH]; /* recorded maze */
@@ -111,12 +110,42 @@ static void MAZE_RevertPath(void) {
 }
 #endif
 
-TURN_Kind MAZE_SelectTurn(REF_LineKind prev, REF_LineKind curr) {
-  if (prev==REF_LINE_NONE && curr==REF_LINE_NONE) { /* dead end */
-    return TURN_RIGHT180; /* make U turn */
-  }
-  /*! \todo Implement all cases for turning */
-  return TURN_STOP; /* error case */
+TURN_Kind MAZE_SelectTurn(REF_LineKind prev, REF_LineKind curr, bool lefthand) {
+	if (prev == REF_LINE_NONE && curr == REF_LINE_NONE) { /* dead end */
+		return TURN_LEFT180; /* make U turn */
+	} else if (prev == REF_LINE_LEFT && curr == REF_LINE_NONE) {
+		return TURN_LEFT90;
+	} else if (prev == REF_LINE_RIGHT && curr == REF_LINE_NONE) {
+		return TURN_RIGHT90;
+	} else if (prev == REF_LINE_FULL && curr == REF_LINE_NONE) {
+		if (lefthand) {
+			return TURN_LEFT90;
+		} else {
+			return TURN_RIGHT90;
+		}
+	} else if (prev == REF_LINE_FULL && curr == REF_LINE_STRAIGHT) {
+		if(lefthand){
+			return TURN_LEFT90;
+		}else{
+			return TURN_RIGHT90;
+		}
+	} else if (prev == REF_LINE_LEFT && curr == REF_LINE_STRAIGHT) {
+		if(lefthand){
+		return TURN_LEFT90;
+		}else{
+			return TURN_STRAIGHT;
+		}
+	} else if (prev == REF_LINE_RIGHT && curr == REF_LINE_STRAIGHT) {
+		if(lefthand){
+		return TURN_STRAIGHT;
+		}else{
+			return TURN_RIGHT90;
+		}
+	} else if (prev == REF_LINE_FULL && curr == REF_LINE_FULL) {
+		return TURN_FINISHED;
+	}
+	/*! \todo Implement all cases for turning */
+	return TURN_STOP; /* error case */
 }
 
 void MAZE_SetSolved(void) {
@@ -150,7 +179,7 @@ void MAZE_SimplifyPath(void) {
  * \brief Performs a turn.
  * \return Returns TRUE while turn is still in progress.
  */
-uint8_t MAZE_EvaluteTurn(bool *finished) {
+uint8_t MAZE_EvaluteTurn(bool *finished, bool lefthand) {
   REF_LineKind historyLineKind, currLineKind;
   TURN_Kind turn;
 
@@ -164,7 +193,7 @@ uint8_t MAZE_EvaluteTurn(bool *finished) {
     TURN_Turn(TURN_STEP_LINE_FW_POST_LINE, MAZE_SampleTurnStopFunction); /* do the line and beyond in one step */
     historyLineKind = MAZE_HistoryLineKind(); /* new read new values */
     currLineKind = REF_GetLineKind();
-    turn = MAZE_SelectTurn(historyLineKind, currLineKind);
+    turn = MAZE_SelectTurn(historyLineKind, currLineKind, lefthand);
   }
   if (turn==TURN_FINISHED) {
     *finished = TRUE;

@@ -28,6 +28,8 @@
 #define LINE_DEBUG      1   /* careful: this will slow down the PID loop frequency! */
 #define LINE_FOLLOW_FW  1   /* test setting to do forward line following */
 
+static bool lefthand = TRUE;
+
 typedef enum {
   STATE_IDLE,              /* idle, not doing anything */
   STATE_FOLLOW_SEGMENT,    /* line following segment, going forward */
@@ -39,7 +41,8 @@ typedef enum {
 static volatile StateType LF_currState = STATE_IDLE;
 static volatile bool LF_stopIt = FALSE;
 
-void LF_StartFollowing(void) {
+void LF_StartFollowing(bool mode) {
+  lefthand = mode;
   PID_Start();
   LF_currState = STATE_FOLLOW_SEGMENT;
   DRV_SetMode(DRV_MODE_NONE); /* disable any drive mode */
@@ -155,7 +158,7 @@ uint8_t LF_ParseCommand(const unsigned char *cmd, bool *handled, const CLS1_StdI
     LF_PrintStatus(io);
     *handled = TRUE;
   } else if (UTIL1_strcmp((char*)cmd, (char*)"line start")==0) {
-    LF_StartFollowing();
+    LF_StartFollowing(TRUE);
     *handled = TRUE;
   } else if (UTIL1_strcmp((char*)cmd, (char*)"line stop")==0) {
     LF_StopFollowing();
